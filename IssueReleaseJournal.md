@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M0-05 |
-| **Title** | Validation: Project Foundation is Stable |
-| **Milestone** | M0 — Project Foundation |
-| **Type** | Validation |
+| **Issue ID** | M1-01 |
+| **Title** | Implement Demo Dataset Connector |
+| **Milestone** | M1 — Model Visualization |
+| **Type** | Feature |
 | **Status** | Current |
-| **Depends On** | M0-01 (Done), M0-02 (Done), M0-03 (Done), M0-04 (Done) |
-| **Unlocks** | M1 (entire milestone) |
-| **File** | `Issue-Tree/M0_Project_Foundation/M0-05_Validation_Project_Foundation.md` |
+| **Depends On** | M0-03 (Done), M0-04 (Done), M0-05 (Done) |
+| **Unlocks** | M1-02, M1-03, M1-06 |
+| **File** | `Issue-Tree/M1_Model_Visualization/M1-01_Implement_Demo_Dataset_Connector.md` |
 
 ---
 
@@ -48,8 +48,8 @@
 | 2 | M0-02 | M0 — Project Foundation | Done | [Report](IssueReport/M0-02_Implementation_Report.md) | [Tech Doc](IssueReport/M0-02_Technical_Documentation.md) | Setup: React + TS + Vite + ESLint |
 | 3 | M0-03 | M0 — Project Foundation | Done | [Report](IssueReport/M0-03_Implementation_Report.md) | [Tech Doc](IssueReport/M0-03_Technical_Documentation.md) | Domain types и NormalizedModel interface |
 | 4 | M0-04 | M0 — Project Foundation | Done | [Report](IssueReport/M0-04_Implementation_Report.md) | [Tech Doc](IssueReport/M0-04_Technical_Documentation.md) | Demo dataset: Digital Bank Architecture |
-| 5 | M0-05 | M0 — Project Foundation | Current | — | — | Validation: Readiness Gate |
-| 6 | M1-01 | M1 — Model Visualization | Pending | — | — | Demo dataset connector |
+| 5 | M0-05 | M0 — Project Foundation | Done | [Report](IssueReport/M0-05_Implementation_Report.md) | [Tech Doc](IssueReport/M0-05_Technical_Documentation.md) | Validation: all 5 RG conditions passed |
+| 6 | M1-01 | M1 — Model Visualization | Current | — | — | Demo dataset connector |
 | 7 | M1-02 | M1 — Model Visualization | Pending | — | — | Architeezy connector (fetch + normalize) |
 | 8 | M1-03 | M1 — Model Visualization | Pending | — | — | Graph engine: construction, adjacency, indexes |
 | 9 | M1-04 | M1 — Model Visualization | Pending | — | — | Base metrics: degree, orphan detection |
@@ -93,6 +93,7 @@
 | 2 | M0-02 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-02_Implementation_Report.md) | [Tech Doc](IssueReport/M0-02_Technical_Documentation.md) | Проект создан: Vite 8 + React 19 + TS 5.9 strict + ESLint + Prettier. Folder structure готова. D-13 confirmed. Разблокировано: M0-03, M0-04. |
 | 3 | M0-03 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-03_Implementation_Report.md) | [Tech Doc](IssueReport/M0-03_Technical_Documentation.md) | Domain types определены: NormalizedModel, Layer (8), elementTypeToLayer (50+ типов), GraphNode, AnalysisGraph, ImpactResult, CoverageReport, DataConnector. Разблокировано: M0-04, M1-01, M1-02, M1-03. |
 | 4 | M0-04 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-04_Implementation_Report.md) | [Tech Doc](IssueReport/M0-04_Technical_Documentation.md) | Demo dataset создан: 102 элемента, 160 связей, 10 диаграмм, 2 хаба (degree 18/14), 12 orphans, 6 слоёв. Разблокировано: M0-05, M1-01, все validation issues. |
+| 5 | M0-05 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-05_Implementation_Report.md) | [Tech Doc](IssueReport/M0-05_Technical_Documentation.md) | Validation пройден: 41/41 проверок, все 5 RG conditions passed. Milestone M0 завершён. Разблокировано: весь M1 (M1-01 — M1-10). |
 
 ---
 
@@ -100,12 +101,12 @@
 
 **Date:** 2026-03-18
 
-**Event:** M0-04 завершён успешно.
+**Event:** M0-05 завершён успешно. Milestone M0 (Project Foundation) полностью закрыт.
 
-- **Завершён:** M0-04 (Create Demo Dataset: Digital Bank Architecture) — синтетический dataset создан.
-- **Файлы:** `demo/digital-bank.json` (102 элемента, 160 связей, 10 диаграмм), `demo/digital-bank.expectations.md`.
-- **Проверки:** `npm run build` — успешно, `npm run lint` — 0 ошибок, referential integrity — 100%.
-- **Артефакты:** `IssueReport/M0-04_Implementation_Report.md`, `IssueReport/M0-04_Technical_Documentation.md`.
-- **Новый Current Issue:** M0-05 (Validation: Project Foundation is Stable) — все зависимости закрыты (M0-01..M0-04 Done).
-- **Разблокировано:** M0-05, M1-01, все validation issues.
-- Очередь: 34 нереализованных Issues из 38.
+- **Завершён:** M0-05 (Validation: Project Foundation is Stable) — все 5 Readiness Gate conditions пройдены.
+- **Файлы:** `scripts/validate-foundation.ts` (41 автоматизированная проверка).
+- **Проверки:** `npm run build` — успешно, `npm run lint` — 0 ошибок, `npm run dev` — стартует, validation script — 41/41 passed.
+- **Артефакты:** `IssueReport/M0-05_Implementation_Report.md`, `IssueReport/M0-05_Technical_Documentation.md`.
+- **Новый Current Issue:** M1-01 (Implement Demo Dataset Connector) — все зависимости закрыты (M0-03, M0-04, M0-05 Done).
+- **Разблокировано:** весь M1 milestone (M1-01 — M1-10).
+- Очередь: 33 нереализованных Issues из 38.
