@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M1-02 |
-| **Title** | Implement Architeezy Connector |
+| **Issue ID** | M1-03 |
+| **Title** | Build Graph Engine |
 | **Milestone** | M1 — Model Visualization |
-| **Type** | Integration |
+| **Type** | Engine |
 | **Status** | Current |
-| **Depends On** | M0-01 (Done), M0-03 (Done), M1-01 (Done) |
-| **Unlocks** | M1-03, M1-07 |
-| **File** | `Issue-Tree/M1_Model_Visualization/M1-02_Implement_Architeezy_Connector.md` |
+| **Depends On** | M0-03 (Done), M1-01 (Done), M1-02 (Done) |
+| **Unlocks** | M1-04, M1-05, M1-08, M2-01, M3-02 |
+| **File** | `Issue-Tree/M1_Model_Visualization/M1-03_Build_Graph_Engine.md` |
 
 ---
 
@@ -50,8 +50,8 @@
 | 4 | M0-04 | M0 — Project Foundation | Done | [Report](IssueReport/M0-04_Implementation_Report.md) | [Tech Doc](IssueReport/M0-04_Technical_Documentation.md) | Demo dataset: Digital Bank Architecture |
 | 5 | M0-05 | M0 — Project Foundation | Done | [Report](IssueReport/M0-05_Implementation_Report.md) | [Tech Doc](IssueReport/M0-05_Technical_Documentation.md) | Validation: all 5 RG conditions passed |
 | 6 | M1-01 | M1 — Model Visualization | Done | [Report](IssueReport/M1-01_Implementation_Report.md) | [Tech Doc](IssueReport/M1-01_Technical_Documentation.md) | DemoConnector: fetch-based, 6 tests passed |
-| 7 | M1-02 | M1 — Model Visualization | Current | — | — | Architeezy connector (fetch + normalize) |
-| 8 | M1-03 | M1 — Model Visualization | Pending | — | — | Graph engine: construction, adjacency, indexes |
+| 7 | M1-02 | M1 — Model Visualization | Done | [Report](IssueReport/M1-02_Implementation_Report.md) | [Tech Doc](IssueReport/M1-02_Technical_Documentation.md) | ArchiteezyConnector + normalize.ts, 13 tests |
+| 8 | M1-03 | M1 — Model Visualization | Current | — | — | Graph engine: construction, adjacency, indexes |
 | 9 | M1-04 | M1 — Model Visualization | Pending | — | — | Base metrics: degree, orphan detection |
 | 10 | M1-05 | M1 — Model Visualization | Pending | — | — | Unit tests for graph engine |
 | 11 | M1-06 | M1 — Model Visualization | Pending | — | — | Zustand stores |
@@ -95,6 +95,7 @@
 | 4 | M0-04 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-04_Implementation_Report.md) | [Tech Doc](IssueReport/M0-04_Technical_Documentation.md) | Demo dataset создан: 102 элемента, 160 связей, 10 диаграмм, 2 хаба (degree 18/14), 12 orphans, 6 слоёв. Разблокировано: M0-05, M1-01, все validation issues. |
 | 5 | M0-05 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-05_Implementation_Report.md) | [Tech Doc](IssueReport/M0-05_Technical_Documentation.md) | Validation пройден: 41/41 проверок, все 5 RG conditions passed. Milestone M0 завершён. Разблокировано: весь M1 (M1-01 — M1-10). |
 | 6 | M1-01 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-01_Implementation_Report.md) | [Tech Doc](IssueReport/M1-01_Technical_Documentation.md) | DemoConnector создан: fetch('/digital-bank.json'), 3 метода DataConnector, 6 unit tests. Vitest добавлен. Разблокировано: M1-02, M1-03, M1-06, M1-07. |
+| 7 | M1-02 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-02_Implementation_Report.md) | [Tech Doc](IssueReport/M1-02_Technical_Documentation.md) | ArchiteezyConnector создан: connect/listModels/loadModel, normalizeModelContent (рекурсивный обход папок), 13 unit tests. Разблокировано: M1-03, M1-07. |
 
 ---
 
@@ -102,13 +103,12 @@
 
 **Date:** 2026-03-18
 
-**Event:** M1-01 завершён успешно.
+**Event:** M1-02 завершён успешно.
 
-- **Завершён:** M1-01 (Implement Demo Dataset Connector) — DemoConnector создан и протестирован.
-- **Файлы:** `src/connectors/demo/DemoConnector.ts`, `src/connectors/demo/index.ts`, `public/digital-bank.json`, тесты в `src/connectors/demo/__tests__/`.
-- **Инфраструктура:** Vitest добавлен, ESLint config обновлён (argsIgnorePattern), tsconfig.app.json обновлён (exclude tests).
-- **Проверки:** `npm run build` — успешно, `npm run lint` — 0 ошибок, `npm run test` — 6/6 passed.
-- **Артефакты:** `IssueReport/M1-01_Implementation_Report.md`, `IssueReport/M1-01_Technical_Documentation.md`.
-- **Новый Current Issue:** M1-02 (Implement Architeezy Connector) — все зависимости закрыты (M0-01, M0-03, M1-01 Done).
-- **Разблокировано:** M1-02, M1-03, M1-06, M1-07.
-- Очередь: 32 нереализованных Issues из 38.
+- **Завершён:** M1-02 (Implement Architeezy Connector) — ArchiteezyConnector и normalize.ts созданы и протестированы.
+- **Файлы:** `src/connectors/architeezy/ArchiteezyConnector.ts`, `src/connectors/architeezy/normalize.ts`, `src/connectors/architeezy/index.ts`, тесты в `__tests__/`.
+- **Проверки:** `npm run build` — успешно, `npm run lint` — 0 ошибок, `npm run test` — 19/19 passed (6 Demo + 13 Architeezy).
+- **Артефакты:** `IssueReport/M1-02_Implementation_Report.md`, `IssueReport/M1-02_Technical_Documentation.md`.
+- **Новый Current Issue:** M1-03 (Build Graph Engine) — все зависимости закрыты (M0-03, M1-01, M1-02 Done).
+- **Разблокировано:** M1-03, M1-07.
+- Очередь: 31 нереализованных Issues из 38.
