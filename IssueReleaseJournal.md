@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M1-04 |
-| **Title** | Calculate Base Metrics |
+| **Issue ID** | M1-05 |
+| **Title** | Add Graph Engine Unit Tests |
 | **Milestone** | M1 — Model Visualization |
-| **Type** | Engine |
+| **Type** | Test |
 | **Status** | Current |
-| **Depends On** | M1-03 (Done) |
-| **Unlocks** | M1-05, M3-02, M3-03 |
-| **File** | `Issue-Tree/M1_Model_Visualization/M1-04_Calculate_Base_Metrics.md` |
+| **Depends On** | M1-03 (Done), M1-04 (Done) |
+| **Unlocks** | M1-06 |
+| **File** | `Issue-Tree/M1_Model_Visualization/M1-05_Add_Graph_Engine_Unit_Tests.md` |
 
 ---
 
@@ -52,8 +52,8 @@
 | 6 | M1-01 | M1 — Model Visualization | Done | [Report](IssueReport/M1-01_Implementation_Report.md) | [Tech Doc](IssueReport/M1-01_Technical_Documentation.md) | DemoConnector: fetch-based, 6 tests passed |
 | 7 | M1-02 | M1 — Model Visualization | Done | [Report](IssueReport/M1-02_Implementation_Report.md) | [Tech Doc](IssueReport/M1-02_Technical_Documentation.md) | ArchiteezyConnector + normalize.ts, 13 tests |
 | 8 | M1-03 | M1 — Model Visualization | Done | [Report](IssueReport/M1-03_Implementation_Report.md) | [Tech Doc](IssueReport/M1-03_Technical_Documentation.md) | buildGraph: nodes, edges, adjacency, orphans, 9 tests |
-| 9 | M1-04 | M1 — Model Visualization | Current | — | — | Base metrics: degree, orphan detection |
-| 10 | M1-05 | M1 — Model Visualization | Pending | — | — | Unit tests for graph engine |
+| 9 | M1-04 | M1 — Model Visualization | Done | [Report](IssueReport/M1-04_Implementation_Report.md) | [Tech Doc](IssueReport/M1-04_Technical_Documentation.md) | calculateMetrics: degree, orphan (degree=0 OR diagrams=0), 7 tests |
+| 10 | M1-05 | M1 — Model Visualization | Current | — | — | Unit tests for graph engine |
 | 11 | M1-06 | M1 — Model Visualization | Pending | — | — | Zustand stores |
 | 12 | M1-07 | M1 — Model Visualization | Pending | — | — | Connection screen UI |
 | 13 | M1-08 | M1 — Model Visualization | Pending | — | — | Global Graph view (React Flow + elkjs) |
@@ -97,6 +97,7 @@
 | 6 | M1-01 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-01_Implementation_Report.md) | [Tech Doc](IssueReport/M1-01_Technical_Documentation.md) | DemoConnector создан: fetch('/digital-bank.json'), 3 метода DataConnector, 6 unit tests. Vitest добавлен. Разблокировано: M1-02, M1-03, M1-06, M1-07. |
 | 7 | M1-02 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-02_Implementation_Report.md) | [Tech Doc](IssueReport/M1-02_Technical_Documentation.md) | ArchiteezyConnector создан: connect/listModels/loadModel, normalizeModelContent (рекурсивный обход папок), 13 unit tests. Разблокировано: M1-03, M1-07. |
 | 8 | M1-03 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-03_Implementation_Report.md) | [Tech Doc](IssueReport/M1-03_Technical_Documentation.md) | buildGraph: NormalizedModel → AnalysisGraph (nodes Map, edges, adjacencyOut/In), degree/orphan metrics, broken reference warnings. 9 unit tests + demo smoke. Разблокировано: M1-04, M1-05, M1-08, M2-01, M3-02. |
+| 9 | M1-04 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-04_Implementation_Report.md) | [Tech Doc](IssueReport/M1-04_Technical_Documentation.md) | calculateMetrics: recalculates degree, inDegree, outDegree, diagramsCount, isOrphan (degree===0 OR diagramsCount===0). 7 unit tests + demo hub check. Разблокировано: M1-05, M3-02, M3-03. |
 
 ---
 
@@ -104,12 +105,12 @@
 
 **Date:** 2026-03-18
 
-**Event:** M1-03 завершён успешно.
+**Event:** M1-04 завершён успешно.
 
-- **Завершён:** M1-03 (Build Graph Engine) — buildGraph() создан и протестирован.
-- **Файлы:** `src/engine/graph/buildGraph.ts`, `src/engine/graph/index.ts`, тесты в `__tests__/buildGraph.test.ts`.
-- **Проверки:** `npm run build` — успешно, `npm run lint` — 0 ошибок, `npm run test` — 28/28 passed (6 Demo + 13 Architeezy + 9 Graph).
-- **Артефакты:** `IssueReport/M1-03_Implementation_Report.md`, `IssueReport/M1-03_Technical_Documentation.md`.
-- **Новый Current Issue:** M1-04 (Calculate Base Metrics) — зависимость M1-03 закрыта.
-- **Разблокировано:** M1-04, M1-05, M1-08, M2-01, M3-02.
-- Очередь: 30 нереализованных Issues из 38.
+- **Завершён:** M1-04 (Calculate Base Metrics) — calculateMetrics() создан и протестирован.
+- **Файлы:** `src/engine/graph/calculateMetrics.ts`, обновлён `index.ts` и `buildGraph.ts`.
+- **Проверки:** `npm run build` — успешно, `npm run lint` — 0 ошибок, `npm run test` — 35/35 passed.
+- **Артефакты:** `IssueReport/M1-04_Implementation_Report.md`, `IssueReport/M1-04_Technical_Documentation.md`.
+- **Новый Current Issue:** M1-05 (Add Graph Engine Unit Tests) — зависимости M1-03, M1-04 закрыты.
+- **Разблокировано:** M1-05, M3-02, M3-03.
+- Очередь: 29 нереализованных Issues из 38.

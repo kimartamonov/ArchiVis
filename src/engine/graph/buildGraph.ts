@@ -64,7 +64,9 @@ export function buildGraph(model: NormalizedModel): {
     targetNode.degree++;
   }
 
-  // Step 3: Mark orphans (degree === 0)
+  // Step 3: Preliminary orphan mark (degree === 0).
+  // Call calculateMetrics() after buildGraph() for full orphan definition
+  // (degree === 0 OR diagramsCount === 0).
   for (const node of nodes.values()) {
     node.isOrphan = node.degree === 0;
   }
