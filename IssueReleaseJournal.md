@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M0-01 |
-| **Title** | Spike: Research Architeezy API endpoints and auth |
+| **Issue ID** | M0-02 |
+| **Title** | Setup: React + TypeScript + Vite + ESLint |
 | **Milestone** | M0 — Project Foundation |
-| **Type** | Spike |
+| **Type** | Setup |
 | **Status** | Current |
 | **Depends On** | — (нет зависимостей) |
-| **Unlocks** | M1-02 (Architeezy connector) |
-| **File** | `Issue-Tree/M0_Project_Foundation/M0-01_Spike_Research_Architeezy_API.md` |
+| **Unlocks** | M0-03, M0-04, M1-01 |
+| **File** | `Issue-Tree/M0_Project_Foundation/M0-02_Setup_Project_Skeleton.md` |
 
 ---
 
@@ -44,8 +44,8 @@
 
 | # | Issue ID | Milestone | Status | Report | Tech Doc | Note |
 |---|----------|-----------|--------|--------|----------|------|
-| 1 | M0-01 | M0 — Project Foundation | Current | — | — | Spike: исследование API Architeezy |
-| 2 | M0-02 | M0 — Project Foundation | Pending | — | — | Setup: React + TS + Vite + ESLint |
+| 1 | M0-01 | M0 — Project Foundation | Done | [Report](IssueReport/M0-01_Implementation_Report.md) | [Tech Doc](IssueReport/M0-01_Technical_Documentation.md) | Spike: исследование API Architeezy |
+| 2 | M0-02 | M0 — Project Foundation | Current | — | — | Setup: React + TS + Vite + ESLint |
 | 3 | M0-03 | M0 — Project Foundation | Pending | — | — | Domain types и NormalizedModel interface |
 | 4 | M0-04 | M0 — Project Foundation | Pending | — | — | Demo dataset: Digital Bank Architecture |
 | 5 | M0-05 | M0 — Project Foundation | Pending | — | — | Validation: Readiness Gate |
@@ -89,7 +89,7 @@
 
 | # | Issue ID | Milestone | Completed | Report | Tech Doc | Note |
 |---|----------|-----------|-----------|--------|----------|------|
-| — | — | — | — | — | — | No completed issues yet |
+| 1 | M0-01 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-01_Implementation_Report.md) | [Tech Doc](IssueReport/M0-01_Technical_Documentation.md) | Spike завершён. API найден, все 5 ресурсов доступны. R1 не материализовался. D-15, D-16 закрыты. Разблокировано: M1-02. |
 
 ---
 
@@ -97,10 +97,11 @@
 
 **Date:** 2026-03-18
 
-**Event:** Journal initialized.
+**Event:** M0-01 завершён успешно.
 
-- `IssueReleaseJournal.md` создан на основе `Issue-Tree/`.
-- **Current Issue:** M0-01 (Spike: Research Architeezy API endpoints and auth) — первый Issue без зависимостей, начало critical path.
-- **Next Issue after M0-01:** M0-02 (Setup project skeleton) — может стартовать параллельно с M0-01, но в основной последовательности идёт вторым.
-- При блокере M0-01 остаётся активным до разрешения.
-- Полная очередь: 38 Issues across 5 milestones (M0–M4).
+- **Завершён:** M0-01 (Spike: Research Architeezy API) — API Architeezy полностью исследован.
+- **Ключевые результаты:** OpenAPI 3.0 спецификация доступна, все 5 требуемых API ресурсов подтверждены, R1 не материализовался, D-15 и D-16 закрыты.
+- **Артефакты:** `docs/spikes/architeezy-api-research.md`, `IssueReport/M0-01_Implementation_Report.md`, `IssueReport/M0-01_Technical_Documentation.md`.
+- **Новый Current Issue:** M0-02 (Setup: React + TypeScript + Vite + ESLint) — следующий в очереди, без зависимостей.
+- **Разблокировано:** M1-02 (Architeezy connector) теперь может начаться когда его зависимости будут готовы.
+- Очередь: 37 нереализованных Issues из 38.
