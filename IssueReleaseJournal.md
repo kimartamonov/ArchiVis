@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M0-02 |
-| **Title** | Setup: React + TypeScript + Vite + ESLint |
+| **Issue ID** | M0-03 |
+| **Title** | Define NormalizedModel Interface and Domain Types |
 | **Milestone** | M0 — Project Foundation |
-| **Type** | Setup |
+| **Type** | Engine |
 | **Status** | Current |
-| **Depends On** | — (нет зависимостей) |
-| **Unlocks** | M0-03, M0-04, M1-01 |
-| **File** | `Issue-Tree/M0_Project_Foundation/M0-02_Setup_Project_Skeleton.md` |
+| **Depends On** | M0-02 (Done) |
+| **Unlocks** | M0-04, M1-01, M1-02, M1-03 |
+| **File** | `Issue-Tree/M0_Project_Foundation/M0-03_Domain_Types.md` |
 
 ---
 
@@ -45,8 +45,8 @@
 | # | Issue ID | Milestone | Status | Report | Tech Doc | Note |
 |---|----------|-----------|--------|--------|----------|------|
 | 1 | M0-01 | M0 — Project Foundation | Done | [Report](IssueReport/M0-01_Implementation_Report.md) | [Tech Doc](IssueReport/M0-01_Technical_Documentation.md) | Spike: исследование API Architeezy |
-| 2 | M0-02 | M0 — Project Foundation | Current | — | — | Setup: React + TS + Vite + ESLint |
-| 3 | M0-03 | M0 — Project Foundation | Pending | — | — | Domain types и NormalizedModel interface |
+| 2 | M0-02 | M0 — Project Foundation | Done | [Report](IssueReport/M0-02_Implementation_Report.md) | [Tech Doc](IssueReport/M0-02_Technical_Documentation.md) | Setup: React + TS + Vite + ESLint |
+| 3 | M0-03 | M0 — Project Foundation | Current | — | — | Domain types и NormalizedModel interface |
 | 4 | M0-04 | M0 — Project Foundation | Pending | — | — | Demo dataset: Digital Bank Architecture |
 | 5 | M0-05 | M0 — Project Foundation | Pending | — | — | Validation: Readiness Gate |
 | 6 | M1-01 | M1 — Model Visualization | Pending | — | — | Demo dataset connector |
@@ -90,6 +90,7 @@
 | # | Issue ID | Milestone | Completed | Report | Tech Doc | Note |
 |---|----------|-----------|-----------|--------|----------|------|
 | 1 | M0-01 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-01_Implementation_Report.md) | [Tech Doc](IssueReport/M0-01_Technical_Documentation.md) | Spike завершён. API найден, все 5 ресурсов доступны. R1 не материализовался. D-15, D-16 закрыты. Разблокировано: M1-02. |
+| 2 | M0-02 | M0 — Project Foundation | 2026-03-18 | [Report](IssueReport/M0-02_Implementation_Report.md) | [Tech Doc](IssueReport/M0-02_Technical_Documentation.md) | Проект создан: Vite 8 + React 19 + TS 5.9 strict + ESLint + Prettier. Folder structure готова. D-13 confirmed. Разблокировано: M0-03, M0-04. |
 
 ---
 
@@ -97,11 +98,12 @@
 
 **Date:** 2026-03-18
 
-**Event:** M0-01 завершён успешно.
+**Event:** M0-02 завершён успешно.
 
-- **Завершён:** M0-01 (Spike: Research Architeezy API) — API Architeezy полностью исследован.
-- **Ключевые результаты:** OpenAPI 3.0 спецификация доступна, все 5 требуемых API ресурсов подтверждены, R1 не материализовался, D-15 и D-16 закрыты.
-- **Артефакты:** `docs/spikes/architeezy-api-research.md`, `IssueReport/M0-01_Implementation_Report.md`, `IssueReport/M0-01_Technical_Documentation.md`.
-- **Новый Current Issue:** M0-02 (Setup: React + TypeScript + Vite + ESLint) — следующий в очереди, без зависимостей.
-- **Разблокировано:** M1-02 (Architeezy connector) теперь может начаться когда его зависимости будут готовы.
-- Очередь: 37 нереализованных Issues из 38.
+- **Завершён:** M0-02 (Setup: React + TypeScript + Vite + ESLint) — проект инициализирован.
+- **Стек:** Vite 8, React 19, TypeScript 5.9 (strict), ESLint 9, Prettier 3.8.
+- **Проверки:** `npm run lint` — 0 ошибок, `npm run build` — успешно, dist/ создан.
+- **Артефакты:** `IssueReport/M0-02_Implementation_Report.md`, `IssueReport/M0-02_Technical_Documentation.md`.
+- **Новый Current Issue:** M0-03 (Domain types и NormalizedModel interface) — зависит от M0-02 (Done).
+- **Разблокировано:** M0-03, M0-04, все последующие Issues могут создавать файлы в структуре проекта.
+- Очередь: 36 нереализованных Issues из 38.
