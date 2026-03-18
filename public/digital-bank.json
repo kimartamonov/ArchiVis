@@ -1,0 +1,2007 @@
+{
+  "id": "model-digital-bank-001",
+  "name": "Digital Bank Architecture",
+  "elements": [
+    {
+      "id": "str-001",
+      "name": "Digital Banking Strategy",
+      "type": "CourseOfAction",
+      "diagramIds": [
+        "diag-009"
+      ]
+    },
+    {
+      "id": "str-002",
+      "name": "Customer Experience Capability",
+      "type": "Capability",
+      "diagramIds": [
+        "diag-009"
+      ]
+    },
+    {
+      "id": "str-003",
+      "name": "Omnichannel Delivery Capability",
+      "type": "Capability",
+      "diagramIds": [
+        "diag-009"
+      ]
+    },
+    {
+      "id": "str-004",
+      "name": "Data Analytics Resource",
+      "type": "Resource",
+      "diagramIds": [
+        "diag-009"
+      ]
+    },
+    {
+      "id": "mot-001",
+      "name": "Increase Customer Satisfaction",
+      "type": "Goal",
+      "diagramIds": [
+        "diag-009"
+      ]
+    },
+    {
+      "id": "mot-002",
+      "name": "Reduce Operational Cost",
+      "type": "Goal",
+      "diagramIds": [
+        "diag-009"
+      ]
+    },
+    {
+      "id": "mot-003",
+      "name": "Regulatory Compliance",
+      "type": "Principle",
+      "diagramIds": [
+        "diag-007",
+        "diag-009"
+      ]
+    },
+    {
+      "id": "mot-004",
+      "name": "Bank Board of Directors",
+      "type": "Stakeholder",
+      "diagramIds": [
+        "diag-009"
+      ]
+    },
+    {
+      "id": "bus-001",
+      "name": "Customer Onboarding Process",
+      "type": "BusinessProcess",
+      "diagramIds": [
+        "diag-001",
+        "diag-005"
+      ]
+    },
+    {
+      "id": "bus-002",
+      "name": "Loan Origination Process",
+      "type": "BusinessProcess",
+      "diagramIds": [
+        "diag-001",
+        "diag-006"
+      ]
+    },
+    {
+      "id": "bus-003",
+      "name": "Payment Processing",
+      "type": "BusinessProcess",
+      "diagramIds": [
+        "diag-001",
+        "diag-003"
+      ]
+    },
+    {
+      "id": "bus-004",
+      "name": "Fraud Detection Process",
+      "type": "BusinessProcess",
+      "diagramIds": [
+        "diag-001",
+        "diag-007"
+      ]
+    },
+    {
+      "id": "bus-005",
+      "name": "Account Management Process",
+      "type": "BusinessProcess",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-006",
+      "name": "KYC Verification Process",
+      "type": "BusinessProcess",
+      "diagramIds": [
+        "diag-001",
+        "diag-005",
+        "diag-007"
+      ]
+    },
+    {
+      "id": "bus-007",
+      "name": "Risk Assessment Process",
+      "type": "BusinessProcess",
+      "diagramIds": [
+        "diag-001",
+        "diag-006"
+      ]
+    },
+    {
+      "id": "bus-008",
+      "name": "Retail Banking Service",
+      "type": "BusinessService",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-009",
+      "name": "Corporate Banking Service",
+      "type": "BusinessService",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-010",
+      "name": "Investment Advisory Service",
+      "type": "BusinessService",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-011",
+      "name": "Customer Service",
+      "type": "BusinessService",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-012",
+      "name": "Bank Customer",
+      "type": "BusinessActor",
+      "diagramIds": [
+        "diag-001",
+        "diag-005"
+      ]
+    },
+    {
+      "id": "bus-013",
+      "name": "Loan Officer",
+      "type": "BusinessRole",
+      "diagramIds": [
+        "diag-001",
+        "diag-006"
+      ]
+    },
+    {
+      "id": "bus-014",
+      "name": "Compliance Officer",
+      "type": "BusinessRole",
+      "diagramIds": [
+        "diag-001",
+        "diag-007"
+      ]
+    },
+    {
+      "id": "bus-015",
+      "name": "Branch Manager",
+      "type": "BusinessRole",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-016",
+      "name": "Customer Account",
+      "type": "BusinessObject",
+      "diagramIds": [
+        "diag-005"
+      ]
+    },
+    {
+      "id": "bus-017",
+      "name": "Loan Agreement",
+      "type": "BusinessObject",
+      "diagramIds": [
+        "diag-006"
+      ]
+    },
+    {
+      "id": "bus-018",
+      "name": "Transaction Record",
+      "type": "BusinessObject",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-019",
+      "name": "Credit Report",
+      "type": "BusinessObject",
+      "diagramIds": [
+        "diag-006"
+      ]
+    },
+    {
+      "id": "bus-020",
+      "name": "Payment Gateway Interface",
+      "type": "BusinessInterface",
+      "diagramIds": [
+        "diag-003",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "bus-021",
+      "name": "Service Level Agreement",
+      "type": "Contract",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-022",
+      "name": "Digital Banking Product",
+      "type": "Product",
+      "diagramIds": [
+        "diag-009"
+      ]
+    },
+    {
+      "id": "bus-023",
+      "name": "Insurance Processing",
+      "type": "BusinessProcess",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-024",
+      "name": "Wealth Management Service",
+      "type": "BusinessService",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "bus-025",
+      "name": "Treasury Operations",
+      "type": "BusinessFunction",
+      "diagramIds": [
+        "diag-001"
+      ]
+    },
+    {
+      "id": "app-001",
+      "name": "Core Banking Platform",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "app-002",
+      "name": "Payment Gateway",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-003",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "app-003",
+      "name": "Mobile Banking App",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-005"
+      ]
+    },
+    {
+      "id": "app-004",
+      "name": "Internet Banking Portal",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-005"
+      ]
+    },
+    {
+      "id": "app-005",
+      "name": "Loan Management System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-006"
+      ]
+    },
+    {
+      "id": "app-006",
+      "name": "CRM System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-005"
+      ]
+    },
+    {
+      "id": "app-007",
+      "name": "Fraud Detection Engine",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-007"
+      ]
+    },
+    {
+      "id": "app-008",
+      "name": "Risk Management System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-006"
+      ]
+    },
+    {
+      "id": "app-009",
+      "name": "Reporting Platform",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002"
+      ]
+    },
+    {
+      "id": "app-010",
+      "name": "Document Management System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-006"
+      ]
+    },
+    {
+      "id": "app-011",
+      "name": "Notification Service",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "app-012",
+      "name": "Identity Verification Service",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-005",
+        "diag-007"
+      ]
+    },
+    {
+      "id": "app-013",
+      "name": "API Gateway",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002",
+        "diag-003",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "app-014",
+      "name": "Data Warehouse",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-008"
+      ]
+    },
+    {
+      "id": "app-015",
+      "name": "ETL Pipeline",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-008"
+      ]
+    },
+    {
+      "id": "app-016",
+      "name": "Authentication Service",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-005",
+        "diag-007"
+      ]
+    },
+    {
+      "id": "app-017",
+      "name": "Account Service",
+      "type": "ApplicationService",
+      "diagramIds": [
+        "diag-002"
+      ]
+    },
+    {
+      "id": "app-018",
+      "name": "Payment Service",
+      "type": "ApplicationService",
+      "diagramIds": [
+        "diag-002",
+        "diag-003"
+      ]
+    },
+    {
+      "id": "app-019",
+      "name": "Loan Service",
+      "type": "ApplicationService",
+      "diagramIds": [
+        "diag-002",
+        "diag-006"
+      ]
+    },
+    {
+      "id": "app-020",
+      "name": "Notification Dispatch Service",
+      "type": "ApplicationService",
+      "diagramIds": [
+        "diag-010"
+      ]
+    },
+    {
+      "id": "app-021",
+      "name": "Fraud Alert Service",
+      "type": "ApplicationService",
+      "diagramIds": [
+        "diag-002"
+      ]
+    },
+    {
+      "id": "app-022",
+      "name": "Report Generation Service",
+      "type": "ApplicationService",
+      "diagramIds": [
+        "diag-002"
+      ]
+    },
+    {
+      "id": "app-023",
+      "name": "REST API Interface",
+      "type": "ApplicationInterface",
+      "diagramIds": [
+        "diag-010"
+      ]
+    },
+    {
+      "id": "app-024",
+      "name": "SWIFT Interface",
+      "type": "ApplicationInterface",
+      "diagramIds": [
+        "diag-003",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "app-025",
+      "name": "Open Banking API",
+      "type": "ApplicationInterface",
+      "diagramIds": [
+        "diag-010"
+      ]
+    },
+    {
+      "id": "app-026",
+      "name": "Customer Data Object",
+      "type": "DataObject",
+      "diagramIds": [
+        "diag-005",
+        "diag-008"
+      ]
+    },
+    {
+      "id": "app-027",
+      "name": "Transaction Data Object",
+      "type": "DataObject",
+      "diagramIds": [
+        "diag-008"
+      ]
+    },
+    {
+      "id": "app-028",
+      "name": "Loan Portfolio Data",
+      "type": "DataObject",
+      "diagramIds": [
+        "diag-006",
+        "diag-008"
+      ]
+    },
+    {
+      "id": "app-029",
+      "name": "Audit Log Data",
+      "type": "DataObject",
+      "diagramIds": [
+        "diag-007",
+        "diag-008"
+      ]
+    },
+    {
+      "id": "app-030",
+      "name": "Compliance Monitoring System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-007"
+      ]
+    },
+    {
+      "id": "app-031",
+      "name": "Card Processing System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-003"
+      ]
+    },
+    {
+      "id": "app-032",
+      "name": "ATM Management System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002"
+      ]
+    },
+    {
+      "id": "app-033",
+      "name": "Investment Platform",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002"
+      ]
+    },
+    {
+      "id": "app-034",
+      "name": "Treasury Management System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-002"
+      ]
+    },
+    {
+      "id": "app-035",
+      "name": "Anti-Money Laundering System",
+      "type": "ApplicationComponent",
+      "diagramIds": [
+        "diag-007"
+      ]
+    },
+    {
+      "id": "tech-001",
+      "name": "Primary Database Cluster",
+      "type": "Node",
+      "diagramIds": [
+        "diag-004",
+        "diag-008"
+      ]
+    },
+    {
+      "id": "tech-002",
+      "name": "Application Server Cluster",
+      "type": "Node",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-003",
+      "name": "Web Server Farm",
+      "type": "Node",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-004",
+      "name": "Message Broker Cluster",
+      "type": "Node",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-005",
+      "name": "Disaster Recovery Site",
+      "type": "Node",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-006",
+      "name": "PostgreSQL",
+      "type": "SystemSoftware",
+      "diagramIds": [
+        "diag-004",
+        "diag-008"
+      ]
+    },
+    {
+      "id": "tech-007",
+      "name": "Redis Cache",
+      "type": "SystemSoftware",
+      "diagramIds": [
+        "diag-004",
+        "diag-008"
+      ]
+    },
+    {
+      "id": "tech-008",
+      "name": "Kafka",
+      "type": "SystemSoftware",
+      "diagramIds": [
+        "diag-003",
+        "diag-004",
+        "diag-008",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "tech-009",
+      "name": "Kubernetes",
+      "type": "SystemSoftware",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-010",
+      "name": "Nginx",
+      "type": "SystemSoftware",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-011",
+      "name": "Docker Registry",
+      "type": "Artifact",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-012",
+      "name": "CI/CD Pipeline Artifact",
+      "type": "Artifact",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-013",
+      "name": "TLS Certificate",
+      "type": "Artifact",
+      "diagramIds": [
+        "diag-007"
+      ]
+    },
+    {
+      "id": "tech-014",
+      "name": "Corporate WAN",
+      "type": "CommunicationNetwork",
+      "diagramIds": [
+        "diag-003",
+        "diag-004",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "tech-015",
+      "name": "Internet DMZ",
+      "type": "CommunicationNetwork",
+      "diagramIds": [
+        "diag-004",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "tech-016",
+      "name": "Internal API Network",
+      "type": "CommunicationNetwork",
+      "diagramIds": [
+        "diag-004",
+        "diag-010"
+      ]
+    },
+    {
+      "id": "tech-017",
+      "name": "Monitoring Service",
+      "type": "TechnologyService",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-018",
+      "name": "Backup Service",
+      "type": "TechnologyService",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-019",
+      "name": "Load Balancer",
+      "type": "Device",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-020",
+      "name": "HSM Device",
+      "type": "Device",
+      "diagramIds": [
+        "diag-003",
+        "diag-004",
+        "diag-007"
+      ]
+    },
+    {
+      "id": "tech-021",
+      "name": "Storage Area Network",
+      "type": "Path",
+      "diagramIds": [
+        "diag-004"
+      ]
+    },
+    {
+      "id": "tech-022",
+      "name": "Firewall",
+      "type": "Device",
+      "diagramIds": [
+        "diag-004",
+        "diag-007"
+      ]
+    },
+    {
+      "id": "orph-001",
+      "name": "Legacy Payment Module",
+      "type": "ApplicationComponent",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-002",
+      "name": "Deprecated Mainframe Connector",
+      "type": "ApplicationComponent",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-003",
+      "name": "Planned Cloud Migration",
+      "type": "WorkPackage",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-004",
+      "name": "Future Blockchain Module",
+      "type": "ApplicationComponent",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-005",
+      "name": "Archive Database",
+      "type": "Node",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-006",
+      "name": "Old Reporting Tool",
+      "type": "ApplicationComponent",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-007",
+      "name": "Manual Reconciliation Process",
+      "type": "BusinessProcess",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-008",
+      "name": "Prototype Analytics Dashboard",
+      "type": "ApplicationComponent",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-009",
+      "name": "Sunset CRM Module",
+      "type": "ApplicationComponent",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-010",
+      "name": "Test Environment Node",
+      "type": "Node",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-011",
+      "name": "Legacy Print Service",
+      "type": "TechnologyService",
+      "diagramIds": []
+    },
+    {
+      "id": "orph-012",
+      "name": "Decommissioned ATM Network",
+      "type": "CommunicationNetwork",
+      "diagramIds": []
+    }
+  ],
+  "relationships": [
+    {
+      "id": "rel-001",
+      "sourceId": "str-001",
+      "targetId": "mot-001",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-002",
+      "sourceId": "str-001",
+      "targetId": "mot-002",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-003",
+      "sourceId": "str-002",
+      "targetId": "mot-001",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-004",
+      "sourceId": "str-003",
+      "targetId": "mot-001",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-005",
+      "sourceId": "mot-004",
+      "targetId": "mot-001",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-006",
+      "sourceId": "mot-004",
+      "targetId": "mot-002",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-007",
+      "sourceId": "mot-004",
+      "targetId": "mot-003",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-008",
+      "sourceId": "str-004",
+      "targetId": "str-002",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-009",
+      "sourceId": "str-001",
+      "targetId": "bus-022",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-010",
+      "sourceId": "str-002",
+      "targetId": "bus-011",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-011",
+      "sourceId": "str-003",
+      "targetId": "bus-008",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-012",
+      "sourceId": "bus-012",
+      "targetId": "bus-001",
+      "type": "TriggeringRelationship"
+    },
+    {
+      "id": "rel-013",
+      "sourceId": "bus-001",
+      "targetId": "bus-006",
+      "type": "TriggeringRelationship"
+    },
+    {
+      "id": "rel-014",
+      "sourceId": "bus-006",
+      "targetId": "bus-005",
+      "type": "FlowRelationship"
+    },
+    {
+      "id": "rel-015",
+      "sourceId": "bus-005",
+      "targetId": "bus-016",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-016",
+      "sourceId": "bus-002",
+      "targetId": "bus-007",
+      "type": "TriggeringRelationship"
+    },
+    {
+      "id": "rel-017",
+      "sourceId": "bus-007",
+      "targetId": "bus-017",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-018",
+      "sourceId": "bus-003",
+      "targetId": "bus-018",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-019",
+      "sourceId": "bus-004",
+      "targetId": "bus-018",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-020",
+      "sourceId": "bus-013",
+      "targetId": "bus-002",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-021",
+      "sourceId": "bus-014",
+      "targetId": "bus-006",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-022",
+      "sourceId": "bus-014",
+      "targetId": "bus-004",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-023",
+      "sourceId": "bus-015",
+      "targetId": "bus-008",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-024",
+      "sourceId": "bus-015",
+      "targetId": "bus-009",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-025",
+      "sourceId": "bus-008",
+      "targetId": "bus-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-026",
+      "sourceId": "bus-008",
+      "targetId": "bus-002",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-027",
+      "sourceId": "bus-008",
+      "targetId": "bus-003",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-028",
+      "sourceId": "bus-009",
+      "targetId": "bus-025",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-029",
+      "sourceId": "bus-011",
+      "targetId": "bus-012",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-030",
+      "sourceId": "bus-010",
+      "targetId": "bus-012",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-031",
+      "sourceId": "bus-022",
+      "targetId": "bus-008",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-032",
+      "sourceId": "bus-022",
+      "targetId": "bus-009",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-033",
+      "sourceId": "bus-022",
+      "targetId": "bus-010",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-034",
+      "sourceId": "bus-022",
+      "targetId": "bus-011",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-035",
+      "sourceId": "bus-022",
+      "targetId": "bus-024",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-036",
+      "sourceId": "bus-020",
+      "targetId": "bus-003",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-037",
+      "sourceId": "bus-023",
+      "targetId": "bus-019",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-038",
+      "sourceId": "bus-024",
+      "targetId": "bus-012",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-039",
+      "sourceId": "bus-025",
+      "targetId": "bus-003",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-040",
+      "sourceId": "mot-003",
+      "targetId": "bus-006",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-041",
+      "sourceId": "mot-003",
+      "targetId": "bus-004",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-042",
+      "sourceId": "bus-001",
+      "targetId": "app-006",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-043",
+      "sourceId": "bus-001",
+      "targetId": "app-012",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-044",
+      "sourceId": "bus-002",
+      "targetId": "app-005",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-045",
+      "sourceId": "bus-003",
+      "targetId": "app-002",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-046",
+      "sourceId": "bus-004",
+      "targetId": "app-007",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-047",
+      "sourceId": "bus-005",
+      "targetId": "app-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-048",
+      "sourceId": "bus-006",
+      "targetId": "app-012",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-049",
+      "sourceId": "bus-007",
+      "targetId": "app-008",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-050",
+      "sourceId": "app-001",
+      "targetId": "app-017",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-051",
+      "sourceId": "app-001",
+      "targetId": "app-018",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-052",
+      "sourceId": "app-001",
+      "targetId": "app-019",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-053",
+      "sourceId": "app-001",
+      "targetId": "app-005",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-054",
+      "sourceId": "app-001",
+      "targetId": "app-006",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-055",
+      "sourceId": "app-001",
+      "targetId": "app-009",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-056",
+      "sourceId": "app-001",
+      "targetId": "app-014",
+      "type": "FlowRelationship"
+    },
+    {
+      "id": "rel-057",
+      "sourceId": "app-001",
+      "targetId": "app-026",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-058",
+      "sourceId": "app-001",
+      "targetId": "app-027",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-059",
+      "sourceId": "app-001",
+      "targetId": "app-030",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-060",
+      "sourceId": "app-001",
+      "targetId": "app-034",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-061",
+      "sourceId": "app-001",
+      "targetId": "app-031",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-062",
+      "sourceId": "app-002",
+      "targetId": "app-018",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-063",
+      "sourceId": "app-002",
+      "targetId": "app-024",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-064",
+      "sourceId": "app-002",
+      "targetId": "app-031",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-065",
+      "sourceId": "app-002",
+      "targetId": "app-021",
+      "type": "TriggeringRelationship"
+    },
+    {
+      "id": "rel-066",
+      "sourceId": "app-002",
+      "targetId": "app-027",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-067",
+      "sourceId": "app-002",
+      "targetId": "app-007",
+      "type": "FlowRelationship"
+    },
+    {
+      "id": "rel-068",
+      "sourceId": "app-002",
+      "targetId": "app-011",
+      "type": "TriggeringRelationship"
+    },
+    {
+      "id": "rel-069",
+      "sourceId": "app-002",
+      "targetId": "app-013",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-070",
+      "sourceId": "app-002",
+      "targetId": "app-029",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-071",
+      "sourceId": "app-002",
+      "targetId": "app-035",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-072",
+      "sourceId": "app-002",
+      "targetId": "app-025",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-073",
+      "sourceId": "app-003",
+      "targetId": "app-013",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-074",
+      "sourceId": "app-003",
+      "targetId": "app-016",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-075",
+      "sourceId": "app-004",
+      "targetId": "app-013",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-076",
+      "sourceId": "app-004",
+      "targetId": "app-016",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-077",
+      "sourceId": "app-005",
+      "targetId": "app-019",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-078",
+      "sourceId": "app-005",
+      "targetId": "app-028",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-079",
+      "sourceId": "app-005",
+      "targetId": "app-010",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-080",
+      "sourceId": "app-006",
+      "targetId": "app-026",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-081",
+      "sourceId": "app-006",
+      "targetId": "app-020",
+      "type": "TriggeringRelationship"
+    },
+    {
+      "id": "rel-082",
+      "sourceId": "app-007",
+      "targetId": "app-021",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-083",
+      "sourceId": "app-007",
+      "targetId": "app-029",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-084",
+      "sourceId": "app-008",
+      "targetId": "app-019",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-085",
+      "sourceId": "app-008",
+      "targetId": "app-028",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-086",
+      "sourceId": "app-009",
+      "targetId": "app-022",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-087",
+      "sourceId": "app-009",
+      "targetId": "app-014",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-088",
+      "sourceId": "app-010",
+      "targetId": "app-029",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-089",
+      "sourceId": "app-011",
+      "targetId": "app-020",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-090",
+      "sourceId": "app-012",
+      "targetId": "app-016",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-091",
+      "sourceId": "app-013",
+      "targetId": "app-023",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-092",
+      "sourceId": "app-013",
+      "targetId": "app-025",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-093",
+      "sourceId": "app-014",
+      "targetId": "app-027",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-094",
+      "sourceId": "app-014",
+      "targetId": "app-029",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-095",
+      "sourceId": "app-015",
+      "targetId": "app-014",
+      "type": "FlowRelationship"
+    },
+    {
+      "id": "rel-096",
+      "sourceId": "app-015",
+      "targetId": "app-026",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-097",
+      "sourceId": "app-015",
+      "targetId": "app-027",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-098",
+      "sourceId": "app-016",
+      "targetId": "app-029",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-099",
+      "sourceId": "app-030",
+      "targetId": "app-029",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-100",
+      "sourceId": "app-030",
+      "targetId": "app-035",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-101",
+      "sourceId": "app-031",
+      "targetId": "app-027",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-102",
+      "sourceId": "app-032",
+      "targetId": "app-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-103",
+      "sourceId": "app-033",
+      "targetId": "app-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-104",
+      "sourceId": "app-033",
+      "targetId": "app-028",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-105",
+      "sourceId": "app-034",
+      "targetId": "app-027",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-106",
+      "sourceId": "app-034",
+      "targetId": "app-025",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-107",
+      "sourceId": "app-035",
+      "targetId": "app-029",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-108",
+      "sourceId": "app-001",
+      "targetId": "tech-002",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-109",
+      "sourceId": "app-002",
+      "targetId": "tech-002",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-110",
+      "sourceId": "app-013",
+      "targetId": "tech-003",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-111",
+      "sourceId": "app-014",
+      "targetId": "tech-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-112",
+      "sourceId": "app-011",
+      "targetId": "tech-008",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-113",
+      "sourceId": "app-016",
+      "targetId": "tech-007",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-114",
+      "sourceId": "app-007",
+      "targetId": "tech-008",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-115",
+      "sourceId": "tech-001",
+      "targetId": "tech-006",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-116",
+      "sourceId": "tech-002",
+      "targetId": "tech-009",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-117",
+      "sourceId": "tech-003",
+      "targetId": "tech-010",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-118",
+      "sourceId": "tech-004",
+      "targetId": "tech-008",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-119",
+      "sourceId": "tech-005",
+      "targetId": "tech-001",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-120",
+      "sourceId": "tech-009",
+      "targetId": "tech-011",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-121",
+      "sourceId": "tech-012",
+      "targetId": "tech-009",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-122",
+      "sourceId": "tech-019",
+      "targetId": "tech-003",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-123",
+      "sourceId": "tech-019",
+      "targetId": "tech-015",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-124",
+      "sourceId": "tech-022",
+      "targetId": "tech-015",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-125",
+      "sourceId": "tech-022",
+      "targetId": "tech-014",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-126",
+      "sourceId": "tech-020",
+      "targetId": "tech-013",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-127",
+      "sourceId": "tech-017",
+      "targetId": "tech-002",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-128",
+      "sourceId": "tech-017",
+      "targetId": "tech-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-129",
+      "sourceId": "tech-018",
+      "targetId": "tech-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-130",
+      "sourceId": "tech-018",
+      "targetId": "tech-005",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-131",
+      "sourceId": "tech-021",
+      "targetId": "tech-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-132",
+      "sourceId": "tech-021",
+      "targetId": "tech-005",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-133",
+      "sourceId": "tech-014",
+      "targetId": "tech-016",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-134",
+      "sourceId": "tech-015",
+      "targetId": "tech-016",
+      "type": "CompositionRelationship"
+    },
+    {
+      "id": "rel-135",
+      "sourceId": "bus-019",
+      "targetId": "app-005",
+      "type": "AccessRelationship"
+    },
+    {
+      "id": "rel-136",
+      "sourceId": "bus-016",
+      "targetId": "app-026",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-137",
+      "sourceId": "bus-017",
+      "targetId": "app-028",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-138",
+      "sourceId": "bus-018",
+      "targetId": "app-027",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-139",
+      "sourceId": "bus-020",
+      "targetId": "app-002",
+      "type": "RealizationRelationship"
+    },
+    {
+      "id": "rel-140",
+      "sourceId": "bus-021",
+      "targetId": "bus-008",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-141",
+      "sourceId": "bus-003",
+      "targetId": "app-031",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-142",
+      "sourceId": "bus-023",
+      "targetId": "app-005",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-143",
+      "sourceId": "bus-025",
+      "targetId": "app-034",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-144",
+      "sourceId": "app-032",
+      "targetId": "tech-014",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-145",
+      "sourceId": "app-021",
+      "targetId": "app-011",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-146",
+      "sourceId": "app-022",
+      "targetId": "app-009",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-147",
+      "sourceId": "app-032",
+      "targetId": "app-031",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-148",
+      "sourceId": "app-033",
+      "targetId": "app-019",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-149",
+      "sourceId": "app-034",
+      "targetId": "app-024",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-150",
+      "sourceId": "bus-024",
+      "targetId": "app-033",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-151",
+      "sourceId": "bus-021",
+      "targetId": "bus-009",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-152",
+      "sourceId": "tech-011",
+      "targetId": "tech-012",
+      "type": "AssociationRelationship"
+    },
+    {
+      "id": "rel-153",
+      "sourceId": "tech-007",
+      "targetId": "tech-002",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-154",
+      "sourceId": "app-003",
+      "targetId": "app-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-155",
+      "sourceId": "app-004",
+      "targetId": "app-001",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-156",
+      "sourceId": "bus-012",
+      "targetId": "bus-003",
+      "type": "TriggeringRelationship"
+    },
+    {
+      "id": "rel-157",
+      "sourceId": "app-035",
+      "targetId": "app-007",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-158",
+      "sourceId": "tech-006",
+      "targetId": "tech-021",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-159",
+      "sourceId": "bus-009",
+      "targetId": "bus-023",
+      "type": "ServingRelationship"
+    },
+    {
+      "id": "rel-160",
+      "sourceId": "bus-010",
+      "targetId": "app-033",
+      "type": "ServingRelationship"
+    }
+  ],
+  "diagrams": [
+    {
+      "id": "diag-001",
+      "name": "Business Process Overview",
+      "elementIds": [
+        "bus-001",
+        "bus-002",
+        "bus-003",
+        "bus-004",
+        "bus-005",
+        "bus-006",
+        "bus-007",
+        "bus-008",
+        "bus-009",
+        "bus-010",
+        "bus-011",
+        "bus-012",
+        "bus-013",
+        "bus-014",
+        "bus-015",
+        "bus-023",
+        "bus-025",
+        "bus-018",
+        "bus-021",
+        "bus-024"
+      ]
+    },
+    {
+      "id": "diag-002",
+      "name": "Core Banking Application Landscape",
+      "elementIds": [
+        "app-001",
+        "app-002",
+        "app-003",
+        "app-004",
+        "app-005",
+        "app-006",
+        "app-007",
+        "app-008",
+        "app-009",
+        "app-010",
+        "app-011",
+        "app-012",
+        "app-013",
+        "app-017",
+        "app-018",
+        "app-019",
+        "app-021",
+        "app-022",
+        "app-032",
+        "app-033",
+        "app-034"
+      ]
+    },
+    {
+      "id": "diag-003",
+      "name": "Payment Processing Flow",
+      "elementIds": [
+        "bus-003",
+        "bus-020",
+        "app-002",
+        "app-018",
+        "app-024",
+        "app-031",
+        "app-013",
+        "tech-008",
+        "tech-014",
+        "tech-020"
+      ]
+    },
+    {
+      "id": "diag-004",
+      "name": "Technology Infrastructure",
+      "elementIds": [
+        "tech-001",
+        "tech-002",
+        "tech-003",
+        "tech-004",
+        "tech-005",
+        "tech-006",
+        "tech-007",
+        "tech-008",
+        "tech-009",
+        "tech-010",
+        "tech-014",
+        "tech-015",
+        "tech-016",
+        "tech-017",
+        "tech-018",
+        "tech-019",
+        "tech-020",
+        "tech-021",
+        "tech-022",
+        "tech-011",
+        "tech-012"
+      ]
+    },
+    {
+      "id": "diag-005",
+      "name": "Customer Onboarding Journey",
+      "elementIds": [
+        "bus-001",
+        "bus-006",
+        "bus-012",
+        "bus-016",
+        "app-003",
+        "app-004",
+        "app-006",
+        "app-012",
+        "app-016",
+        "app-026"
+      ]
+    },
+    {
+      "id": "diag-006",
+      "name": "Loan Origination Flow",
+      "elementIds": [
+        "bus-002",
+        "bus-007",
+        "bus-013",
+        "bus-017",
+        "bus-019",
+        "app-005",
+        "app-008",
+        "app-010",
+        "app-019",
+        "app-028"
+      ]
+    },
+    {
+      "id": "diag-007",
+      "name": "Security and Compliance View",
+      "elementIds": [
+        "bus-004",
+        "bus-006",
+        "bus-014",
+        "app-007",
+        "app-012",
+        "app-016",
+        "app-030",
+        "app-035",
+        "app-029",
+        "mot-003",
+        "tech-013",
+        "tech-020",
+        "tech-022"
+      ]
+    },
+    {
+      "id": "diag-008",
+      "name": "Data Architecture",
+      "elementIds": [
+        "app-014",
+        "app-015",
+        "app-026",
+        "app-027",
+        "app-028",
+        "app-029",
+        "tech-001",
+        "tech-006",
+        "tech-007",
+        "tech-008"
+      ]
+    },
+    {
+      "id": "diag-009",
+      "name": "Strategy and Motivation",
+      "elementIds": [
+        "str-001",
+        "str-002",
+        "str-003",
+        "str-004",
+        "mot-001",
+        "mot-002",
+        "mot-003",
+        "mot-004",
+        "bus-022"
+      ]
+    },
+    {
+      "id": "diag-010",
+      "name": "Integration Architecture",
+      "elementIds": [
+        "app-001",
+        "app-002",
+        "app-013",
+        "app-023",
+        "app-024",
+        "app-025",
+        "tech-008",
+        "tech-014",
+        "tech-015",
+        "tech-016",
+        "bus-020",
+        "app-011",
+        "app-020"
+      ]
+    }
+  ],
+  "warnings": []
+}
