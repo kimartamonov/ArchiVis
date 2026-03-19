@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M3-01 |
-| **Title** | Build Table View with TanStack Table |
+| **Issue ID** | M3-02 |
+| **Title** | Implement Coverage Report in Insight Engine |
 | **Milestone** | M3 — Quality Assessment |
-| **Type** | UI |
+| **Type** | Engine |
 | **Status** | Current |
-| **Depends On** | M1-03 (Done), M1-04 (Done), M1-06 (Done) |
-| **Unlocks** | M3-02, M4-02 |
-| **File** | `Issue-Tree/M3_Quality_Assessment/M3-01_Build_Table_View.md` |
+| **Depends On** | M1-04 (Done) |
+| **Unlocks** | M3-03 |
+| **File** | `Issue-Tree/M3_Quality_Assessment/M3-02_Implement_Coverage_Report.md` |
 
 ---
 
@@ -67,8 +67,8 @@
 | 21 | M2-06 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-06_Implementation_Report.md) | [Tech Doc](IssueReport/M2-06_Technical_Documentation.md) | DepthSwitcher: 1/2/3 buttons, live update, 5 tests |
 | 22 | M2-07 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-07_Implementation_Report.md) | [Tech Doc](IssueReport/M2-07_Technical_Documentation.md) | Graph highlighting: source glow, affected accent, dimmed non-affected, 8 tests |
 | 23 | M2-08 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-08_Implementation_Report.md) | [Tech Doc](IssueReport/M2-08_Technical_Documentation.md) | Validation PASSED: all AC, 162/162 tests, 0.14ms perf. **Milestone M2 COMPLETE.** |
-| 24 | M3-01 | M3 — Quality Assessment | Current | — | — | Table View (TanStack Table) |
-| 25 | M3-02 | M3 — Quality Assessment | Pending | — | — | Coverage report engine |
+| 24 | M3-01 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-01_Implementation_Report.md) | [Tech Doc](IssueReport/M3-01_Technical_Documentation.md) | TanStack Table: 7 columns, sort, layer/type filters, row→impact, 8 tests |
+| 25 | M3-02 | M3 — Quality Assessment | Current | — | — | Coverage report engine |
 | 26 | M3-03 | M3 — Quality Assessment | Pending | — | — | Coverage screen UI |
 | 27 | M3-04 | M3 — Quality Assessment | Pending | — | — | Screen navigation (sidebar/tabs) |
 | 28 | M3-05 | M3 — Quality Assessment | Pending | — | — | Cross-screen transitions |
@@ -112,6 +112,7 @@
 | 21 | M2-06 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-06_Implementation_Report.md) | [Tech Doc](IssueReport/M2-06_Technical_Documentation.md) | DepthSwitcher: 1/2/3 button group, live update via useEffect, aria-pressed, accent styling. 5 UI tests. Разблокировано: M2-07. |
 | 22 | M2-07 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-07_Implementation_Report.md) | [Tech Doc](IssueReport/M2-07_Technical_Documentation.md) | applyHighlighting: source glow, affected accent border, dimmed non-affected (0.2), edge highlighting. 8 tests. Разблокировано: M2-08. |
 | 23 | M2-08 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-08_Implementation_Report.md) | [Tech Doc](IssueReport/M2-08_Technical_Documentation.md) | Validation PASSED. All 11 scenario steps, all AC-3.x + AC-5.1 verified. 162/162 tests. 0.14ms perf. 0 blockers. **Milestone M2 COMPLETE.** Разблокировано: M3, M4-01. |
+| 24 | M3-01 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-01_Implementation_Report.md) | [Tech Doc](IssueReport/M3-01_Technical_Documentation.md) | TanStack Table: 7 columns, sort, layer/type filter dropdowns, row→impact. 8 UI tests. Разблокировано: M3-02, M4-02. |
 
 ---
 
@@ -119,12 +120,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M2-08 завершён успешно. **Milestone M2 — Impact Analysis: COMPLETE.**
+**Event:** M3-01 завершён успешно.
 
-- **Завершён:** M2-08 (Validation: Canonical Impact Scenario).
-- **Результат:** Все 11 шагов S-2 demo flow пройдены. AC-3.1–AC-3.9, AC-5.1 верифицированы. Payment Gateway: depth 1→14, depth 2→36, depth 3→64. Core Banking Platform depth 2→47 (no dupes). Layer sums match. 3 diagrams. 0.14ms perf.
-- **Проверки:** `npm run test` — 162/162 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M2-08_Implementation_Report.md`, `IssueReport/M2-08_Technical_Documentation.md`.
-- **Новый Current Issue:** M3-01 (Build Table View with TanStack Table).
-- **Разблокировано:** весь M3 (M3-01 — M3-06), M4-01 (GraphML Export).
-- Очередь: 15 нереализованных Issues из 38.
+- **Завершён:** M3-01 (Build Table View with TanStack Table) — sortable/filterable table.
+- **Файлы:** `src/ui/screens/TableView/` (3 файла + тесты), `src/stores/uiStore.ts` ('table' screen), `src/App.tsx`, `GlobalGraphView.tsx` (Table nav button), `package.json` (@tanstack/react-table).
+- **Проверки:** `npm run test` — 170/170 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M3-01_Implementation_Report.md`, `IssueReport/M3-01_Technical_Documentation.md`.
+- **Новый Current Issue:** M3-02 (Coverage Report Engine).
+- **Разблокировано:** M3-02, M4-02.
+- Очередь: 14 нереализованных Issues из 38.
