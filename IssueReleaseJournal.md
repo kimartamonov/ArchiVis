@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M3-04 |
-| **Title** | Add Screen Navigation |
+| **Issue ID** | M3-05 |
+| **Title** | Add Cross-Screen Transitions |
 | **Milestone** | M3 — Quality Assessment |
 | **Type** | UI |
 | **Status** | Current |
-| **Depends On** | M1-07, M1-08, M2-05, M3-01, M3-03 (all Done) |
-| **Unlocks** | M3-05 |
-| **File** | `Issue-Tree/M3_Quality_Assessment/M3-04_Add_Screen_Navigation.md` |
+| **Depends On** | M3-04 (Done) |
+| **Unlocks** | M3-06 |
+| **File** | `Issue-Tree/M3_Quality_Assessment/M3-05_Add_Cross_Screen_Transitions.md` |
 
 ---
 
@@ -70,8 +70,8 @@
 | 24 | M3-01 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-01_Implementation_Report.md) | [Tech Doc](IssueReport/M3-01_Technical_Documentation.md) | TanStack Table: 7 columns, sort, layer/type filters, row→impact, 8 tests |
 | 25 | M3-02 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-02_Implementation_Report.md) | [Tech Doc](IssueReport/M3-02_Technical_Documentation.md) | buildCoverageReport: orphans, layers, broken refs, 7 tests |
 | 26 | M3-03 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-03_Implementation_Report.md) | [Tech Doc](IssueReport/M3-03_Technical_Documentation.md) | CoverageView: stats header, orphan list, layer bars, 6 tests |
-| 27 | M3-04 | M3 — Quality Assessment | Current | — | — | Screen navigation (sidebar/tabs) |
-| 28 | M3-05 | M3 — Quality Assessment | Pending | — | — | Cross-screen transitions |
+| 27 | M3-04 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-04_Implementation_Report.md) | [Tech Doc](IssueReport/M3-04_Technical_Documentation.md) | Sidebar: 5 nav items, active indicator, model-gating, 8 tests |
+| 28 | M3-05 | M3 — Quality Assessment | Current | — | — | Cross-screen transitions |
 | 29 | M3-06 | M3 — Quality Assessment | Pending | — | — | Validation: coverage and table |
 | 30 | M4-01 | M4 — Export and Release | Pending | — | — | GraphML export generator |
 | 31 | M4-02 | M4 — Export and Release | Pending | — | — | CSV export generator |
@@ -115,6 +115,7 @@
 | 24 | M3-01 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-01_Implementation_Report.md) | [Tech Doc](IssueReport/M3-01_Technical_Documentation.md) | TanStack Table: 7 columns, sort, layer/type filter dropdowns, row→impact. 8 UI tests. Разблокировано: M3-02, M4-02. |
 | 25 | M3-02 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-02_Implementation_Report.md) | [Tech Doc](IssueReport/M3-02_Technical_Documentation.md) | buildCoverageReport: orphans 12/11.8%, layer distribution, broken refs. 7 tests. Разблокировано: M3-03. |
 | 26 | M3-03 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-03_Implementation_Report.md) | [Tech Doc](IssueReport/M3-03_Technical_Documentation.md) | CoverageView: stats header, OrphanList table, LayerDistribution bars. 6 UI tests. Разблокировано: M3-04. |
+| 27 | M3-04 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-04_Implementation_Report.md) | [Tech Doc](IssueReport/M3-04_Technical_Documentation.md) | Sidebar + AppLayout: 5 nav items, model gating, active indicator. 8 UI tests. Разблокировано: M3-05. |
 
 ---
 
@@ -122,12 +123,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M3-03 завершён успешно.
+**Event:** M3-04 завершён успешно.
 
-- **Завершён:** M3-03 (Build Coverage Screen) — CoverageView с orphan list и layer distribution.
-- **Файлы:** `src/ui/screens/CoverageView/` (4 компонента + тесты), `src/stores/uiStore.ts` ('coverage'), `src/App.tsx` (route).
-- **Проверки:** `npm run test` — 183/183 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M3-03_Implementation_Report.md`, `IssueReport/M3-03_Technical_Documentation.md`.
-- **Новый Current Issue:** M3-04 (Add Screen Navigation).
-- **Разблокировано:** M3-04.
-- Очередь: 12 нереализованных Issues из 38.
+- **Завершён:** M3-04 (Add Screen Navigation) — Sidebar + AppLayout.
+- **Файлы:** `src/ui/layout/` (Sidebar, AppLayout, index, тесты), `src/App.tsx` (AppLayout wrapper).
+- **Проверки:** `npm run test` — 191/191 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M3-04_Implementation_Report.md`, `IssueReport/M3-04_Technical_Documentation.md`.
+- **Новый Current Issue:** M3-05 (Cross-Screen Transitions).
+- **Разблокировано:** M3-05.
+- Очередь: 11 нереализованных Issues из 38.
