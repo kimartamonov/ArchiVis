@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M1-10 |
-| **Title** | Validation: MS-1 Graph Visualization |
-| **Milestone** | M1 — Model Visualization |
-| **Type** | Validation |
+| **Issue ID** | M2-01 |
+| **Title** | Implement BFS Impact Analysis |
+| **Milestone** | M2 — Impact Analysis |
+| **Type** | Engine |
 | **Status** | Current |
-| **Depends On** | M1-01 through M1-09 (all Done) |
-| **Unlocks** | All M2, All M3 |
-| **File** | `Issue-Tree/M1_Model_Visualization/M1-10_Validation_Graph_Visualization.md` |
+| **Depends On** | M1-03 (Done) |
+| **Unlocks** | M2-02, M2-03, M2-05 |
+| **File** | `Issue-Tree/M2_Impact_Analysis/M2-01_Implement_BFS_Impact_Analysis.md` |
 
 ---
 
@@ -58,8 +58,8 @@
 | 12 | M1-07 | M1 — Model Visualization | Done | [Report](IssueReport/M1-07_Implementation_Report.md) | [Tech Doc](IssueReport/M1-07_Technical_Documentation.md) | ConnectionScreen: connect + demo + model select, 7 tests |
 | 13 | M1-08 | M1 — Model Visualization | Done | [Report](IssueReport/M1-08_Implementation_Report.md) | [Tech Doc](IssueReport/M1-08_Technical_Documentation.md) | React Flow + elkjs, layer colors, 14 tests |
 | 14 | M1-09 | M1 — Model Visualization | Done | [Report](IssueReport/M1-09_Implementation_Report.md) | [Tech Doc](IssueReport/M1-09_Technical_Documentation.md) | ElementCard popup, 14 tests |
-| 15 | M1-10 | M1 — Model Visualization | Current | — | — | Validation: MS-1 graph visualization |
-| 16 | M2-01 | M2 — Impact Analysis | Pending | — | — | BFS impact analysis engine |
+| 15 | M1-10 | M1 — Model Visualization | Done | [Report](IssueReport/M1-10_Implementation_Report.md) | [Tech Doc](IssueReport/M1-10_Technical_Documentation.md) | Validation PASSED: all AC, 112/112 tests, 100% engine coverage |
+| 16 | M2-01 | M2 — Impact Analysis | Current | — | — | BFS impact analysis engine |
 | 17 | M2-02 | M2 — Impact Analysis | Pending | — | — | Layer summary и affected diagrams |
 | 18 | M2-03 | M2 — Impact Analysis | Pending | — | — | Unit tests for impact analysis |
 | 19 | M2-04 | M2 — Impact Analysis | Pending | — | — | Global search bar с dropdown |
@@ -103,6 +103,7 @@
 | 12 | M1-07 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-07_Implementation_Report.md) | [Tech Doc](IssueReport/M1-07_Technical_Documentation.md) | ConnectionScreen: URL+token connect, demo load, model selection, error handling, screen routing. 7 UI tests. Разблокировано: M1-08. |
 | 13 | M1-08 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-08_Implementation_Report.md) | [Tech Doc](IssueReport/M1-08_Technical_Documentation.md) | GlobalGraphView: React Flow + elkjs layered layout, 8 ArchiMate layer colours, MiniMap, Controls, fitView. 14 tests (9 nodeStyles + 5 layout). Разблокировано: M1-09, M2-07. |
 | 14 | M1-09 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-09_Implementation_Report.md) | [Tech Doc](IssueReport/M1-09_Technical_Documentation.md) | ElementCard: name, type, layer, degree, diagrams, orphan badge, Analyze Impact button. 14 UI tests. Разблокировано: M1-10, M2-05. |
+| 15 | M1-10 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-10_Implementation_Report.md) | [Tech Doc](IssueReport/M1-10_Technical_Documentation.md) | Validation PASSED. All AC verified. 112/112 tests. 100% engine coverage. 0 blocker bugs. **Milestone M1 COMPLETE.** Разблокировано: весь M2, весь M3. |
 
 ---
 
@@ -110,12 +111,13 @@
 
 **Date:** 2026-03-19
 
-**Event:** M1-09 завершён успешно.
+**Event:** M1-10 завершён успешно. **Milestone M1 — Model Visualization: COMPLETE.**
 
-- **Завершён:** M1-09 (Node Click → Element Info Popup) — ElementCard с метриками элемента.
-- **Файлы:** `src/ui/components/ElementCard/` (компонент + barrel + тесты), `src/ui/screens/GlobalGraph/GlobalGraphView.tsx` (onNodeClick, onPaneClick, ElementCard overlay).
-- **Проверки:** `npm run test` — 112/112 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M1-09_Implementation_Report.md`, `IssueReport/M1-09_Technical_Documentation.md`.
-- **Новый Current Issue:** M1-10 (Validation: MS-1 Graph Visualization) — все M1-01 через M1-09 закрыты.
-- **Разблокировано:** M1-10, M2-05.
-- Очередь: 24 нереализованных Issues из 38.
+- **Завершён:** M1-10 (Validation: MS-1 Graph Visualization).
+- **Результат:** Все 8 шагов S-1 demo flow пройдены. Все AC (AC-1.1, AC-1.4, AC-2.1–AC-2.5) верифицированы.
+- **Количественные проверки:** 102 nodes == 102 elements (PASS), 160 edges == 160 relationships (PASS), 0 broken refs (PASS), layout < 1s (PASS).
+- **Проверки:** `npm run test` — 112/112 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок, coverage buildGraph/calculateMetrics = 100%.
+- **Артефакты:** `IssueReport/M1-10_Implementation_Report.md`, `IssueReport/M1-10_Technical_Documentation.md`.
+- **Новый Current Issue:** M2-01 (Implement BFS Impact Analysis) — M1 полностью завершён, M2 и M3 разблокированы.
+- **Разблокировано:** весь M2 (M2-01 — M2-08), весь M3 (M3-01 — M3-06).
+- Очередь: 23 нереализованных Issues из 38.
