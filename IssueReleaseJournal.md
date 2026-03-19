@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M4-05 |
-| **Title** | Validation: Export Files Open Correctly |
+| **Issue ID** | M4-06 |
+| **Title** | Setup GitHub Actions CI |
 | **Milestone** | M4 — Export and Release |
-| **Type** | Validation |
+| **Type** | Infra |
 | **Status** | Current |
-| **Depends On** | M4-04 (Done) |
-| **Unlocks** | M4-06 |
-| **File** | `Issue-Tree/M4_Export_and_Release/M4-05_Validation_Export_Files.md` |
+| **Depends On** | M4-05 (Done) |
+| **Unlocks** | M4-07 |
+| **File** | `Issue-Tree/M4_Export_and_Release/M4-06_Setup_GitHub_Actions_CI.md` |
 
 ---
 
@@ -77,8 +77,8 @@
 | 31 | M4-02 | M4 — Export and Release | Done | [Report](IssueReport/M4-02_Implementation_Report.md) | [Tech Doc](IssueReport/M4-02_Technical_Documentation.md) | generateCSV: UTF-8 BOM, escaping, 11 tests |
 | 32 | M4-03 | M4 — Export and Release | Done | [Report](IssueReport/M4-03_Implementation_Report.md) | [Tech Doc](IssueReport/M4-03_Technical_Documentation.md) | Shared fixtures, 32 tests, 100% coverage |
 | 33 | M4-04 | M4 — Export and Release | Done | [Report](IssueReport/M4-04_Implementation_Report.md) | [Tech Doc](IssueReport/M4-04_Technical_Documentation.md) | Export GraphML + CSV buttons, downloadBlob, 10 tests |
-| 34 | M4-05 | M4 — Export and Release | Current | — | — | Validation: export files |
-| 35 | M4-06 | M4 — Export and Release | Pending | — | — | GitHub Actions CI |
+| 34 | M4-05 | M4 — Export and Release | Done | [Report](IssueReport/M4-05_Implementation_Report.md) | [Tech Doc](IssueReport/M4-05_Technical_Documentation.md) | Validation PASSED: GraphML + CSV verified on demo dataset, 19 tests |
+| 35 | M4-06 | M4 — Export and Release | Current | — | — | GitHub Actions CI |
 | 36 | M4-07 | M4 — Export and Release | Pending | — | — | README и документация |
 | 37 | M4-08 | M4 — Export and Release | Pending | — | — | E2E smoke test |
 | 38 | M4-09 | M4 — Export and Release | Pending | — | — | Final validation: MVP acceptance |
@@ -122,6 +122,7 @@
 | 31 | M4-02 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-02_Implementation_Report.md) | [Tech Doc](IssueReport/M4-02_Technical_Documentation.md) | generateCSV: UTF-8 BOM, CSV escaping, 9 columns, 11 tests. Разблокировано: M4-03, M4-04. |
 | 32 | M4-03 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-03_Implementation_Report.md) | [Tech Doc](IssueReport/M4-03_Technical_Documentation.md) | Shared fixtures, 32 export tests (18 GraphML + 14 CSV), 100% coverage. Разблокировано: M4-04. |
 | 33 | M4-04 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-04_Implementation_Report.md) | [Tech Doc](IssueReport/M4-04_Technical_Documentation.md) | Export GraphML (Impact Analyzer) + Export CSV (Table View) buttons, downloadBlob utility, sanitizeFileName, 10 tests. Разблокировано: M4-05. |
+| 34 | M4-05 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-05_Implementation_Report.md) | [Tech Doc](IssueReport/M4-05_Technical_Documentation.md) | Validation PASSED. AC-6.1–AC-6.4 verified. GraphML: valid XML, nodes/edges/attributes correct. CSV: BOM, 9 cols, 102 rows, encoding OK. 19 tests. Разблокировано: M4-06. |
 
 ---
 
@@ -129,12 +130,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M4-04 завершён успешно.
+**Event:** M4-05 завершён успешно.
 
-- **Завершён:** M4-04 (Add Export Buttons to UI) — Export GraphML + CSV buttons.
-- **Файлы:** `src/utils/download.ts`, `src/ui/components/ExportButton/`, `ImpactAnalyzerScreen.tsx`, `TableView.tsx`.
-- **Проверки:** `npx vitest run` — 262/262 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M4-04_Implementation_Report.md`, `IssueReport/M4-04_Technical_Documentation.md`.
-- **Новый Current Issue:** M4-05 (Validation: Export Files Open Correctly).
-- **Разблокировано:** M4-05.
-- Очередь: 5 нереализованных Issues из 38.
+- **Завершён:** M4-05 (Validation: Export Files Open Correctly) — GraphML + CSV validated on demo dataset.
+- **Файлы:** `src/validation/__tests__/m4-export-validation.test.ts` (19 tests).
+- **Проверки:** `npx vitest run` — 281/281 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M4-05_Implementation_Report.md`, `IssueReport/M4-05_Technical_Documentation.md`.
+- **Новый Current Issue:** M4-06 (Setup GitHub Actions CI).
+- **Разблокировано:** M4-06.
+- Очередь: 4 нереализованных Issues из 38.
