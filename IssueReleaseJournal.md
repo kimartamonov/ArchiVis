@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M4-09 |
-| **Title** | Final Validation: MVP Acceptance |
-| **Milestone** | M4 — Export and Release |
-| **Type** | Validation |
-| **Status** | Current |
-| **Depends On** | M4-08 (Done) |
-| **Unlocks** | — |
-| **File** | `Issue-Tree/M4_Export_and_Release/M4-09_Final_Validation_MVP_Acceptance.md` |
+| **Issue ID** | — |
+| **Title** | All issues complete. MVP released. |
+| **Milestone** | — |
+| **Type** | — |
+| **Status** | **MVP COMPLETE** |
+| **Depends On** | — |
+| **Unlocks** | Release v0.1.0 |
+| **File** | — |
 
 ---
 
@@ -81,7 +81,7 @@
 | 35 | M4-06 | M4 — Export and Release | Done | [Report](IssueReport/M4-06_Implementation_Report.md) | [Tech Doc](IssueReport/M4-06_Technical_Documentation.md) | GitHub Actions CI: lint + test + build |
 | 36 | M4-07 | M4 — Export and Release | Done | [Report](IssueReport/M4-07_Implementation_Report.md) | [Tech Doc](IssueReport/M4-07_Technical_Documentation.md) | README + CONTRIBUTING + LICENSE (MIT) |
 | 37 | M4-08 | M4 — Export and Release | Done | [Report](IssueReport/M4-08_Implementation_Report.md) | [Tech Doc](IssueReport/M4-08_Technical_Documentation.md) | Playwright E2E: SC-1 canonical scenario, 10 steps, 4.5s |
-| 38 | M4-09 | M4 — Export and Release | Current | — | — | Final validation: MVP acceptance |
+| 38 | M4-09 | M4 — Export and Release | Done | [Report](IssueReport/M4-09_Implementation_Report.md) | [Tech Doc](IssueReport/M4-09_Technical_Documentation.md) | **MVP VALIDATION PASSED.** 314 tests, all AC, all demos, 0 blockers. |
 
 ---
 
@@ -126,6 +126,7 @@
 | 35 | M4-06 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-06_Implementation_Report.md) | [Tech Doc](IssueReport/M4-06_Technical_Documentation.md) | GitHub Actions CI: lint + test (281) + build, concurrency, Node 20 LTS. Разблокировано: M4-07. |
 | 36 | M4-07 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-07_Implementation_Report.md) | [Tech Doc](IssueReport/M4-07_Technical_Documentation.md) | README (Quick Start, demo, tech stack, limitations), CONTRIBUTING, LICENSE (MIT). Разблокировано: M4-08. |
 | 37 | M4-08 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-08_Implementation_Report.md) | [Tech Doc](IssueReport/M4-08_Technical_Documentation.md) | Playwright E2E: SC-1 canonical scenario (10 steps, 4.5s), Chromium headless. Разблокировано: M4-09. |
+| 38 | M4-09 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-09_Implementation_Report.md) | [Tech Doc](IssueReport/M4-09_Technical_Documentation.md) | **MVP VALIDATION PASSED.** All AC (1–6), all demos (SC-1–S-4), 314 tests, 0 blockers. 38/38 issues Done. **Milestone M4 COMPLETE. MVP COMPLETE.** |
 
 ---
 
@@ -133,12 +134,13 @@
 
 **Date:** 2026-03-19
 
-**Event:** M4-08 завершён успешно.
+**Event:** M4-09 завершён. **MVP COMPLETE. ALL 38 ISSUES DONE.**
 
-- **Завершён:** M4-08 (E2E Smoke Test) — Playwright + Chromium.
-- **Файлы:** `playwright.config.ts`, `tests/e2e/canonical.test.ts`, `package.json`.
-- **Проверки:** E2E 1/1 passed (4.5s), unit 281/281, build ok, lint 0 errors.
-- **Артефакты:** `IssueReport/M4-08_Implementation_Report.md`, `IssueReport/M4-08_Technical_Documentation.md`.
-- **Новый Current Issue:** M4-09 (Final Validation: MVP Acceptance).
-- **Разблокировано:** M4-09.
-- Очередь: 1 нереализованный Issue из 38.
+- **Завершён:** M4-09 (Final Validation: MVP Acceptance).
+- **Файлы:** `src/validation/__tests__/m4-09-mvp-acceptance.test.tsx` (33 tests), `docs/validation/mvp-acceptance.md`, `docs/validation/known-issues.md`, `vite.config.ts`.
+- **Проверки:** 314/314 unit tests, 1/1 E2E, build ok, lint 0 errors.
+- **AC verified:** AC-1 through AC-6 — all PASS.
+- **Demo scenarios:** SC-1, S-1, S-2, S-3, S-4 — all PASS.
+- **Known issues:** 8 non-blockers documented.
+- **Нет больше Issues в очереди.** Все 38 из 38 завершены.
+- **Проект готов к релизу v0.1.0.**
