@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type ActiveScreen = 'connection' | 'graph' | 'impact' | 'table';
+export type ActiveScreen = 'connection' | 'graph' | 'impact' | 'table' | 'coverage';
 
 export interface UIState {
   activeScreen: ActiveScreen;
