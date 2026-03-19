@@ -229,4 +229,127 @@ describe('analyzeImpact', () => {
     expect(elapsed).toBeLessThan(1000);
     expect(result.length).toBeGreaterThan(0);
   });
+
+  // -----------------------------------------------------------------------
+  // Diamond graph: A → B, A → C, B → D, C → D — no duplicates at depth 2
+  // -----------------------------------------------------------------------
+
+  it('diamond graph: depth 2 finds D once (no duplicates)', () => {
+    const model = makeModel(
+      [
+        makeElement('a', 'A', 'ApplicationComponent', []),
+        makeElement('b', 'B', 'BusinessProcess', []),
+        makeElement('c', 'C', 'ApplicationService', []),
+        makeElement('d', 'D', 'Node', []),
+      ],
+      [
+        makeRelationship('r1', 'a', 'b'),
+        makeRelationship('r2', 'a', 'c'),
+        makeRelationship('r3', 'b', 'd'),
+        makeRelationship('r4', 'c', 'd'),
+      ],
+    );
+    const { graph } = buildGraph(model);
+    calculateMetrics(graph);
+
+    const result = analyzeImpact(graph, 'a', 2);
+
+    const ids = result.map((r) => r.id);
+    expect(new Set(ids).size).toBe(ids.length); // no dupes
+    expect(ids).toContain('b');
+    expect(ids).toContain('c');
+    expect(ids).toContain('d');
+    expect(result.length).toBe(3);
+    expect(result.find((r) => r.id === 'd')!.distance).toBe(2);
+  });
+
+  // -----------------------------------------------------------------------
+  // Star graph: hub → 5 spokes, depth 1 gets all 5
+  // -----------------------------------------------------------------------
+
+  it('star graph: depth 1 from center returns all spokes', () => {
+    const model = makeModel(
+      [
+        makeElement('hub', 'Hub', 'ApplicationComponent', []),
+        makeElement('s1', 'S1', 'BusinessProcess', []),
+        makeElement('s2', 'S2', 'ApplicationService', []),
+        makeElement('s3', 'S3', 'Node', []),
+        makeElement('s4', 'S4', 'Goal', []),
+        makeElement('s5', 'S5', 'WorkPackage', []),
+      ],
+      [
+        makeRelationship('r1', 'hub', 's1'),
+        makeRelationship('r2', 'hub', 's2'),
+        makeRelationship('r3', 'hub', 's3'),
+        makeRelationship('r4', 'hub', 's4'),
+        makeRelationship('r5', 'hub', 's5'),
+      ],
+    );
+    const { graph } = buildGraph(model);
+    calculateMetrics(graph);
+
+    const result = analyzeImpact(graph, 'hub', 1);
+    expect(result.length).toBe(5);
+    const layers = new Set(result.map((r) => r.layer));
+    expect(layers.size).toBeGreaterThanOrEqual(3); // multiple layers
+  });
+
+  // -----------------------------------------------------------------------
+  // Defensive: adjacency entries missing for a node
+  // -----------------------------------------------------------------------
+
+  it('handles missing adjacency entries gracefully', () => {
+    const model = makeModel(
+      [makeElement('a', 'A'), makeElement('b', 'B')],
+      [makeRelationship('r1', 'a', 'b')],
+    );
+    const { graph } = buildGraph(model);
+    calculateMetrics(graph);
+
+    // Remove adjacency entries for node 'a' to simulate inconsistency
+    graph.adjacencyOut.delete('a');
+    graph.adjacencyIn.delete('a');
+
+    // Should still work — just won't find out-neighbors from 'a'
+    const result = analyzeImpact(graph, 'a', 1);
+    // With no adjacency for 'a', BFS finds nothing
+    expect(result.length).toBe(0);
+  });
+
+  // -----------------------------------------------------------------------
+  // Defensive: neighbor ID in adjacency but missing from nodes map
+  // -----------------------------------------------------------------------
+
+  it('handles neighbor missing from nodes map', () => {
+    const model = makeModel(
+      [makeElement('a', 'A'), makeElement('b', 'B')],
+      [makeRelationship('r1', 'a', 'b')],
+    );
+    const { graph } = buildGraph(model);
+    calculateMetrics(graph);
+
+    // Remove node 'b' from the nodes map but leave it in adjacency
+    graph.nodes.delete('b');
+
+    const result = analyzeImpact(graph, 'a', 1);
+    // 'b' is in adjacencyOut but not in nodes — should be skipped gracefully
+    expect(result.length).toBe(0);
+  });
+
+  // -----------------------------------------------------------------------
+  // Early termination when all reachable nodes found before maxDepth
+  // -----------------------------------------------------------------------
+
+  it('terminates early when no more nodes to explore', () => {
+    const model = makeModel(
+      [makeElement('a', 'A'), makeElement('b', 'B')],
+      [makeRelationship('r1', 'a', 'b')],
+    );
+    const { graph } = buildGraph(model);
+
+    const result = analyzeImpact(graph, 'a', 3);
+    // Only b reachable at depth 1, nothing at depth 2 or 3
+    expect(result.length).toBe(1);
+    expect(result[0].distance).toBe(1);
+  });
 });
