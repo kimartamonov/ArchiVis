@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M3-06 |
-| **Title** | Validation: MS-3 Coverage and Table |
-| **Milestone** | M3 — Quality Assessment |
-| **Type** | Validation |
+| **Issue ID** | M4-01 |
+| **Title** | Implement GraphML Export Generator |
+| **Milestone** | M4 — Export and Release |
+| **Type** | Engine |
 | **Status** | Current |
-| **Depends On** | M3-05 (Done) |
-| **Unlocks** | M4-01 |
-| **File** | `Issue-Tree/M3_Quality_Assessment/M3-06_Validation_Coverage_and_Table.md` |
+| **Depends On** | M3-06 (Done), M2-08 (Done) |
+| **Unlocks** | M4-02 |
+| **File** | `Issue-Tree/M4_Export_and_Release/M4-01_Implement_GraphML_Export.md` |
 
 ---
 
@@ -72,8 +72,8 @@
 | 26 | M3-03 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-03_Implementation_Report.md) | [Tech Doc](IssueReport/M3-03_Technical_Documentation.md) | CoverageView: stats header, orphan list, layer bars, 6 tests |
 | 27 | M3-04 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-04_Implementation_Report.md) | [Tech Doc](IssueReport/M3-04_Technical_Documentation.md) | Sidebar: 5 nav items, active indicator, model-gating, 8 tests |
 | 28 | M3-05 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-05_Implementation_Report.md) | [Tech Doc](IssueReport/M3-05_Technical_Documentation.md) | useNavigateToElement hook, 3 transition paths wired, 7 tests |
-| 29 | M3-06 | M3 — Quality Assessment | Current | — | — | Validation: coverage and table |
-| 30 | M4-01 | M4 — Export and Release | Pending | — | — | GraphML export generator |
+| 29 | M3-06 | M3 — Quality Assessment | Done | [Report](IssueReport/M3-06_Implementation_Report.md) | [Tech Doc](IssueReport/M3-06_Technical_Documentation.md) | Validation PASSED: all S-3 steps, all AC, 220/220 tests. **Milestone M3 COMPLETE.** |
+| 30 | M4-01 | M4 — Export and Release | Current | — | — | GraphML export generator |
 | 31 | M4-02 | M4 — Export and Release | Pending | — | — | CSV export generator |
 | 32 | M4-03 | M4 — Export and Release | Pending | — | — | Unit tests for export |
 | 33 | M4-04 | M4 — Export and Release | Pending | — | — | Export buttons в UI |
@@ -117,6 +117,7 @@
 | 26 | M3-03 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-03_Implementation_Report.md) | [Tech Doc](IssueReport/M3-03_Technical_Documentation.md) | CoverageView: stats header, OrphanList table, LayerDistribution bars. 6 UI tests. Разблокировано: M3-04. |
 | 27 | M3-04 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-04_Implementation_Report.md) | [Tech Doc](IssueReport/M3-04_Technical_Documentation.md) | Sidebar + AppLayout: 5 nav items, model gating, active indicator. 8 UI tests. Разблокировано: M3-05. |
 | 28 | M3-05 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-05_Implementation_Report.md) | [Tech Doc](IssueReport/M3-05_Technical_Documentation.md) | useNavigateToElement hook: 3 transition paths (Table→Impact, Coverage→Impact, Graph→Impact), 7 tests. Разблокировано: M3-06. |
+| 29 | M3-06 | M3 — Quality Assessment | 2026-03-19 | [Report](IssueReport/M3-06_Implementation_Report.md) | [Tech Doc](IssueReport/M3-06_Technical_Documentation.md) | Validation PASSED. All 6 S-3 steps, AC-4.1–AC-4.3, AC-5.3 verified. 220/220 tests. 0 blockers. **Milestone M3 COMPLETE.** Разблокировано: M4-01, M4-02. |
 
 ---
 
@@ -124,12 +125,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M3-05 завершён успешно.
+**Event:** M3-06 завершён успешно. **Milestone M3 COMPLETE.**
 
-- **Завершён:** M3-05 (Add Cross-Screen Transitions) — useNavigateToElement hook + 3 transition paths wired.
-- **Файлы:** `src/ui/hooks/` (useNavigateToElement, index, тесты), `src/ui/screens/TableView/TableView.tsx`, `src/ui/screens/CoverageView/CoverageView.tsx`, `src/ui/screens/GlobalGraph/GlobalGraphView.tsx`.
-- **Проверки:** `npx vitest run` — 198/198 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M3-05_Implementation_Report.md`, `IssueReport/M3-05_Technical_Documentation.md`.
-- **Новый Current Issue:** M3-06 (Validation: MS-3 Coverage and Table).
-- **Разблокировано:** M3-06.
-- Очередь: 10 нереализованных Issues из 38.
+- **Завершён:** M3-06 (Validation: MS-3 Coverage and Table) — full S-3 demo flow validated.
+- **Файлы:** `src/validation/__tests__/m3-validation.test.tsx` (22 validation tests).
+- **Проверки:** `npx vitest run` — 220/220 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M3-06_Implementation_Report.md`, `IssueReport/M3-06_Technical_Documentation.md`.
+- **Новый Current Issue:** M4-01 (Implement GraphML Export Generator).
+- **Разблокировано:** M4-01, M4-02.
+- Очередь: 9 нереализованных Issues из 38.
