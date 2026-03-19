@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M1-08 |
-| **Title** | Build Global Graph View |
+| **Issue ID** | M1-09 |
+| **Title** | Add Node Click → Element Info Popup |
 | **Milestone** | M1 — Model Visualization |
 | **Type** | UI |
 | **Status** | Current |
-| **Depends On** | M1-03 (Done), M1-06 (Done), M1-07 (Done) |
-| **Unlocks** | M1-09, M2-07 |
-| **File** | `Issue-Tree/M1_Model_Visualization/M1-08_Build_Global_Graph_View.md` |
+| **Depends On** | M1-08 (Done) |
+| **Unlocks** | M1-10, M2-05 |
+| **File** | `Issue-Tree/M1_Model_Visualization/M1-09_Add_Node_Click_Popup.md` |
 
 ---
 
@@ -56,8 +56,8 @@
 | 10 | M1-05 | M1 — Model Visualization | Done | [Report](IssueReport/M1-05_Implementation_Report.md) | [Tech Doc](IssueReport/M1-05_Technical_Documentation.md) | 42 tests, 100% coverage on graph engine |
 | 11 | M1-06 | M1 — Model Visualization | Done | [Report](IssueReport/M1-06_Implementation_Report.md) | [Tech Doc](IssueReport/M1-06_Technical_Documentation.md) | 6 Zustand stores, 35 tests |
 | 12 | M1-07 | M1 — Model Visualization | Done | [Report](IssueReport/M1-07_Implementation_Report.md) | [Tech Doc](IssueReport/M1-07_Technical_Documentation.md) | ConnectionScreen: connect + demo + model select, 7 tests |
-| 13 | M1-08 | M1 — Model Visualization | Current | — | — | Global Graph view (React Flow + elkjs) |
-| 14 | M1-09 | M1 — Model Visualization | Pending | — | — | Node click → element info popup |
+| 13 | M1-08 | M1 — Model Visualization | Done | [Report](IssueReport/M1-08_Implementation_Report.md) | [Tech Doc](IssueReport/M1-08_Technical_Documentation.md) | React Flow + elkjs, layer colors, 14 tests |
+| 14 | M1-09 | M1 — Model Visualization | Current | — | — | Node click → element info popup |
 | 15 | M1-10 | M1 — Model Visualization | Pending | — | — | Validation: MS-1 graph visualization |
 | 16 | M2-01 | M2 — Impact Analysis | Pending | — | — | BFS impact analysis engine |
 | 17 | M2-02 | M2 — Impact Analysis | Pending | — | — | Layer summary и affected diagrams |
@@ -101,6 +101,7 @@
 | 10 | M1-05 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-05_Implementation_Report.md) | [Tech Doc](IssueReport/M1-05_Technical_Documentation.md) | 42 unit tests (12 buildGraph + 10 calculateMetrics), 100% coverage, shared fixtures, coverage thresholds enforced. Разблокировано: M1-06. |
 | 11 | M1-06 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-06_Implementation_Report.md) | [Tech Doc](IssueReport/M1-06_Technical_Documentation.md) | 6 Zustand stores (connection, model, graph, analysis, filter, ui), 35 unit tests. Persistence: URL→localStorage, token→sessionStorage. Разблокировано: M1-07, M1-08. |
 | 12 | M1-07 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-07_Implementation_Report.md) | [Tech Doc](IssueReport/M1-07_Technical_Documentation.md) | ConnectionScreen: URL+token connect, demo load, model selection, error handling, screen routing. 7 UI tests. Разблокировано: M1-08. |
+| 13 | M1-08 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-08_Implementation_Report.md) | [Tech Doc](IssueReport/M1-08_Technical_Documentation.md) | GlobalGraphView: React Flow + elkjs layered layout, 8 ArchiMate layer colours, MiniMap, Controls, fitView. 14 tests (9 nodeStyles + 5 layout). Разблокировано: M1-09, M2-07. |
 
 ---
 
@@ -108,12 +109,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M1-07 завершён успешно.
+**Event:** M1-08 завершён успешно.
 
-- **Завершён:** M1-07 (Build Connection Screen) — полноценный entry point UI.
-- **Файлы:** `src/ui/screens/ConnectionScreen/` (компонент + barrel + тесты), `src/App.tsx` (screen routing), `package.json` (testing-library, jsdom).
-- **Проверки:** `npm run test` — 84/84 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M1-07_Implementation_Report.md`, `IssueReport/M1-07_Technical_Documentation.md`.
-- **Новый Current Issue:** M1-08 (Build Global Graph View) — зависимости M1-03, M1-06, M1-07 закрыты.
-- **Разблокировано:** M1-08.
-- Очередь: 26 нереализованных Issues из 38.
+- **Завершён:** M1-08 (Build Global Graph View) — интерактивный граф с цветовой кодировкой.
+- **Файлы:** `src/ui/screens/GlobalGraph/` (4 файла + 2 тест-файла), `src/App.tsx`, `src/index.css`, `package.json` (@xyflow/react, elkjs).
+- **Проверки:** `npm run test` — 98/98 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M1-08_Implementation_Report.md`, `IssueReport/M1-08_Technical_Documentation.md`.
+- **Новый Current Issue:** M1-09 (Node Click → Element Info Popup) — зависимость M1-08 закрыта.
+- **Разблокировано:** M1-09, M2-07.
+- Очередь: 25 нереализованных Issues из 38.
