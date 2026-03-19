@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M1-09 |
-| **Title** | Add Node Click → Element Info Popup |
+| **Issue ID** | M1-10 |
+| **Title** | Validation: MS-1 Graph Visualization |
 | **Milestone** | M1 — Model Visualization |
-| **Type** | UI |
+| **Type** | Validation |
 | **Status** | Current |
-| **Depends On** | M1-08 (Done) |
-| **Unlocks** | M1-10, M2-05 |
-| **File** | `Issue-Tree/M1_Model_Visualization/M1-09_Add_Node_Click_Popup.md` |
+| **Depends On** | M1-01 through M1-09 (all Done) |
+| **Unlocks** | All M2, All M3 |
+| **File** | `Issue-Tree/M1_Model_Visualization/M1-10_Validation_Graph_Visualization.md` |
 
 ---
 
@@ -57,8 +57,8 @@
 | 11 | M1-06 | M1 — Model Visualization | Done | [Report](IssueReport/M1-06_Implementation_Report.md) | [Tech Doc](IssueReport/M1-06_Technical_Documentation.md) | 6 Zustand stores, 35 tests |
 | 12 | M1-07 | M1 — Model Visualization | Done | [Report](IssueReport/M1-07_Implementation_Report.md) | [Tech Doc](IssueReport/M1-07_Technical_Documentation.md) | ConnectionScreen: connect + demo + model select, 7 tests |
 | 13 | M1-08 | M1 — Model Visualization | Done | [Report](IssueReport/M1-08_Implementation_Report.md) | [Tech Doc](IssueReport/M1-08_Technical_Documentation.md) | React Flow + elkjs, layer colors, 14 tests |
-| 14 | M1-09 | M1 — Model Visualization | Current | — | — | Node click → element info popup |
-| 15 | M1-10 | M1 — Model Visualization | Pending | — | — | Validation: MS-1 graph visualization |
+| 14 | M1-09 | M1 — Model Visualization | Done | [Report](IssueReport/M1-09_Implementation_Report.md) | [Tech Doc](IssueReport/M1-09_Technical_Documentation.md) | ElementCard popup, 14 tests |
+| 15 | M1-10 | M1 — Model Visualization | Current | — | — | Validation: MS-1 graph visualization |
 | 16 | M2-01 | M2 — Impact Analysis | Pending | — | — | BFS impact analysis engine |
 | 17 | M2-02 | M2 — Impact Analysis | Pending | — | — | Layer summary и affected diagrams |
 | 18 | M2-03 | M2 — Impact Analysis | Pending | — | — | Unit tests for impact analysis |
@@ -102,6 +102,7 @@
 | 11 | M1-06 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-06_Implementation_Report.md) | [Tech Doc](IssueReport/M1-06_Technical_Documentation.md) | 6 Zustand stores (connection, model, graph, analysis, filter, ui), 35 unit tests. Persistence: URL→localStorage, token→sessionStorage. Разблокировано: M1-07, M1-08. |
 | 12 | M1-07 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-07_Implementation_Report.md) | [Tech Doc](IssueReport/M1-07_Technical_Documentation.md) | ConnectionScreen: URL+token connect, demo load, model selection, error handling, screen routing. 7 UI tests. Разблокировано: M1-08. |
 | 13 | M1-08 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-08_Implementation_Report.md) | [Tech Doc](IssueReport/M1-08_Technical_Documentation.md) | GlobalGraphView: React Flow + elkjs layered layout, 8 ArchiMate layer colours, MiniMap, Controls, fitView. 14 tests (9 nodeStyles + 5 layout). Разблокировано: M1-09, M2-07. |
+| 14 | M1-09 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-09_Implementation_Report.md) | [Tech Doc](IssueReport/M1-09_Technical_Documentation.md) | ElementCard: name, type, layer, degree, diagrams, orphan badge, Analyze Impact button. 14 UI tests. Разблокировано: M1-10, M2-05. |
 
 ---
 
@@ -109,12 +110,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M1-08 завершён успешно.
+**Event:** M1-09 завершён успешно.
 
-- **Завершён:** M1-08 (Build Global Graph View) — интерактивный граф с цветовой кодировкой.
-- **Файлы:** `src/ui/screens/GlobalGraph/` (4 файла + 2 тест-файла), `src/App.tsx`, `src/index.css`, `package.json` (@xyflow/react, elkjs).
-- **Проверки:** `npm run test` — 98/98 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M1-08_Implementation_Report.md`, `IssueReport/M1-08_Technical_Documentation.md`.
-- **Новый Current Issue:** M1-09 (Node Click → Element Info Popup) — зависимость M1-08 закрыта.
-- **Разблокировано:** M1-09, M2-07.
-- Очередь: 25 нереализованных Issues из 38.
+- **Завершён:** M1-09 (Node Click → Element Info Popup) — ElementCard с метриками элемента.
+- **Файлы:** `src/ui/components/ElementCard/` (компонент + barrel + тесты), `src/ui/screens/GlobalGraph/GlobalGraphView.tsx` (onNodeClick, onPaneClick, ElementCard overlay).
+- **Проверки:** `npm run test` — 112/112 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M1-09_Implementation_Report.md`, `IssueReport/M1-09_Technical_Documentation.md`.
+- **Новый Current Issue:** M1-10 (Validation: MS-1 Graph Visualization) — все M1-01 через M1-09 закрыты.
+- **Разблокировано:** M1-10, M2-05.
+- Очередь: 24 нереализованных Issues из 38.
