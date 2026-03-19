@@ -18,6 +18,7 @@ import { calculateMetrics } from '../../../engine/graph/calculateMetrics';
 import { useGraphLayout } from './useGraphLayout';
 import { colorForLayer } from './nodeStyles';
 import { ElementCard } from '../../components/ElementCard';
+import { SearchBar } from '../../components/Search';
 
 export function GlobalGraphView() {
   const currentModel = useModelStore((s) => s.currentModel);
@@ -75,6 +76,7 @@ export function GlobalGraphView() {
         <button onClick={() => setScreen('connection')} style={styles.toolbarBtn}>
           &larr; Connection
         </button>
+        <SearchBar />
         <span style={styles.stats}>
           {nodes.length} nodes &middot; {edges.length} edges
         </span>

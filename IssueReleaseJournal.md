@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M2-04 |
-| **Title** | Build Global Search Bar |
+| **Issue ID** | M2-05 |
+| **Title** | Build Impact Analyzer Screen |
 | **Milestone** | M2 — Impact Analysis |
 | **Type** | UI |
 | **Status** | Current |
-| **Depends On** | M1-06 (Done) |
-| **Unlocks** | M2-05 |
-| **File** | `Issue-Tree/M2_Impact_Analysis/M2-04_Build_Global_Search_Bar.md` |
+| **Depends On** | M2-01 (Done), M2-02 (Done), M2-04 (Done) |
+| **Unlocks** | M2-06, M2-07 |
+| **File** | `Issue-Tree/M2_Impact_Analysis/M2-05_Build_Impact_Analyzer_Screen.md` |
 
 ---
 
@@ -62,8 +62,8 @@
 | 16 | M2-01 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-01_Implementation_Report.md) | [Tech Doc](IssueReport/M2-01_Technical_Documentation.md) | BFS undirected traversal, 11 tests |
 | 17 | M2-02 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-02_Implementation_Report.md) | [Tech Doc](IssueReport/M2-02_Technical_Documentation.md) | buildImpactResult: layer summary + affected diagrams, 6 tests |
 | 18 | M2-03 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-03_Implementation_Report.md) | [Tech Doc](IssueReport/M2-03_Technical_Documentation.md) | 22 tests total, 100% lines / 90.9% branches, shared fixtures |
-| 19 | M2-04 | M2 — Impact Analysis | Current | — | — | Global search bar с dropdown |
-| 20 | M2-05 | M2 — Impact Analysis | Pending | — | — | Impact Analyzer screen |
+| 19 | M2-04 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-04_Implementation_Report.md) | [Tech Doc](IssueReport/M2-04_Technical_Documentation.md) | SearchBar: debounced, case-insensitive, 10 max results, 8 tests |
+| 20 | M2-05 | M2 — Impact Analysis | Current | — | — | Impact Analyzer screen |
 | 21 | M2-06 | M2 — Impact Analysis | Pending | — | — | Depth switcher (1/2/3) |
 | 22 | M2-07 | M2 — Impact Analysis | Pending | — | — | Impact subgraph highlighting |
 | 23 | M2-08 | M2 — Impact Analysis | Pending | — | — | Validation: canonical impact scenario |
@@ -107,6 +107,7 @@
 | 16 | M2-01 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-01_Implementation_Report.md) | [Tech Doc](IssueReport/M2-01_Technical_Documentation.md) | analyzeImpact: BFS undirected, depth 1/2/3, visited set, cycle-safe. Demo: Core Banking Platform depth 2 → 47 elements. 11 tests. Разблокировано: M2-02, M2-03, M2-05. |
 | 17 | M2-02 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-02_Implementation_Report.md) | [Tech Doc](IssueReport/M2-02_Technical_Documentation.md) | buildImpactResult: layer summary (sorted desc) + affected diagrams (source only). 6 tests. Разблокировано: M2-05. |
 | 18 | M2-03 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-03_Implementation_Report.md) | [Tech Doc](IssueReport/M2-03_Technical_Documentation.md) | 22 impact analysis tests (16 BFS + 6 aggregation), shared fixtures, 100% lines / 90.9% branches, coverage thresholds enforced. Разблокировано: M2-04. |
+| 19 | M2-04 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-04_Implementation_Report.md) | [Tech Doc](IssueReport/M2-04_Technical_Documentation.md) | SearchBar: debounced 200ms, case-insensitive substring, 10 max results, layer badges, navigate to impact. 8 UI tests. Разблокировано: M2-05. |
 
 ---
 
@@ -114,12 +115,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M2-03 завершён успешно.
+**Event:** M2-04 завершён успешно.
 
-- **Завершён:** M2-03 (Add Impact Analysis Unit Tests) — comprehensive test suite.
-- **Файлы:** `src/engine/insight/__tests__/impactAnalysis.test.ts` (+5 тестов), `src/engine/insight/__tests__/fixtures.ts` (shared fixtures), `vite.config.ts` (coverage threshold).
-- **Проверки:** `npm run test` — 134/134 passed, `npm run test:coverage` — все пороги пройдены (100% lines, 90.9% branches), `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M2-03_Implementation_Report.md`, `IssueReport/M2-03_Technical_Documentation.md`.
-- **Новый Current Issue:** M2-04 (Build Global Search Bar) — зависимость M1-06 закрыта.
-- **Разблокировано:** M2-04.
-- Очередь: 20 нереализованных Issues из 38.
+- **Завершён:** M2-04 (Build Global Search Bar) — search с dropdown и навигацией.
+- **Файлы:** `src/ui/components/Search/` (компонент + barrel + тесты), `src/ui/screens/GlobalGraph/GlobalGraphView.tsx` (SearchBar в toolbar).
+- **Проверки:** `npm run test` — 142/142 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M2-04_Implementation_Report.md`, `IssueReport/M2-04_Technical_Documentation.md`.
+- **Новый Current Issue:** M2-05 (Build Impact Analyzer Screen) — зависимости M2-01, M2-02, M2-04 закрыты.
+- **Разблокировано:** M2-05.
+- Очередь: 19 нереализованных Issues из 38.
