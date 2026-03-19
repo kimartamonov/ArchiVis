@@ -8,15 +8,15 @@ import {
 } from '@tanstack/react-table';
 import type { SortingState, ColumnFiltersState } from '@tanstack/react-table';
 import { useGraphStore } from '../../../stores/graphStore';
-import { useAnalysisStore } from '../../../stores/analysisStore';
 import { useUIStore } from '../../../stores/uiStore';
 import { columns, graphNodesToRows } from './columns';
 import { colorForLayer } from '../GlobalGraph/nodeStyles';
+import { useNavigateToElement } from '../../hooks/useNavigateToElement';
 
 export function TableView() {
   const graph = useGraphStore((s) => s.graph);
-  const selectElement = useAnalysisStore((s) => s.selectElement);
   const setScreen = useUIStore((s) => s.setScreen);
+  const navigateToElement = useNavigateToElement();
 
   const data = useMemo(() => (graph ? graphNodesToRows(graph.nodes) : []), [graph]);
 
@@ -39,8 +39,7 @@ export function TableView() {
   });
 
   const handleRowClick = (elementId: string) => {
-    selectElement(elementId);
-    setScreen('impact');
+    navigateToElement(elementId, 'impact');
   };
 
   const layerFilter = (columnFilters.find((f) => f.id === 'layer')?.value as string) ?? '';

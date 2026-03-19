@@ -20,6 +20,7 @@ import { colorForLayer } from './nodeStyles';
 import { ElementCard } from '../../components/ElementCard';
 import { SearchBar } from '../../components/Search';
 import { applyNodeHighlighting, applyEdgeHighlighting } from './applyHighlighting';
+import { useNavigateToElement } from '../../hooks/useNavigateToElement';
 
 export function GlobalGraphView() {
   const currentModel = useModelStore((s) => s.currentModel);
@@ -30,6 +31,7 @@ export function GlobalGraphView() {
   const selectElement = useAnalysisStore((s) => s.selectElement);
 
   const impactResult = useAnalysisStore((s) => s.impactResult);
+  const navigateToElement = useNavigateToElement();
 
   const selectedNode = graph && selectedElementId ? graph.nodes.get(selectedElementId) ?? null : null;
 
@@ -133,6 +135,7 @@ export function GlobalGraphView() {
           <ElementCard
             node={selectedNode}
             onClose={() => selectElement(null)}
+            onAnalyzeImpact={(id) => navigateToElement(id, 'impact')}
           />
         )}
       </div>

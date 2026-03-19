@@ -1,21 +1,20 @@
 import { useMemo } from 'react';
 import { useGraphStore } from '../../../stores/graphStore';
-import { useAnalysisStore } from '../../../stores/analysisStore';
 import { useUIStore } from '../../../stores/uiStore';
 import { buildCoverageReport } from '../../../engine/insight/coverageReport';
 import { OrphanList } from './OrphanList';
 import { LayerDistribution } from './LayerDistribution';
+import { useNavigateToElement } from '../../hooks/useNavigateToElement';
 
 export function CoverageView() {
   const graph = useGraphStore((s) => s.graph);
-  const selectElement = useAnalysisStore((s) => s.selectElement);
   const setScreen = useUIStore((s) => s.setScreen);
+  const navigateToElement = useNavigateToElement();
 
   const report = useMemo(() => (graph ? buildCoverageReport(graph) : null), [graph]);
 
   const handleOrphanClick = (id: string) => {
-    selectElement(id);
-    setScreen('impact');
+    navigateToElement(id, 'impact');
   };
 
   return (
