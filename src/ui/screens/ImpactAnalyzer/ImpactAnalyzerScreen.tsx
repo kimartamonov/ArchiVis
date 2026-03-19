@@ -4,11 +4,14 @@ import { useGraphStore } from '../../../stores/graphStore';
 import { useModelStore } from '../../../stores/modelStore';
 import { useUIStore } from '../../../stores/uiStore';
 import { buildImpactResult } from '../../../engine/insight/impactAnalysis';
+import { generateGraphML } from '../../../export/graphml';
+import { downloadBlob, sanitizeFileName } from '../../../utils/download';
 import { SourceCard } from './SourceCard';
 import { AffectedList } from './AffectedList';
 import { LayerSummary } from './LayerSummary';
 import { AffectedDiagrams } from './AffectedDiagrams';
 import { SearchBar } from '../../components/Search';
+import { ExportButton } from '../../components/ExportButton';
 import { DepthSwitcher } from './DepthSwitcher';
 
 export function ImpactAnalyzerScreen() {
@@ -40,6 +43,21 @@ export function ImpactAnalyzerScreen() {
     setScreen('graph');
   }, [setImpactResult, setScreen]);
 
+  const handleExportGraphML = useCallback(() => {
+    if (!graph || !impactResult || !selectedNode) return;
+    // Collect subgraph: source + affected nodes
+    const affectedIds = new Set(impactResult.affectedElements.map((e) => e.id));
+    affectedIds.add(impactResult.sourceElementId);
+    const nodes = Array.from(graph.nodes.values()).filter((n) => affectedIds.has(n.element.id));
+    const edges = graph.edges.filter(
+      (e) => affectedIds.has(e.relationship.sourceId) && affectedIds.has(e.relationship.targetId),
+    );
+    const xml = generateGraphML(nodes, edges);
+    const blob = new Blob([xml], { type: 'application/xml' });
+    const name = sanitizeFileName(selectedNode.element.name);
+    downloadBlob(blob, `impact_${name}_${depth}.graphml`);
+  }, [graph, impactResult, selectedNode, depth]);
+
   // No element selected
   if (!selectedNode || !graph) {
     return (
@@ -65,6 +83,11 @@ export function ImpactAnalyzerScreen() {
         </button>
         <SearchBar />
         <DepthSwitcher />
+        <ExportButton
+          label="Export GraphML"
+          onClick={handleExportGraphML}
+          disabled={!impactResult || impactResult.affectedElements.length === 0}
+        />
       </div>
 
       <div style={styles.content}>

@@ -8,13 +8,18 @@ import {
 } from '@tanstack/react-table';
 import type { SortingState, ColumnFiltersState } from '@tanstack/react-table';
 import { useGraphStore } from '../../../stores/graphStore';
+import { useModelStore } from '../../../stores/modelStore';
 import { useUIStore } from '../../../stores/uiStore';
 import { useNavigateToElement } from '../../hooks/useNavigateToElement';
+import { generateCSV } from '../../../export/csv';
+import { downloadBlob, sanitizeFileName } from '../../../utils/download';
+import { ExportButton } from '../../components/ExportButton';
 import { columns, graphNodesToRows } from './columns';
 import { colorForLayer } from '../GlobalGraph/nodeStyles';
 
 export function TableView() {
   const graph = useGraphStore((s) => s.graph);
+  const currentModel = useModelStore((s) => s.currentModel);
   const setScreen = useUIStore((s) => s.setScreen);
   const navigateToElement = useNavigateToElement();
 
@@ -40,6 +45,15 @@ export function TableView() {
 
   const handleRowClick = (elementId: string) => {
     navigateToElement(elementId, 'impact');
+  };
+
+  const handleExportCSV = () => {
+    if (!graph) return;
+    const nodes = Array.from(graph.nodes.values());
+    const csv = generateCSV(nodes);
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+    const modelName = sanitizeFileName(currentModel?.name ?? 'model');
+    downloadBlob(blob, `elements_${modelName}.csv`);
   };
 
   const layerFilter = (columnFilters.find((f) => f.id === 'layer')?.value as string) ?? '';
@@ -90,6 +104,11 @@ export function TableView() {
         <span style={styles.count}>
           {table.getRowModel().rows.length} / {data.length} elements
         </span>
+        <ExportButton
+          label="Export CSV"
+          onClick={handleExportCSV}
+          disabled={data.length === 0}
+        />
       </div>
 
       <div style={styles.tableWrap}>
