@@ -8,5 +8,14 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.ts'],
+      exclude: ['src/**/*.d.ts', 'src/main.tsx', 'src/App.tsx', 'src/vite-env.d.ts'],
+      thresholds: {
+        'src/engine/graph/buildGraph.ts': { lines: 80, branches: 80 },
+        'src/engine/graph/calculateMetrics.ts': { lines: 80, branches: 80 },
+      },
+    },
   },
 })
