@@ -1,38 +1,17 @@
 // @vitest-environment jsdom
 import { describe, it, expect } from 'vitest';
 import { generateGraphML } from '../graphml';
-import type { GraphNode, GraphEdge } from '../../engine/types';
-import { makeElement, makeRelationship } from '../../engine/graph/__tests__/fixtures';
-
-function makeNode(
-  id: string,
-  name: string,
-  type: string,
-  degree: number = 2,
-  diagramIds: string[] = ['d1'],
-): GraphNode {
-  return {
-    element: makeElement(id, name, type, diagramIds),
-    degree,
-    inDegree: 1,
-    outDegree: 1,
-    diagramsCount: diagramIds.length,
-    isOrphan: false,
-  };
-}
-
-function makeEdge(
-  relId: string,
-  sourceNode: GraphNode,
-  targetNode: GraphNode,
-  type: string = 'ServingRelationship',
-): GraphEdge {
-  return {
-    relationship: makeRelationship(relId, sourceNode.element.id, targetNode.element.id, type),
-    source: sourceNode,
-    target: targetNode,
-  };
-}
+import {
+  makeExportNode,
+  makeExportEdge,
+  NODE_PG,
+  NODE_PS,
+  NODE_SPECIAL,
+  NODE_CYRILLIC,
+  NODE_EMPTY_NAME,
+  NODE_ZERO_DEGREE,
+  EDGE_PG_PS,
+} from './fixtures';
 
 function parseXml(xml: string): Document {
   const parser = new DOMParser();
@@ -44,31 +23,37 @@ function parseXml(xml: string): Document {
   return doc;
 }
 
+const NS = 'http://graphml.graphstruct.org/xmlns';
+
 describe('generateGraphML', () => {
-  const nodeA = makeNode('pg', 'Payment Gateway', 'ApplicationComponent', 8);
-  const nodeB = makeNode('ps', 'Payment Service', 'ApplicationService', 4);
-  const edge1 = makeEdge('r1', nodeA, nodeB);
+  // ---- Structure ----
 
   it('returns valid parseable XML', () => {
-    const xml = generateGraphML([nodeA, nodeB], [edge1]);
+    const xml = generateGraphML([NODE_PG, NODE_PS], [EDGE_PG_PS]);
     expect(() => parseXml(xml)).not.toThrow();
   });
 
   it('starts with XML declaration', () => {
-    const xml = generateGraphML([nodeA], []);
+    const xml = generateGraphML([NODE_PG], []);
     expect(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>')).toBe(true);
   });
 
   it('has graphml root with correct namespace', () => {
-    const xml = generateGraphML([nodeA], []);
-    const doc = parseXml(xml);
-    const root = doc.documentElement;
-    expect(root.tagName).toBe('graphml');
-    expect(root.getAttribute('xmlns')).toBe('http://graphml.graphstruct.org/xmlns');
+    const doc = parseXml(generateGraphML([NODE_PG], []));
+    expect(doc.documentElement.tagName).toBe('graphml');
+    expect(doc.documentElement.getAttribute('xmlns')).toBe(NS);
   });
 
+  it('graph element has edgedefault="directed"', () => {
+    const doc = parseXml(generateGraphML([NODE_PG], []));
+    const graph = doc.getElementsByTagNameNS(NS, 'graph')[0];
+    expect(graph.getAttribute('edgedefault')).toBe('directed');
+  });
+
+  // ---- Key definitions ----
+
   it('contains key definitions for node attributes', () => {
-    const xml = generateGraphML([nodeA], []);
+    const xml = generateGraphML([NODE_PG], []);
     expect(xml).toContain('attr.name="name"');
     expect(xml).toContain('attr.name="type"');
     expect(xml).toContain('attr.name="layer"');
@@ -76,94 +61,123 @@ describe('generateGraphML', () => {
   });
 
   it('contains key definition for edge type', () => {
-    const xml = generateGraphML([], [edge1]);
+    const xml = generateGraphML([], [EDGE_PG_PS]);
     expect(xml).toContain('id="d_edge_type"');
     expect(xml).toContain('for="edge"');
   });
 
-  it('graph element has edgedefault="directed"', () => {
-    const xml = generateGraphML([nodeA], []);
-    const doc = parseXml(xml);
-    const ns = 'http://graphml.graphstruct.org/xmlns';
-    const graph = doc.getElementsByTagNameNS(ns, 'graph')[0];
-    expect(graph.getAttribute('edgedefault')).toBe('directed');
-  });
+  // ---- Nodes ----
 
   it('produces correct number of node elements', () => {
-    const xml = generateGraphML([nodeA, nodeB], [edge1]);
-    const doc = parseXml(xml);
-    const ns = 'http://graphml.graphstruct.org/xmlns';
-    const nodes = doc.getElementsByTagNameNS(ns, 'node');
-    expect(nodes.length).toBe(2);
+    const doc = parseXml(generateGraphML([NODE_PG, NODE_PS], [EDGE_PG_PS]));
+    expect(doc.getElementsByTagNameNS(NS, 'node').length).toBe(2);
   });
 
   it('node elements have correct data values', () => {
-    const xml = generateGraphML([nodeA], []);
-    const doc = parseXml(xml);
-    const ns = 'http://graphml.graphstruct.org/xmlns';
-    const node = doc.getElementsByTagNameNS(ns, 'node')[0];
+    const doc = parseXml(generateGraphML([NODE_PG], []));
+    const node = doc.getElementsByTagNameNS(NS, 'node')[0];
     expect(node.getAttribute('id')).toBe('pg');
 
-    const dataElements = node.getElementsByTagNameNS(ns, 'data');
+    const dataElements = node.getElementsByTagNameNS(NS, 'data');
     const dataMap = new Map<string, string>();
     for (let i = 0; i < dataElements.length; i++) {
       const d = dataElements[i];
       dataMap.set(d.getAttribute('key')!, d.textContent!);
     }
-
     expect(dataMap.get('d_name')).toBe('Payment Gateway');
     expect(dataMap.get('d_type')).toBe('ApplicationComponent');
     expect(dataMap.get('d_layer')).toBe('Application');
     expect(dataMap.get('d_degree')).toBe('8');
   });
 
+  // ---- Edges ----
+
   it('produces correct number of edge elements', () => {
-    const xml = generateGraphML([nodeA, nodeB], [edge1]);
-    const doc = parseXml(xml);
-    const ns = 'http://graphml.graphstruct.org/xmlns';
-    const edges = doc.getElementsByTagNameNS(ns, 'edge');
-    expect(edges.length).toBe(1);
+    const doc = parseXml(generateGraphML([NODE_PG, NODE_PS], [EDGE_PG_PS]));
+    expect(doc.getElementsByTagNameNS(NS, 'edge').length).toBe(1);
   });
 
   it('edge elements have correct source, target, and type', () => {
-    const xml = generateGraphML([nodeA, nodeB], [edge1]);
-    const doc = parseXml(xml);
-    const ns = 'http://graphml.graphstruct.org/xmlns';
-    const edge = doc.getElementsByTagNameNS(ns, 'edge')[0];
+    const doc = parseXml(generateGraphML([NODE_PG, NODE_PS], [EDGE_PG_PS]));
+    const edge = doc.getElementsByTagNameNS(NS, 'edge')[0];
     expect(edge.getAttribute('source')).toBe('pg');
     expect(edge.getAttribute('target')).toBe('ps');
-
-    const data = edge.getElementsByTagNameNS(ns, 'data')[0];
+    const data = edge.getElementsByTagNameNS(NS, 'data')[0];
     expect(data.getAttribute('key')).toBe('d_edge_type');
     expect(data.textContent).toBe('ServingRelationship');
   });
 
+  // ---- Escaping ----
+
   it('escapes XML special characters in names', () => {
-    const special = makeNode('x', 'Risk & Return <Analysis> "Test"', 'ApplicationComponent');
-    const xml = generateGraphML([special], []);
+    const xml = generateGraphML([NODE_SPECIAL], []);
     expect(xml).toContain('&amp;');
     expect(xml).toContain('&lt;');
     expect(xml).toContain('&gt;');
     expect(xml).toContain('&quot;');
-    // Should still parse
     expect(() => parseXml(xml)).not.toThrow();
   });
+
+  it('preserves Cyrillic characters', () => {
+    const xml = generateGraphML([NODE_CYRILLIC], []);
+    expect(() => parseXml(xml)).not.toThrow();
+    const doc = parseXml(xml);
+    const node = doc.getElementsByTagNameNS(NS, 'node')[0];
+    const dataElements = node.getElementsByTagNameNS(NS, 'data');
+    let nameValue = '';
+    for (let i = 0; i < dataElements.length; i++) {
+      if (dataElements[i].getAttribute('key') === 'd_name') {
+        nameValue = dataElements[i].textContent!;
+      }
+    }
+    expect(nameValue).toBe('Платёжный Шлюз');
+  });
+
+  // ---- Edge cases ----
 
   it('handles empty input gracefully', () => {
     const xml = generateGraphML([], []);
     expect(() => parseXml(xml)).not.toThrow();
     const doc = parseXml(xml);
-    const ns = 'http://graphml.graphstruct.org/xmlns';
-    expect(doc.getElementsByTagNameNS(ns, 'node').length).toBe(0);
-    expect(doc.getElementsByTagNameNS(ns, 'edge').length).toBe(0);
+    expect(doc.getElementsByTagNameNS(NS, 'node').length).toBe(0);
+    expect(doc.getElementsByTagNameNS(NS, 'edge').length).toBe(0);
   });
 
   it('handles single node with no edges', () => {
-    const xml = generateGraphML([nodeA], []);
+    const doc = parseXml(generateGraphML([NODE_PG], []));
+    expect(doc.getElementsByTagNameNS(NS, 'node').length).toBe(1);
+    expect(doc.getElementsByTagNameNS(NS, 'edge').length).toBe(0);
+  });
+
+  it('handles node with empty name', () => {
+    const xml = generateGraphML([NODE_EMPTY_NAME], []);
     expect(() => parseXml(xml)).not.toThrow();
     const doc = parseXml(xml);
-    const ns = 'http://graphml.graphstruct.org/xmlns';
-    expect(doc.getElementsByTagNameNS(ns, 'node').length).toBe(1);
-    expect(doc.getElementsByTagNameNS(ns, 'edge').length).toBe(0);
+    const node = doc.getElementsByTagNameNS(NS, 'node')[0];
+    expect(node.getAttribute('id')).toBe('empty');
+  });
+
+  it('handles zero-degree orphan node', () => {
+    const xml = generateGraphML([NODE_ZERO_DEGREE], []);
+    expect(() => parseXml(xml)).not.toThrow();
+    const doc = parseXml(xml);
+    const node = doc.getElementsByTagNameNS(NS, 'node')[0];
+    const dataElements = node.getElementsByTagNameNS(NS, 'data');
+    let degreeValue = '';
+    for (let i = 0; i < dataElements.length; i++) {
+      if (dataElements[i].getAttribute('key') === 'd_degree') {
+        degreeValue = dataElements[i].textContent!;
+      }
+    }
+    expect(degreeValue).toBe('0');
+  });
+
+  it('handles multiple edges between different nodes', () => {
+    const nodeC = makeExportNode('ob', 'Order Backend', 'ApplicationComponent');
+    const edge2 = makeExportEdge('r2', NODE_PS, nodeC);
+    const xml = generateGraphML([NODE_PG, NODE_PS, nodeC], [EDGE_PG_PS, edge2]);
+    const doc = parseXml(xml);
+    expect(doc.getElementsByTagNameNS(NS, 'node').length).toBe(3);
+    expect(doc.getElementsByTagNameNS(NS, 'edge').length).toBe(2);
   });
 });

@@ -1,100 +1,115 @@
 import { describe, it, expect } from 'vitest';
 import { generateCSV } from '../csv';
-import type { GraphNode } from '../../engine/types';
-import { makeElement } from '../../engine/graph/__tests__/fixtures';
+import {
+  makeExportNode,
+  NODE_PG,
+  NODE_PS,
+  NODE_SPECIAL,
+  NODE_CYRILLIC,
+  NODE_EMPTY_NAME,
+  NODE_ZERO_DEGREE,
+} from './fixtures';
 
-function makeNode(
-  id: string,
-  name: string,
-  type: string,
-  degree: number = 2,
-  isOrphan: boolean = false,
-  diagramIds: string[] = ['d1'],
-): GraphNode {
-  return {
-    element: makeElement(id, name, type, diagramIds),
-    degree,
-    inDegree: 1,
-    outDegree: 1,
-    diagramsCount: diagramIds.length,
-    isOrphan,
-  };
+function lines(csv: string): string[] {
+  return csv.replace('\uFEFF', '').split('\n');
 }
 
 describe('generateCSV', () => {
-  const nodeA = makeNode('pg', 'Payment Gateway', 'ApplicationComponent', 8);
-  const nodeB = makeNode('ps', 'Payment Service', 'ApplicationService', 4, true, []);
+  // ---- BOM & Header ----
 
   it('starts with UTF-8 BOM', () => {
-    const csv = generateCSV([nodeA]);
+    const csv = generateCSV([NODE_PG]);
     expect(csv.charCodeAt(0)).toBe(0xFEFF);
   });
 
   it('has correct header row', () => {
-    const csv = generateCSV([nodeA]);
-    const firstLine = csv.replace('\uFEFF', '').split('\n')[0];
-    expect(firstLine).toBe('id,name,type,layer,degree,in_degree,out_degree,diagrams_count,is_orphan');
+    const header = lines(generateCSV([NODE_PG]))[0];
+    expect(header).toBe('id,name,type,layer,degree,in_degree,out_degree,diagrams_count,is_orphan');
   });
+
+  // ---- Row count ----
 
   it('produces correct number of rows (header + data)', () => {
-    const csv = generateCSV([nodeA, nodeB]);
-    const lines = csv.replace('\uFEFF', '').split('\n');
-    expect(lines.length).toBe(3); // header + 2 data rows
+    expect(lines(generateCSV([NODE_PG, NODE_PS])).length).toBe(3);
   });
 
+  it('empty input → BOM + header only', () => {
+    const csv = generateCSV([]);
+    expect(csv.charCodeAt(0)).toBe(0xFEFF);
+    expect(lines(csv).length).toBe(1);
+  });
+
+  it('single node → 2 lines', () => {
+    expect(lines(generateCSV([NODE_PG])).length).toBe(2);
+  });
+
+  // ---- Data values ----
+
   it('data row has correct values', () => {
-    const csv = generateCSV([nodeA]);
-    const lines = csv.replace('\uFEFF', '').split('\n');
-    const row = lines[1];
-    expect(row).toBe('pg,Payment Gateway,ApplicationComponent,Application,8,1,1,1,false');
+    const row = lines(generateCSV([NODE_PG]))[1];
+    expect(row).toBe('pg,Payment Gateway,ApplicationComponent,Application,8,3,5,1,false');
   });
 
   it('is_orphan renders as true/false', () => {
-    const csv = generateCSV([nodeA, nodeB]);
-    const lines = csv.replace('\uFEFF', '').split('\n');
-    expect(lines[1]).toContain(',false');
-    expect(lines[2]).toContain(',true');
-  });
-
-  it('escapes values containing commas', () => {
-    const node = makeNode('x', 'Risk, Return & Analysis', 'ApplicationComponent');
-    const csv = generateCSV([node]);
-    const lines = csv.replace('\uFEFF', '').split('\n');
-    expect(lines[1]).toContain('"Risk, Return & Analysis"');
-  });
-
-  it('escapes values containing double quotes', () => {
-    const node = makeNode('x', 'The "Gateway" Service', 'ApplicationComponent');
-    const csv = generateCSV([node]);
-    const lines = csv.replace('\uFEFF', '').split('\n');
-    expect(lines[1]).toContain('"The ""Gateway"" Service"');
-  });
-
-  it('escapes values containing newlines', () => {
-    const node = makeNode('x', 'Line1\nLine2', 'ApplicationComponent');
-    const csv = generateCSV([node]);
-    // The field should be wrapped in quotes
-    expect(csv).toContain('"Line1\nLine2"');
-  });
-
-  it('handles empty input — BOM + header only', () => {
-    const csv = generateCSV([]);
-    expect(csv.charCodeAt(0)).toBe(0xFEFF);
-    const lines = csv.replace('\uFEFF', '').split('\n');
-    expect(lines.length).toBe(1);
-    expect(lines[0]).toContain('id,name');
-  });
-
-  it('handles single node without crash', () => {
-    const csv = generateCSV([nodeA]);
-    const lines = csv.replace('\uFEFF', '').split('\n');
-    expect(lines.length).toBe(2);
+    const csv = generateCSV([NODE_PG, NODE_PS]);
+    const rows = lines(csv);
+    expect(rows[1]).toContain(',false');
+    expect(rows[2]).toContain(',true');
   });
 
   it('layer is computed correctly from element type', () => {
-    const techNode = makeNode('n1', 'Web Server', 'Node', 3);
-    const csv = generateCSV([techNode]);
-    const lines = csv.replace('\uFEFF', '').split('\n');
-    expect(lines[1]).toContain(',Technology,');
+    const techNode = makeExportNode('n1', 'Web Server', 'Node', { degree: 3 });
+    const row = lines(generateCSV([techNode]))[1];
+    expect(row).toContain(',Technology,');
+  });
+
+  // ---- CSV escaping ----
+
+  it('escapes values containing commas', () => {
+    const node = makeExportNode('x', 'Risk, Return & Analysis', 'ApplicationComponent');
+    const row = lines(generateCSV([node]))[1];
+    expect(row).toContain('"Risk, Return & Analysis"');
+  });
+
+  it('escapes values containing double quotes', () => {
+    const node = makeExportNode('x', 'The "Gateway" Service', 'ApplicationComponent');
+    const row = lines(generateCSV([node]))[1];
+    expect(row).toContain('"The ""Gateway"" Service"');
+  });
+
+  it('escapes values containing newlines', () => {
+    const node = makeExportNode('x', 'Line1\nLine2', 'ApplicationComponent');
+    const csv = generateCSV([node]);
+    expect(csv).toContain('"Line1\nLine2"');
+  });
+
+  // ---- Encoding (Cyrillic) ----
+
+  it('preserves Cyrillic characters', () => {
+    const csv = generateCSV([NODE_CYRILLIC]);
+    const row = lines(csv)[1];
+    expect(row).toContain('Платёжный Шлюз');
+  });
+
+  // ---- Edge cases ----
+
+  it('handles node with empty name', () => {
+    const row = lines(generateCSV([NODE_EMPTY_NAME]))[1];
+    expect(row.startsWith('empty,')).toBe(true);
+    // name field is empty but row is still valid
+    expect(row.split(',').length).toBeGreaterThanOrEqual(9);
+  });
+
+  it('handles zero-degree orphan node', () => {
+    const row = lines(generateCSV([NODE_ZERO_DEGREE]))[1];
+    expect(row).toContain(',0,0,0,0,true');
+  });
+
+  it('handles node with special characters without data loss', () => {
+    const row = lines(generateCSV([NODE_SPECIAL]))[1];
+    // Name contains & < > " — commas trigger quoting, quotes get doubled
+    expect(row).toContain('&');
+    expect(row).toContain('<');
+    expect(row).toContain('>');
   });
 });
