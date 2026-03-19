@@ -11,7 +11,8 @@ export class DemoConnector implements DataConnector {
   }
 
   async loadModel(_id: string): Promise<NormalizedModel> {
-    const response = await fetch('/digital-bank.json');
+    const base = import.meta.env.BASE_URL ?? '/';
+    const response = await fetch(`${base}digital-bank.json`);
     if (!response.ok) {
       throw new Error(`Failed to load demo dataset: ${response.status} ${response.statusText}`);
     }

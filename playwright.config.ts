@@ -5,13 +5,13 @@ export default defineConfig({
   timeout: 30_000,
   retries: 0,
   use: {
-    baseURL: 'http://localhost:5199',
+    baseURL: 'http://localhost:5199/ArchiVis/',
     headless: true,
   },
   webServer: {
-    command: 'npx vite --port 5199',
-    url: 'http://localhost:5199',
-    reuseExistingServer: true,
+    command: 'npx vite --port 5199 --strictPort',
+    url: 'http://localhost:5199/ArchiVis/',
+    reuseExistingServer: false,
     timeout: 15_000,
   },
   projects: [

@@ -3,6 +3,9 @@
 > Visual architecture analysis for ArchiMate models
 
 [![CI](https://github.com/kimartamonov/ArchiVis/actions/workflows/ci.yml/badge.svg)](https://github.com/kimartamonov/ArchiVis/actions/workflows/ci.yml)
+[![Deploy](https://github.com/kimartamonov/ArchiVis/actions/workflows/deploy.yml/badge.svg)](https://github.com/kimartamonov/ArchiVis/actions/workflows/deploy.yml)
+
+**Live demo:** [https://kimartamonov.github.io/ArchiVis/](https://kimartamonov.github.io/ArchiVis/)
 
 ArchiLens loads ArchiMate models from [Architeezy](https://architeezy.com) (or a built-in demo dataset), renders them as interactive graphs, and provides impact analysis, quality metrics, and export capabilities — all in the browser with no backend required.
 
