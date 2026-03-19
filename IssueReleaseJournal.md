@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M1-06 |
-| **Title** | Create Zustand Stores |
+| **Issue ID** | M1-07 |
+| **Title** | Build Connection Screen |
 | **Milestone** | M1 — Model Visualization |
-| **Type** | Implementation |
+| **Type** | UI |
 | **Status** | Current |
-| **Depends On** | M1-05 (Done) |
-| **Unlocks** | M1-07, M1-08 |
-| **File** | `Issue-Tree/M1_Model_Visualization/M1-06_Create_Zustand_Stores.md` |
+| **Depends On** | M1-01 (Done), M1-02 (Done), M1-06 (Done) |
+| **Unlocks** | M1-08 |
+| **File** | `Issue-Tree/M1_Model_Visualization/M1-07_Build_Connection_Screen.md` |
 
 ---
 
@@ -54,8 +54,8 @@
 | 8 | M1-03 | M1 — Model Visualization | Done | [Report](IssueReport/M1-03_Implementation_Report.md) | [Tech Doc](IssueReport/M1-03_Technical_Documentation.md) | buildGraph: nodes, edges, adjacency, orphans, 9 tests |
 | 9 | M1-04 | M1 — Model Visualization | Done | [Report](IssueReport/M1-04_Implementation_Report.md) | [Tech Doc](IssueReport/M1-04_Technical_Documentation.md) | calculateMetrics: degree, orphan (degree=0 OR diagrams=0), 7 tests |
 | 10 | M1-05 | M1 — Model Visualization | Done | [Report](IssueReport/M1-05_Implementation_Report.md) | [Tech Doc](IssueReport/M1-05_Technical_Documentation.md) | 42 tests, 100% coverage on graph engine |
-| 11 | M1-06 | M1 — Model Visualization | Current | — | — | Zustand stores |
-| 12 | M1-07 | M1 — Model Visualization | Pending | — | — | Connection screen UI |
+| 11 | M1-06 | M1 — Model Visualization | Done | [Report](IssueReport/M1-06_Implementation_Report.md) | [Tech Doc](IssueReport/M1-06_Technical_Documentation.md) | 6 Zustand stores, 35 tests |
+| 12 | M1-07 | M1 — Model Visualization | Current | — | — | Connection screen UI |
 | 13 | M1-08 | M1 — Model Visualization | Pending | — | — | Global Graph view (React Flow + elkjs) |
 | 14 | M1-09 | M1 — Model Visualization | Pending | — | — | Node click → element info popup |
 | 15 | M1-10 | M1 — Model Visualization | Pending | — | — | Validation: MS-1 graph visualization |
@@ -99,6 +99,7 @@
 | 8 | M1-03 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-03_Implementation_Report.md) | [Tech Doc](IssueReport/M1-03_Technical_Documentation.md) | buildGraph: NormalizedModel → AnalysisGraph (nodes Map, edges, adjacencyOut/In), degree/orphan metrics, broken reference warnings. 9 unit tests + demo smoke. Разблокировано: M1-04, M1-05, M1-08, M2-01, M3-02. |
 | 9 | M1-04 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-04_Implementation_Report.md) | [Tech Doc](IssueReport/M1-04_Technical_Documentation.md) | calculateMetrics: recalculates degree, inDegree, outDegree, diagramsCount, isOrphan (degree===0 OR diagramsCount===0). 7 unit tests + demo hub check. Разблокировано: M1-05, M3-02, M3-03. |
 | 10 | M1-05 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-05_Implementation_Report.md) | [Tech Doc](IssueReport/M1-05_Technical_Documentation.md) | 42 unit tests (12 buildGraph + 10 calculateMetrics), 100% coverage, shared fixtures, coverage thresholds enforced. Разблокировано: M1-06. |
+| 11 | M1-06 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-06_Implementation_Report.md) | [Tech Doc](IssueReport/M1-06_Technical_Documentation.md) | 6 Zustand stores (connection, model, graph, analysis, filter, ui), 35 unit tests. Persistence: URL→localStorage, token→sessionStorage. Разблокировано: M1-07, M1-08. |
 
 ---
 
@@ -106,12 +107,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M1-05 завершён успешно.
+**Event:** M1-06 завершён успешно.
 
-- **Завершён:** M1-05 (Add Graph Engine Unit Tests) — полный тест-сьют для graph engine.
-- **Файлы:** `src/engine/graph/__tests__/fixtures.ts` (создан), `buildGraph.test.ts` (расширен), `calculateMetrics.test.ts` (расширен), `vite.config.ts` (coverage), `package.json` (`test:coverage`), `.gitignore` (coverage).
-- **Проверки:** `npm run test` — 42/42 passed, `npm run test:coverage` — 100% coverage, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M1-05_Implementation_Report.md`, `IssueReport/M1-05_Technical_Documentation.md`.
-- **Новый Current Issue:** M1-06 (Create Zustand Stores) — зависимость M1-05 закрыта.
-- **Разблокировано:** M1-06.
-- Очередь: 28 нереализованных Issues из 38.
+- **Завершён:** M1-06 (Create Zustand Stores) — 6 flat Zustand stores с полным тестовым покрытием.
+- **Файлы:** `src/stores/` (7 файлов: 6 stores + index.ts), `src/stores/__tests__/` (6 тест-файлов), `package.json` (zustand).
+- **Проверки:** `npm run test` — 77/77 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M1-06_Implementation_Report.md`, `IssueReport/M1-06_Technical_Documentation.md`.
+- **Новый Current Issue:** M1-07 (Build Connection Screen) — зависимости M1-01, M1-02, M1-06 закрыты.
+- **Разблокировано:** M1-07, M1-08.
+- Очередь: 27 нереализованных Issues из 38.
