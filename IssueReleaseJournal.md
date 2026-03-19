@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M2-06 |
-| **Title** | Add Depth Switcher |
+| **Issue ID** | M2-07 |
+| **Title** | Add Impact Subgraph Highlighting |
 | **Milestone** | M2 — Impact Analysis |
 | **Type** | UI |
 | **Status** | Current |
-| **Depends On** | M2-05 (Done) |
-| **Unlocks** | M2-07 |
-| **File** | `Issue-Tree/M2_Impact_Analysis/M2-06_Add_Depth_Switcher.md` |
+| **Depends On** | M1-08 (Done), M2-06 (Done) |
+| **Unlocks** | M2-08 |
+| **File** | `Issue-Tree/M2_Impact_Analysis/M2-07_Add_Impact_Subgraph_Highlighting.md` |
 
 ---
 
@@ -64,8 +64,8 @@
 | 18 | M2-03 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-03_Implementation_Report.md) | [Tech Doc](IssueReport/M2-03_Technical_Documentation.md) | 22 tests total, 100% lines / 90.9% branches, shared fixtures |
 | 19 | M2-04 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-04_Implementation_Report.md) | [Tech Doc](IssueReport/M2-04_Technical_Documentation.md) | SearchBar: debounced, case-insensitive, 10 max results, 8 tests |
 | 20 | M2-05 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-05_Implementation_Report.md) | [Tech Doc](IssueReport/M2-05_Technical_Documentation.md) | ImpactAnalyzerScreen: source card + affected list + layer summary + diagrams, 7 tests |
-| 21 | M2-06 | M2 — Impact Analysis | Current | — | — | Depth switcher (1/2/3) |
-| 22 | M2-07 | M2 — Impact Analysis | Pending | — | — | Impact subgraph highlighting |
+| 21 | M2-06 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-06_Implementation_Report.md) | [Tech Doc](IssueReport/M2-06_Technical_Documentation.md) | DepthSwitcher: 1/2/3 buttons, live update, 5 tests |
+| 22 | M2-07 | M2 — Impact Analysis | Current | — | — | Impact subgraph highlighting |
 | 23 | M2-08 | M2 — Impact Analysis | Pending | — | — | Validation: canonical impact scenario |
 | 24 | M3-01 | M3 — Quality Assessment | Pending | — | — | Table View (TanStack Table) |
 | 25 | M3-02 | M3 — Quality Assessment | Pending | — | — | Coverage report engine |
@@ -109,6 +109,7 @@
 | 18 | M2-03 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-03_Implementation_Report.md) | [Tech Doc](IssueReport/M2-03_Technical_Documentation.md) | 22 impact analysis tests (16 BFS + 6 aggregation), shared fixtures, 100% lines / 90.9% branches, coverage thresholds enforced. Разблокировано: M2-04. |
 | 19 | M2-04 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-04_Implementation_Report.md) | [Tech Doc](IssueReport/M2-04_Technical_Documentation.md) | SearchBar: debounced 200ms, case-insensitive substring, 10 max results, layer badges, navigate to impact. 8 UI tests. Разблокировано: M2-05. |
 | 20 | M2-05 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-05_Implementation_Report.md) | [Tech Doc](IssueReport/M2-05_Technical_Documentation.md) | ImpactAnalyzerScreen: SourceCard, AffectedList (grouped by hop), LayerSummary, AffectedDiagrams. 7 UI tests. Разблокировано: M2-06, M2-07. |
+| 21 | M2-06 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-06_Implementation_Report.md) | [Tech Doc](IssueReport/M2-06_Technical_Documentation.md) | DepthSwitcher: 1/2/3 button group, live update via useEffect, aria-pressed, accent styling. 5 UI tests. Разблокировано: M2-07. |
 
 ---
 
@@ -116,12 +117,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M2-05 завершён успешно.
+**Event:** M2-06 завершён успешно.
 
-- **Завершён:** M2-05 (Build Impact Analyzer Screen) — полный экран impact analysis.
-- **Файлы:** `src/ui/screens/ImpactAnalyzer/` (6 компонентов + barrel + тесты), `src/App.tsx` (impact route).
-- **Проверки:** `npm run test` — 149/149 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M2-05_Implementation_Report.md`, `IssueReport/M2-05_Technical_Documentation.md`.
-- **Новый Current Issue:** M2-06 (Add Depth Switcher) — зависимость M2-05 закрыта.
-- **Разблокировано:** M2-06, M2-07.
-- Очередь: 18 нереализованных Issues из 38.
+- **Завершён:** M2-06 (Add Depth Switcher) — interactive depth control.
+- **Файлы:** `src/ui/screens/ImpactAnalyzer/DepthSwitcher.tsx` (создан), `ImpactAnalyzerScreen.tsx` (обновлён), `DepthSwitcher.test.tsx` (создан).
+- **Проверки:** `npm run test` — 154/154 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M2-06_Implementation_Report.md`, `IssueReport/M2-06_Technical_Documentation.md`.
+- **Новый Current Issue:** M2-07 (Impact Subgraph Highlighting) — зависимости M1-08, M2-06 закрыты.
+- **Разблокировано:** M2-07.
+- Очередь: 17 нереализованных Issues из 38.
