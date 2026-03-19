@@ -1,12 +1,13 @@
 import './App.css';
 import { useUIStore } from './stores/uiStore';
+import { AppLayout } from './ui/layout';
 import { ConnectionScreen } from './ui/screens/ConnectionScreen';
 import { GlobalGraphView } from './ui/screens/GlobalGraph';
 import { ImpactAnalyzerScreen } from './ui/screens/ImpactAnalyzer';
 import { TableView } from './ui/screens/TableView';
 import { CoverageView } from './ui/screens/CoverageView';
 
-function App() {
+function ActiveScreenContent() {
   const activeScreen = useUIStore((s) => s.activeScreen);
 
   switch (activeScreen) {
@@ -23,6 +24,14 @@ function App() {
     default:
       return <ConnectionScreen />;
   }
+}
+
+function App() {
+  return (
+    <AppLayout>
+      <ActiveScreenContent />
+    </AppLayout>
+  );
 }
 
 export default App;
