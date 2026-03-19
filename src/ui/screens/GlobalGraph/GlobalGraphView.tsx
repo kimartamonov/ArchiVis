@@ -96,6 +96,9 @@ export function GlobalGraphView() {
           &larr; Connection
         </button>
         <SearchBar />
+        <button onClick={() => setScreen('table')} style={styles.toolbarBtn}>
+          Table
+        </button>
         <span style={styles.stats}>
           {nodes.length} nodes &middot; {edges.length} edges
         </span>
