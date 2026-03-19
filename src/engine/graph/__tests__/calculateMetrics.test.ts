@@ -4,13 +4,7 @@ import { resolve } from 'path';
 import { buildGraph } from '../buildGraph';
 import { calculateMetrics } from '../calculateMetrics';
 import type { NormalizedModel } from '../../types';
-
-function makeModel(
-  elements: NormalizedModel['elements'],
-  relationships: NormalizedModel['relationships'] = [],
-): NormalizedModel {
-  return { id: 'test', name: 'Test', elements, relationships, diagrams: [], warnings: [] };
-}
+import { makeElement, makeRelationship, makeModel } from './fixtures';
 
 describe('calculateMetrics', () => {
   // -----------------------------------------------------------------------
@@ -20,14 +14,11 @@ describe('calculateMetrics', () => {
   it('computes correct degree values for known graph (3 nodes, 2 edges)', () => {
     const model = makeModel(
       [
-        { id: 'a', name: 'A', type: 'X', diagramIds: ['d1'] },
-        { id: 'b', name: 'B', type: 'X', diagramIds: ['d1'] },
-        { id: 'c', name: 'C', type: 'X', diagramIds: ['d1'] },
+        makeElement('a', 'A', 'X', ['d1']),
+        makeElement('b', 'B', 'X', ['d1']),
+        makeElement('c', 'C', 'X', ['d1']),
       ],
-      [
-        { id: 'r1', sourceId: 'a', targetId: 'b', type: 'R' },
-        { id: 'r2', sourceId: 'b', targetId: 'c', type: 'R' },
-      ],
+      [makeRelationship('r1', 'a', 'b'), makeRelationship('r2', 'b', 'c')],
     );
 
     const { graph } = buildGraph(model);
@@ -54,7 +45,7 @@ describe('calculateMetrics', () => {
   // -----------------------------------------------------------------------
 
   it('marks node with zero edges and zero diagrams as orphan', () => {
-    const model = makeModel([{ id: 'lonely', name: 'Lonely', type: 'X', diagramIds: [] }]);
+    const model = makeModel([makeElement('lonely', 'Lonely', 'X', [])]);
 
     const { graph } = buildGraph(model);
     calculateMetrics(graph);
@@ -71,11 +62,8 @@ describe('calculateMetrics', () => {
 
   it('marks node with edges but no diagrams as orphan', () => {
     const model = makeModel(
-      [
-        { id: 'a', name: 'A', type: 'X', diagramIds: [] },
-        { id: 'b', name: 'B', type: 'X', diagramIds: [] },
-      ],
-      [{ id: 'r1', sourceId: 'a', targetId: 'b', type: 'R' }],
+      [makeElement('a', 'A', 'X', []), makeElement('b', 'B', 'X', [])],
+      [makeRelationship('r1', 'a', 'b')],
     );
 
     const { graph } = buildGraph(model);
@@ -91,9 +79,7 @@ describe('calculateMetrics', () => {
   // -----------------------------------------------------------------------
 
   it('marks node with diagrams but no edges as orphan', () => {
-    const model = makeModel([
-      { id: 'a', name: 'A', type: 'X', diagramIds: ['d1', 'd2'] },
-    ]);
+    const model = makeModel([makeElement('a', 'A', 'X', ['d1', 'd2'])]);
 
     const { graph } = buildGraph(model);
     calculateMetrics(graph);
@@ -110,11 +96,8 @@ describe('calculateMetrics', () => {
 
   it('marks well-connected node in diagrams as NOT orphan', () => {
     const model = makeModel(
-      [
-        { id: 'a', name: 'A', type: 'X', diagramIds: ['d1'] },
-        { id: 'b', name: 'B', type: 'X', diagramIds: ['d1'] },
-      ],
-      [{ id: 'r1', sourceId: 'a', targetId: 'b', type: 'R' }],
+      [makeElement('a', 'A', 'X', ['d1']), makeElement('b', 'B', 'X', ['d1'])],
+      [makeRelationship('r1', 'a', 'b')],
     );
 
     const { graph } = buildGraph(model);
@@ -130,8 +113,8 @@ describe('calculateMetrics', () => {
 
   it('sets diagramsCount from element.diagramIds', () => {
     const model = makeModel([
-      { id: 'a', name: 'A', type: 'X', diagramIds: ['d1', 'd2', 'd3'] },
-      { id: 'b', name: 'B', type: 'X', diagramIds: [] },
+      makeElement('a', 'A', 'X', ['d1', 'd2', 'd3']),
+      makeElement('b', 'B', 'X', []),
     ]);
 
     const { graph } = buildGraph(model);
@@ -139,6 +122,84 @@ describe('calculateMetrics', () => {
 
     expect(graph.nodes.get('a')!.diagramsCount).toBe(3);
     expect(graph.nodes.get('b')!.diagramsCount).toBe(0);
+  });
+
+  // -----------------------------------------------------------------------
+  // Defensive: missing adjacency entries and undefined diagramIds
+  // -----------------------------------------------------------------------
+
+  it('handles missing adjacency entries gracefully (defaults to degree 0)', () => {
+    // Manually construct a graph where adjacency maps lack entries for a node
+    const { graph } = buildGraph(makeModel([makeElement('a', 'A', 'X', ['d1'])]));
+
+    // Remove adjacency entries to simulate an inconsistent state
+    graph.adjacencyIn.delete('a');
+    graph.adjacencyOut.delete('a');
+
+    calculateMetrics(graph);
+
+    const node = graph.nodes.get('a')!;
+    expect(node.inDegree).toBe(0);
+    expect(node.outDegree).toBe(0);
+    expect(node.degree).toBe(0);
+    expect(node.isOrphan).toBe(true);
+  });
+
+  it('handles element with undefined diagramIds (defaults to 0)', () => {
+    const { graph } = buildGraph(makeModel([makeElement('a', 'A')]));
+
+    // Simulate element where diagramIds is undefined (e.g. malformed input)
+    (graph.nodes.get('a')!.element as { diagramIds?: string[] }).diagramIds = undefined;
+
+    calculateMetrics(graph);
+
+    const node = graph.nodes.get('a')!;
+    expect(node.diagramsCount).toBe(0);
+    expect(node.isOrphan).toBe(true);
+  });
+
+  // -----------------------------------------------------------------------
+  // Idempotency — calling calculateMetrics twice gives same results
+  // -----------------------------------------------------------------------
+
+  it('is idempotent — calling twice produces the same metrics', () => {
+    const model = makeModel(
+      [
+        makeElement('a', 'A', 'X', ['d1']),
+        makeElement('b', 'B', 'X', []),
+        makeElement('c', 'C', 'X', ['d1']),
+      ],
+      [
+        makeRelationship('r1', 'a', 'b'),
+        makeRelationship('r2', 'b', 'c'),
+      ],
+    );
+
+    const { graph } = buildGraph(model);
+    calculateMetrics(graph);
+
+    // Snapshot after first call
+    const firstPass = Array.from(graph.nodes.values()).map((n) => ({
+      id: n.element.id,
+      degree: n.degree,
+      inDegree: n.inDegree,
+      outDegree: n.outDegree,
+      diagramsCount: n.diagramsCount,
+      isOrphan: n.isOrphan,
+    }));
+
+    calculateMetrics(graph);
+
+    const secondPass = Array.from(graph.nodes.values()).map((n) => ({
+      id: n.element.id,
+      degree: n.degree,
+      inDegree: n.inDegree,
+      outDegree: n.outDegree,
+      diagramsCount: n.diagramsCount,
+      isOrphan: n.isOrphan,
+    }));
+
+    expect(secondPass).toEqual(firstPass);
   });
 
   // -----------------------------------------------------------------------
@@ -166,7 +227,7 @@ describe('calculateMetrics', () => {
     expect(maxDegree).toBeGreaterThanOrEqual(14);
     expect(hubId).toBeTruthy();
 
-    // Verify no crash and all nodes have metrics
+    // Verify all nodes have valid metrics
     for (const node of graph.nodes.values()) {
       expect(node.degree).toBeGreaterThanOrEqual(0);
       expect(node.inDegree).toBeGreaterThanOrEqual(0);

@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M1-05 |
-| **Title** | Add Graph Engine Unit Tests |
+| **Issue ID** | M1-06 |
+| **Title** | Create Zustand Stores |
 | **Milestone** | M1 — Model Visualization |
-| **Type** | Test |
+| **Type** | Implementation |
 | **Status** | Current |
-| **Depends On** | M1-03 (Done), M1-04 (Done) |
-| **Unlocks** | M1-06 |
-| **File** | `Issue-Tree/M1_Model_Visualization/M1-05_Add_Graph_Engine_Unit_Tests.md` |
+| **Depends On** | M1-05 (Done) |
+| **Unlocks** | M1-07, M1-08 |
+| **File** | `Issue-Tree/M1_Model_Visualization/M1-06_Create_Zustand_Stores.md` |
 
 ---
 
@@ -53,8 +53,8 @@
 | 7 | M1-02 | M1 — Model Visualization | Done | [Report](IssueReport/M1-02_Implementation_Report.md) | [Tech Doc](IssueReport/M1-02_Technical_Documentation.md) | ArchiteezyConnector + normalize.ts, 13 tests |
 | 8 | M1-03 | M1 — Model Visualization | Done | [Report](IssueReport/M1-03_Implementation_Report.md) | [Tech Doc](IssueReport/M1-03_Technical_Documentation.md) | buildGraph: nodes, edges, adjacency, orphans, 9 tests |
 | 9 | M1-04 | M1 — Model Visualization | Done | [Report](IssueReport/M1-04_Implementation_Report.md) | [Tech Doc](IssueReport/M1-04_Technical_Documentation.md) | calculateMetrics: degree, orphan (degree=0 OR diagrams=0), 7 tests |
-| 10 | M1-05 | M1 — Model Visualization | Current | — | — | Unit tests for graph engine |
-| 11 | M1-06 | M1 — Model Visualization | Pending | — | — | Zustand stores |
+| 10 | M1-05 | M1 — Model Visualization | Done | [Report](IssueReport/M1-05_Implementation_Report.md) | [Tech Doc](IssueReport/M1-05_Technical_Documentation.md) | 42 tests, 100% coverage on graph engine |
+| 11 | M1-06 | M1 — Model Visualization | Current | — | — | Zustand stores |
 | 12 | M1-07 | M1 — Model Visualization | Pending | — | — | Connection screen UI |
 | 13 | M1-08 | M1 — Model Visualization | Pending | — | — | Global Graph view (React Flow + elkjs) |
 | 14 | M1-09 | M1 — Model Visualization | Pending | — | — | Node click → element info popup |
@@ -98,19 +98,20 @@
 | 7 | M1-02 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-02_Implementation_Report.md) | [Tech Doc](IssueReport/M1-02_Technical_Documentation.md) | ArchiteezyConnector создан: connect/listModels/loadModel, normalizeModelContent (рекурсивный обход папок), 13 unit tests. Разблокировано: M1-03, M1-07. |
 | 8 | M1-03 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-03_Implementation_Report.md) | [Tech Doc](IssueReport/M1-03_Technical_Documentation.md) | buildGraph: NormalizedModel → AnalysisGraph (nodes Map, edges, adjacencyOut/In), degree/orphan metrics, broken reference warnings. 9 unit tests + demo smoke. Разблокировано: M1-04, M1-05, M1-08, M2-01, M3-02. |
 | 9 | M1-04 | M1 — Model Visualization | 2026-03-18 | [Report](IssueReport/M1-04_Implementation_Report.md) | [Tech Doc](IssueReport/M1-04_Technical_Documentation.md) | calculateMetrics: recalculates degree, inDegree, outDegree, diagramsCount, isOrphan (degree===0 OR diagramsCount===0). 7 unit tests + demo hub check. Разблокировано: M1-05, M3-02, M3-03. |
+| 10 | M1-05 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-05_Implementation_Report.md) | [Tech Doc](IssueReport/M1-05_Technical_Documentation.md) | 42 unit tests (12 buildGraph + 10 calculateMetrics), 100% coverage, shared fixtures, coverage thresholds enforced. Разблокировано: M1-06. |
 
 ---
 
 ## Latest Execution Note
 
-**Date:** 2026-03-18
+**Date:** 2026-03-19
 
-**Event:** M1-04 завершён успешно.
+**Event:** M1-05 завершён успешно.
 
-- **Завершён:** M1-04 (Calculate Base Metrics) — calculateMetrics() создан и протестирован.
-- **Файлы:** `src/engine/graph/calculateMetrics.ts`, обновлён `index.ts` и `buildGraph.ts`.
-- **Проверки:** `npm run build` — успешно, `npm run lint` — 0 ошибок, `npm run test` — 35/35 passed.
-- **Артефакты:** `IssueReport/M1-04_Implementation_Report.md`, `IssueReport/M1-04_Technical_Documentation.md`.
-- **Новый Current Issue:** M1-05 (Add Graph Engine Unit Tests) — зависимости M1-03, M1-04 закрыты.
-- **Разблокировано:** M1-05, M3-02, M3-03.
-- Очередь: 29 нереализованных Issues из 38.
+- **Завершён:** M1-05 (Add Graph Engine Unit Tests) — полный тест-сьют для graph engine.
+- **Файлы:** `src/engine/graph/__tests__/fixtures.ts` (создан), `buildGraph.test.ts` (расширен), `calculateMetrics.test.ts` (расширен), `vite.config.ts` (coverage), `package.json` (`test:coverage`), `.gitignore` (coverage).
+- **Проверки:** `npm run test` — 42/42 passed, `npm run test:coverage` — 100% coverage, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M1-05_Implementation_Report.md`, `IssueReport/M1-05_Technical_Documentation.md`.
+- **Новый Current Issue:** M1-06 (Create Zustand Stores) — зависимость M1-05 закрыта.
+- **Разблокировано:** M1-06.
+- Очередь: 28 нереализованных Issues из 38.

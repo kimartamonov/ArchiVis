@@ -3,37 +3,35 @@ import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import { buildGraph } from '../buildGraph';
 import type { NormalizedModel } from '../../types';
-
-function makeModel(
-  elements: NormalizedModel['elements'],
-  relationships: NormalizedModel['relationships'] = [],
-  diagrams: NormalizedModel['diagrams'] = [],
-): NormalizedModel {
-  return {
-    id: 'test',
-    name: 'Test Model',
-    elements,
-    relationships,
-    diagrams,
-    warnings: [],
-  };
-}
+import { makeElement, makeRelationship, makeModel } from './fixtures';
 
 describe('buildGraph', () => {
   // -----------------------------------------------------------------------
   // Basic construction
   // -----------------------------------------------------------------------
 
+  it('builds a graph from a minimal model (1 element, 0 relationships)', () => {
+    const model = makeModel([makeElement('a', 'A')]);
+
+    const { graph, warnings } = buildGraph(model);
+
+    expect(graph.nodes.size).toBe(1);
+    expect(graph.edges.length).toBe(0);
+    expect(warnings.length).toBe(0);
+    expect(graph.nodes.get('a')!.degree).toBe(0);
+    expect(graph.nodes.get('a')!.isOrphan).toBe(true);
+  });
+
   it('creates correct number of nodes and edges for known input', () => {
     const model = makeModel(
       [
-        { id: 'a', name: 'A', type: 'ApplicationComponent', diagramIds: [] },
-        { id: 'b', name: 'B', type: 'ApplicationService', diagramIds: [] },
-        { id: 'c', name: 'C', type: 'BusinessProcess', diagramIds: [] },
+        makeElement('a', 'A', 'ApplicationComponent'),
+        makeElement('b', 'B', 'ApplicationService'),
+        makeElement('c', 'C', 'BusinessProcess'),
       ],
       [
-        { id: 'r1', sourceId: 'a', targetId: 'b', type: 'ServingRelationship' },
-        { id: 'r2', sourceId: 'b', targetId: 'c', type: 'FlowRelationship' },
+        makeRelationship('r1', 'a', 'b', 'ServingRelationship'),
+        makeRelationship('r2', 'b', 'c', 'FlowRelationship'),
       ],
     );
 
@@ -45,15 +43,11 @@ describe('buildGraph', () => {
 
   it('builds correct adjacency lists', () => {
     const model = makeModel(
+      [makeElement('a', 'A'), makeElement('b', 'B'), makeElement('c', 'C')],
       [
-        { id: 'a', name: 'A', type: 'X', diagramIds: [] },
-        { id: 'b', name: 'B', type: 'X', diagramIds: [] },
-        { id: 'c', name: 'C', type: 'X', diagramIds: [] },
-      ],
-      [
-        { id: 'r1', sourceId: 'a', targetId: 'b', type: 'R' },
-        { id: 'r2', sourceId: 'a', targetId: 'c', type: 'R' },
-        { id: 'r3', sourceId: 'b', targetId: 'c', type: 'R' },
+        makeRelationship('r1', 'a', 'b'),
+        makeRelationship('r2', 'a', 'c'),
+        makeRelationship('r3', 'b', 'c'),
       ],
     );
 
@@ -70,11 +64,8 @@ describe('buildGraph', () => {
 
   it('computes correct degree metrics', () => {
     const model = makeModel(
-      [
-        { id: 'a', name: 'A', type: 'X', diagramIds: [] },
-        { id: 'b', name: 'B', type: 'X', diagramIds: [] },
-      ],
-      [{ id: 'r1', sourceId: 'a', targetId: 'b', type: 'R' }],
+      [makeElement('a', 'A'), makeElement('b', 'B')],
+      [makeRelationship('r1', 'a', 'b')],
     );
 
     const { graph } = buildGraph(model);
@@ -96,14 +87,11 @@ describe('buildGraph', () => {
 
   it('collects broken reference warnings and skips invalid edges', () => {
     const model = makeModel(
+      [makeElement('a', 'A'), makeElement('b', 'B')],
       [
-        { id: 'a', name: 'A', type: 'X', diagramIds: [] },
-        { id: 'b', name: 'B', type: 'X', diagramIds: [] },
-      ],
-      [
-        { id: 'r1', sourceId: 'a', targetId: 'b', type: 'R' },
-        { id: 'r2', sourceId: 'a', targetId: 'missing', type: 'R' },
-        { id: 'r3', sourceId: 'ghost', targetId: 'b', type: 'R' },
+        makeRelationship('r1', 'a', 'b'),
+        makeRelationship('r2', 'a', 'missing'),
+        makeRelationship('r3', 'ghost', 'b'),
       ],
     );
 
@@ -128,20 +116,40 @@ describe('buildGraph', () => {
   });
 
   // -----------------------------------------------------------------------
+  // Duplicate element IDs
+  // -----------------------------------------------------------------------
+
+  it('handles duplicate element IDs gracefully (last wins)', () => {
+    const model = makeModel(
+      [
+        makeElement('a', 'First A', 'ApplicationComponent', ['d1']),
+        makeElement('b', 'B'),
+        makeElement('a', 'Second A', 'BusinessProcess', ['d1', 'd2']),
+      ],
+      [makeRelationship('r1', 'a', 'b')],
+    );
+
+    const { graph, warnings } = buildGraph(model);
+
+    // Map.set with same key overwrites — last element with id 'a' wins
+    expect(graph.nodes.size).toBe(2);
+    expect(graph.nodes.get('a')!.element.name).toBe('Second A');
+    expect(graph.nodes.get('a')!.element.type).toBe('BusinessProcess');
+    expect(graph.edges.length).toBe(1);
+    expect(warnings.length).toBe(0);
+  });
+
+  // -----------------------------------------------------------------------
   // Cycles
   // -----------------------------------------------------------------------
 
-  it('handles cycles correctly', () => {
+  it('handles cycles correctly (A → B → C → A)', () => {
     const model = makeModel(
+      [makeElement('a', 'A'), makeElement('b', 'B'), makeElement('c', 'C')],
       [
-        { id: 'a', name: 'A', type: 'X', diagramIds: [] },
-        { id: 'b', name: 'B', type: 'X', diagramIds: [] },
-        { id: 'c', name: 'C', type: 'X', diagramIds: [] },
-      ],
-      [
-        { id: 'r1', sourceId: 'a', targetId: 'b', type: 'R' },
-        { id: 'r2', sourceId: 'b', targetId: 'c', type: 'R' },
-        { id: 'r3', sourceId: 'c', targetId: 'a', type: 'R' },
+        makeRelationship('r1', 'a', 'b'),
+        makeRelationship('r2', 'b', 'c'),
+        makeRelationship('r3', 'c', 'a'),
       ],
     );
 
@@ -158,18 +166,31 @@ describe('buildGraph', () => {
     }
   });
 
+  it('handles self-loop (A → A) without infinite loop', () => {
+    const model = makeModel(
+      [makeElement('a', 'A', 'ApplicationComponent', ['d1'])],
+      [makeRelationship('r1', 'a', 'a')],
+    );
+
+    const { graph, warnings } = buildGraph(model);
+    expect(graph.nodes.size).toBe(1);
+    expect(graph.edges.length).toBe(1);
+    expect(warnings.length).toBe(0);
+
+    const nodeA = graph.nodes.get('a')!;
+    expect(nodeA.inDegree).toBe(1);
+    expect(nodeA.outDegree).toBe(1);
+    expect(nodeA.degree).toBe(2);
+  });
+
   // -----------------------------------------------------------------------
-  // Orphan detection
+  // Orphan detection (preliminary — degree === 0 only)
   // -----------------------------------------------------------------------
 
-  it('marks orphan nodes correctly', () => {
+  it('marks orphan nodes correctly (degree === 0)', () => {
     const model = makeModel(
-      [
-        { id: 'a', name: 'A', type: 'X', diagramIds: [] },
-        { id: 'b', name: 'B', type: 'X', diagramIds: [] },
-        { id: 'orphan', name: 'Orphan', type: 'X', diagramIds: [] },
-      ],
-      [{ id: 'r1', sourceId: 'a', targetId: 'b', type: 'R' }],
+      [makeElement('a', 'A'), makeElement('b', 'B'), makeElement('orphan', 'Orphan')],
+      [makeRelationship('r1', 'a', 'b')],
     );
 
     const { graph } = buildGraph(model);
@@ -184,8 +205,8 @@ describe('buildGraph', () => {
 
   it('sets diagramsCount from element.diagramIds', () => {
     const model = makeModel([
-      { id: 'a', name: 'A', type: 'X', diagramIds: ['d1', 'd2'] },
-      { id: 'b', name: 'B', type: 'X', diagramIds: [] },
+      makeElement('a', 'A', 'X', ['d1', 'd2']),
+      makeElement('b', 'B', 'X', []),
     ]);
 
     const { graph } = buildGraph(model);
@@ -194,10 +215,26 @@ describe('buildGraph', () => {
   });
 
   // -----------------------------------------------------------------------
+  // Edge references point to the same node objects
+  // -----------------------------------------------------------------------
+
+  it('edge source/target reference the same GraphNode objects in the nodes map', () => {
+    const model = makeModel(
+      [makeElement('a', 'A'), makeElement('b', 'B')],
+      [makeRelationship('r1', 'a', 'b')],
+    );
+
+    const { graph } = buildGraph(model);
+    const edge = graph.edges[0];
+    expect(edge.source).toBe(graph.nodes.get('a'));
+    expect(edge.target).toBe(graph.nodes.get('b'));
+  });
+
+  // -----------------------------------------------------------------------
   // Smoke: demo dataset
   // -----------------------------------------------------------------------
 
-  it('does not crash on demo dataset', () => {
+  it('builds graph from demo dataset with expected counts', () => {
     const demoJson: NormalizedModel = JSON.parse(
       readFileSync(resolve(__dirname, '../../../../demo/digital-bank.json'), 'utf-8'),
     );
