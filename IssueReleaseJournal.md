@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M2-03 |
-| **Title** | Add Impact Analysis Unit Tests |
+| **Issue ID** | M2-04 |
+| **Title** | Build Global Search Bar |
 | **Milestone** | M2 — Impact Analysis |
-| **Type** | Test |
+| **Type** | UI |
 | **Status** | Current |
-| **Depends On** | M2-01 (Done), M2-02 (Done) |
-| **Unlocks** | M2-04 |
-| **File** | `Issue-Tree/M2_Impact_Analysis/M2-03_Add_Impact_Analysis_Unit_Tests.md` |
+| **Depends On** | M1-06 (Done) |
+| **Unlocks** | M2-05 |
+| **File** | `Issue-Tree/M2_Impact_Analysis/M2-04_Build_Global_Search_Bar.md` |
 
 ---
 
@@ -61,8 +61,8 @@
 | 15 | M1-10 | M1 — Model Visualization | Done | [Report](IssueReport/M1-10_Implementation_Report.md) | [Tech Doc](IssueReport/M1-10_Technical_Documentation.md) | Validation PASSED: all AC, 112/112 tests, 100% engine coverage |
 | 16 | M2-01 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-01_Implementation_Report.md) | [Tech Doc](IssueReport/M2-01_Technical_Documentation.md) | BFS undirected traversal, 11 tests |
 | 17 | M2-02 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-02_Implementation_Report.md) | [Tech Doc](IssueReport/M2-02_Technical_Documentation.md) | buildImpactResult: layer summary + affected diagrams, 6 tests |
-| 18 | M2-03 | M2 — Impact Analysis | Current | — | — | Unit tests for impact analysis |
-| 19 | M2-04 | M2 — Impact Analysis | Pending | — | — | Global search bar с dropdown |
+| 18 | M2-03 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-03_Implementation_Report.md) | [Tech Doc](IssueReport/M2-03_Technical_Documentation.md) | 22 tests total, 100% lines / 90.9% branches, shared fixtures |
+| 19 | M2-04 | M2 — Impact Analysis | Current | — | — | Global search bar с dropdown |
 | 20 | M2-05 | M2 — Impact Analysis | Pending | — | — | Impact Analyzer screen |
 | 21 | M2-06 | M2 — Impact Analysis | Pending | — | — | Depth switcher (1/2/3) |
 | 22 | M2-07 | M2 — Impact Analysis | Pending | — | — | Impact subgraph highlighting |
@@ -106,6 +106,7 @@
 | 15 | M1-10 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-10_Implementation_Report.md) | [Tech Doc](IssueReport/M1-10_Technical_Documentation.md) | Validation PASSED. All AC verified. 112/112 tests. 100% engine coverage. 0 blocker bugs. **Milestone M1 COMPLETE.** Разблокировано: весь M2, весь M3. |
 | 16 | M2-01 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-01_Implementation_Report.md) | [Tech Doc](IssueReport/M2-01_Technical_Documentation.md) | analyzeImpact: BFS undirected, depth 1/2/3, visited set, cycle-safe. Demo: Core Banking Platform depth 2 → 47 elements. 11 tests. Разблокировано: M2-02, M2-03, M2-05. |
 | 17 | M2-02 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-02_Implementation_Report.md) | [Tech Doc](IssueReport/M2-02_Technical_Documentation.md) | buildImpactResult: layer summary (sorted desc) + affected diagrams (source only). 6 tests. Разблокировано: M2-05. |
+| 18 | M2-03 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-03_Implementation_Report.md) | [Tech Doc](IssueReport/M2-03_Technical_Documentation.md) | 22 impact analysis tests (16 BFS + 6 aggregation), shared fixtures, 100% lines / 90.9% branches, coverage thresholds enforced. Разблокировано: M2-04. |
 
 ---
 
@@ -113,12 +114,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M2-02 завершён успешно.
+**Event:** M2-03 завершён успешно.
 
-- **Завершён:** M2-02 (Layer Summary and Affected Diagrams) — агрегация поверх BFS.
-- **Файлы:** `src/engine/insight/impactAnalysis.ts` (добавлен `buildImpactResult`), `src/engine/insight/index.ts`, `src/engine/insight/__tests__/buildImpactResult.test.ts`.
-- **Проверки:** `npm run test` — 129/129 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M2-02_Implementation_Report.md`, `IssueReport/M2-02_Technical_Documentation.md`.
-- **Новый Current Issue:** M2-03 (Add Impact Analysis Unit Tests) — зависимости M2-01, M2-02 закрыты.
-- **Разблокировано:** M2-05.
-- Очередь: 21 нереализованных Issues из 38.
+- **Завершён:** M2-03 (Add Impact Analysis Unit Tests) — comprehensive test suite.
+- **Файлы:** `src/engine/insight/__tests__/impactAnalysis.test.ts` (+5 тестов), `src/engine/insight/__tests__/fixtures.ts` (shared fixtures), `vite.config.ts` (coverage threshold).
+- **Проверки:** `npm run test` — 134/134 passed, `npm run test:coverage` — все пороги пройдены (100% lines, 90.9% branches), `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M2-03_Implementation_Report.md`, `IssueReport/M2-03_Technical_Documentation.md`.
+- **Новый Current Issue:** M2-04 (Build Global Search Bar) — зависимость M1-06 закрыта.
+- **Разблокировано:** M2-04.
+- Очередь: 20 нереализованных Issues из 38.

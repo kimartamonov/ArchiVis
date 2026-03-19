@@ -15,6 +15,7 @@ export default defineConfig({
       thresholds: {
         'src/engine/graph/buildGraph.ts': { lines: 80, branches: 80 },
         'src/engine/graph/calculateMetrics.ts': { lines: 80, branches: 80 },
+        'src/engine/insight/impactAnalysis.ts': { lines: 80, branches: 80 },
       },
     },
   },
