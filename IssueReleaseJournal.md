@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M2-07 |
-| **Title** | Add Impact Subgraph Highlighting |
+| **Issue ID** | M2-08 |
+| **Title** | Validation: MS-2 Canonical Impact Scenario |
 | **Milestone** | M2 — Impact Analysis |
-| **Type** | UI |
+| **Type** | Validation |
 | **Status** | Current |
-| **Depends On** | M1-08 (Done), M2-06 (Done) |
-| **Unlocks** | M2-08 |
-| **File** | `Issue-Tree/M2_Impact_Analysis/M2-07_Add_Impact_Subgraph_Highlighting.md` |
+| **Depends On** | M2-01 through M2-07 (all Done) |
+| **Unlocks** | All M3 |
+| **File** | `Issue-Tree/M2_Impact_Analysis/M2-08_Validation_Impact_Analysis.md` |
 
 ---
 
@@ -65,8 +65,8 @@
 | 19 | M2-04 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-04_Implementation_Report.md) | [Tech Doc](IssueReport/M2-04_Technical_Documentation.md) | SearchBar: debounced, case-insensitive, 10 max results, 8 tests |
 | 20 | M2-05 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-05_Implementation_Report.md) | [Tech Doc](IssueReport/M2-05_Technical_Documentation.md) | ImpactAnalyzerScreen: source card + affected list + layer summary + diagrams, 7 tests |
 | 21 | M2-06 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-06_Implementation_Report.md) | [Tech Doc](IssueReport/M2-06_Technical_Documentation.md) | DepthSwitcher: 1/2/3 buttons, live update, 5 tests |
-| 22 | M2-07 | M2 — Impact Analysis | Current | — | — | Impact subgraph highlighting |
-| 23 | M2-08 | M2 — Impact Analysis | Pending | — | — | Validation: canonical impact scenario |
+| 22 | M2-07 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-07_Implementation_Report.md) | [Tech Doc](IssueReport/M2-07_Technical_Documentation.md) | Graph highlighting: source glow, affected accent, dimmed non-affected, 8 tests |
+| 23 | M2-08 | M2 — Impact Analysis | Current | — | — | Validation: canonical impact scenario |
 | 24 | M3-01 | M3 — Quality Assessment | Pending | — | — | Table View (TanStack Table) |
 | 25 | M3-02 | M3 — Quality Assessment | Pending | — | — | Coverage report engine |
 | 26 | M3-03 | M3 — Quality Assessment | Pending | — | — | Coverage screen UI |
@@ -110,6 +110,7 @@
 | 19 | M2-04 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-04_Implementation_Report.md) | [Tech Doc](IssueReport/M2-04_Technical_Documentation.md) | SearchBar: debounced 200ms, case-insensitive substring, 10 max results, layer badges, navigate to impact. 8 UI tests. Разблокировано: M2-05. |
 | 20 | M2-05 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-05_Implementation_Report.md) | [Tech Doc](IssueReport/M2-05_Technical_Documentation.md) | ImpactAnalyzerScreen: SourceCard, AffectedList (grouped by hop), LayerSummary, AffectedDiagrams. 7 UI tests. Разблокировано: M2-06, M2-07. |
 | 21 | M2-06 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-06_Implementation_Report.md) | [Tech Doc](IssueReport/M2-06_Technical_Documentation.md) | DepthSwitcher: 1/2/3 button group, live update via useEffect, aria-pressed, accent styling. 5 UI tests. Разблокировано: M2-07. |
+| 22 | M2-07 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-07_Implementation_Report.md) | [Tech Doc](IssueReport/M2-07_Technical_Documentation.md) | applyHighlighting: source glow, affected accent border, dimmed non-affected (0.2), edge highlighting. 8 tests. Разблокировано: M2-08. |
 
 ---
 
@@ -117,12 +118,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M2-06 завершён успешно.
+**Event:** M2-07 завершён успешно.
 
-- **Завершён:** M2-06 (Add Depth Switcher) — interactive depth control.
-- **Файлы:** `src/ui/screens/ImpactAnalyzer/DepthSwitcher.tsx` (создан), `ImpactAnalyzerScreen.tsx` (обновлён), `DepthSwitcher.test.tsx` (создан).
-- **Проверки:** `npm run test` — 154/154 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M2-06_Implementation_Report.md`, `IssueReport/M2-06_Technical_Documentation.md`.
-- **Новый Current Issue:** M2-07 (Impact Subgraph Highlighting) — зависимости M1-08, M2-06 закрыты.
-- **Разблокировано:** M2-07.
-- Очередь: 17 нереализованных Issues из 38.
+- **Завершён:** M2-07 (Impact Subgraph Highlighting) — visual highlighting на Global Graph.
+- **Файлы:** `src/ui/screens/GlobalGraph/applyHighlighting.ts` (создан), `GlobalGraphView.tsx` (обновлён), `ImpactAnalyzerScreen.tsx` (clear on back), `applyHighlighting.test.ts` (8 тестов).
+- **Проверки:** `npm run test` — 162/162 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M2-07_Implementation_Report.md`, `IssueReport/M2-07_Technical_Documentation.md`.
+- **Новый Current Issue:** M2-08 (Validation: Canonical Impact Scenario) — все M2-01 через M2-07 закрыты.
+- **Разблокировано:** M2-08.
+- Очередь: 16 нереализованных Issues из 38.
