@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M4-08 |
-| **Title** | E2E Smoke Test |
+| **Issue ID** | M4-09 |
+| **Title** | Final Validation: MVP Acceptance |
 | **Milestone** | M4 — Export and Release |
-| **Type** | Test |
+| **Type** | Validation |
 | **Status** | Current |
-| **Depends On** | M4-07 (Done) |
-| **Unlocks** | M4-09 |
-| **File** | `Issue-Tree/M4_Export_and_Release/M4-08_E2E_Smoke_Test.md` |
+| **Depends On** | M4-08 (Done) |
+| **Unlocks** | — |
+| **File** | `Issue-Tree/M4_Export_and_Release/M4-09_Final_Validation_MVP_Acceptance.md` |
 
 ---
 
@@ -80,8 +80,8 @@
 | 34 | M4-05 | M4 — Export and Release | Done | [Report](IssueReport/M4-05_Implementation_Report.md) | [Tech Doc](IssueReport/M4-05_Technical_Documentation.md) | Validation PASSED: GraphML + CSV verified on demo dataset, 19 tests |
 | 35 | M4-06 | M4 — Export and Release | Done | [Report](IssueReport/M4-06_Implementation_Report.md) | [Tech Doc](IssueReport/M4-06_Technical_Documentation.md) | GitHub Actions CI: lint + test + build |
 | 36 | M4-07 | M4 — Export and Release | Done | [Report](IssueReport/M4-07_Implementation_Report.md) | [Tech Doc](IssueReport/M4-07_Technical_Documentation.md) | README + CONTRIBUTING + LICENSE (MIT) |
-| 37 | M4-08 | M4 — Export and Release | Current | — | — | E2E smoke test |
-| 38 | M4-09 | M4 — Export and Release | Pending | — | — | Final validation: MVP acceptance |
+| 37 | M4-08 | M4 — Export and Release | Done | [Report](IssueReport/M4-08_Implementation_Report.md) | [Tech Doc](IssueReport/M4-08_Technical_Documentation.md) | Playwright E2E: SC-1 canonical scenario, 10 steps, 4.5s |
+| 38 | M4-09 | M4 — Export and Release | Current | — | — | Final validation: MVP acceptance |
 
 ---
 
@@ -125,6 +125,7 @@
 | 34 | M4-05 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-05_Implementation_Report.md) | [Tech Doc](IssueReport/M4-05_Technical_Documentation.md) | Validation PASSED. AC-6.1–AC-6.4 verified. GraphML: valid XML, nodes/edges/attributes correct. CSV: BOM, 9 cols, 102 rows, encoding OK. 19 tests. Разблокировано: M4-06. |
 | 35 | M4-06 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-06_Implementation_Report.md) | [Tech Doc](IssueReport/M4-06_Technical_Documentation.md) | GitHub Actions CI: lint + test (281) + build, concurrency, Node 20 LTS. Разблокировано: M4-07. |
 | 36 | M4-07 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-07_Implementation_Report.md) | [Tech Doc](IssueReport/M4-07_Technical_Documentation.md) | README (Quick Start, demo, tech stack, limitations), CONTRIBUTING, LICENSE (MIT). Разблокировано: M4-08. |
+| 37 | M4-08 | M4 — Export and Release | 2026-03-19 | [Report](IssueReport/M4-08_Implementation_Report.md) | [Tech Doc](IssueReport/M4-08_Technical_Documentation.md) | Playwright E2E: SC-1 canonical scenario (10 steps, 4.5s), Chromium headless. Разблокировано: M4-09. |
 
 ---
 
@@ -132,12 +133,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M4-07 завершён успешно.
+**Event:** M4-08 завершён успешно.
 
-- **Завершён:** M4-07 (Write README and Project Documentation) — README + CONTRIBUTING + LICENSE.
-- **Файлы:** `README.md`, `CONTRIBUTING.md`, `LICENSE`.
-- **Проверки:** 281/281 tests, build ok, lint 0 errors.
-- **Артефакты:** `IssueReport/M4-07_Implementation_Report.md`, `IssueReport/M4-07_Technical_Documentation.md`.
-- **Новый Current Issue:** M4-08 (E2E Smoke Test).
-- **Разблокировано:** M4-08.
-- Очередь: 2 нереализованных Issues из 38.
+- **Завершён:** M4-08 (E2E Smoke Test) — Playwright + Chromium.
+- **Файлы:** `playwright.config.ts`, `tests/e2e/canonical.test.ts`, `package.json`.
+- **Проверки:** E2E 1/1 passed (4.5s), unit 281/281, build ok, lint 0 errors.
+- **Артефакты:** `IssueReport/M4-08_Implementation_Report.md`, `IssueReport/M4-08_Technical_Documentation.md`.
+- **Новый Current Issue:** M4-09 (Final Validation: MVP Acceptance).
+- **Разблокировано:** M4-09.
+- Очередь: 1 нереализованный Issue из 38.
