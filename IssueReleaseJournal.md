@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M2-08 |
-| **Title** | Validation: MS-2 Canonical Impact Scenario |
-| **Milestone** | M2 — Impact Analysis |
-| **Type** | Validation |
+| **Issue ID** | M3-01 |
+| **Title** | Build Table View with TanStack Table |
+| **Milestone** | M3 — Quality Assessment |
+| **Type** | UI |
 | **Status** | Current |
-| **Depends On** | M2-01 through M2-07 (all Done) |
-| **Unlocks** | All M3 |
-| **File** | `Issue-Tree/M2_Impact_Analysis/M2-08_Validation_Impact_Analysis.md` |
+| **Depends On** | M1-03 (Done), M1-04 (Done), M1-06 (Done) |
+| **Unlocks** | M3-02, M4-02 |
+| **File** | `Issue-Tree/M3_Quality_Assessment/M3-01_Build_Table_View.md` |
 
 ---
 
@@ -66,8 +66,8 @@
 | 20 | M2-05 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-05_Implementation_Report.md) | [Tech Doc](IssueReport/M2-05_Technical_Documentation.md) | ImpactAnalyzerScreen: source card + affected list + layer summary + diagrams, 7 tests |
 | 21 | M2-06 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-06_Implementation_Report.md) | [Tech Doc](IssueReport/M2-06_Technical_Documentation.md) | DepthSwitcher: 1/2/3 buttons, live update, 5 tests |
 | 22 | M2-07 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-07_Implementation_Report.md) | [Tech Doc](IssueReport/M2-07_Technical_Documentation.md) | Graph highlighting: source glow, affected accent, dimmed non-affected, 8 tests |
-| 23 | M2-08 | M2 — Impact Analysis | Current | — | — | Validation: canonical impact scenario |
-| 24 | M3-01 | M3 — Quality Assessment | Pending | — | — | Table View (TanStack Table) |
+| 23 | M2-08 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-08_Implementation_Report.md) | [Tech Doc](IssueReport/M2-08_Technical_Documentation.md) | Validation PASSED: all AC, 162/162 tests, 0.14ms perf. **Milestone M2 COMPLETE.** |
+| 24 | M3-01 | M3 — Quality Assessment | Current | — | — | Table View (TanStack Table) |
 | 25 | M3-02 | M3 — Quality Assessment | Pending | — | — | Coverage report engine |
 | 26 | M3-03 | M3 — Quality Assessment | Pending | — | — | Coverage screen UI |
 | 27 | M3-04 | M3 — Quality Assessment | Pending | — | — | Screen navigation (sidebar/tabs) |
@@ -111,6 +111,7 @@
 | 20 | M2-05 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-05_Implementation_Report.md) | [Tech Doc](IssueReport/M2-05_Technical_Documentation.md) | ImpactAnalyzerScreen: SourceCard, AffectedList (grouped by hop), LayerSummary, AffectedDiagrams. 7 UI tests. Разблокировано: M2-06, M2-07. |
 | 21 | M2-06 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-06_Implementation_Report.md) | [Tech Doc](IssueReport/M2-06_Technical_Documentation.md) | DepthSwitcher: 1/2/3 button group, live update via useEffect, aria-pressed, accent styling. 5 UI tests. Разблокировано: M2-07. |
 | 22 | M2-07 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-07_Implementation_Report.md) | [Tech Doc](IssueReport/M2-07_Technical_Documentation.md) | applyHighlighting: source glow, affected accent border, dimmed non-affected (0.2), edge highlighting. 8 tests. Разблокировано: M2-08. |
+| 23 | M2-08 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-08_Implementation_Report.md) | [Tech Doc](IssueReport/M2-08_Technical_Documentation.md) | Validation PASSED. All 11 scenario steps, all AC-3.x + AC-5.1 verified. 162/162 tests. 0.14ms perf. 0 blockers. **Milestone M2 COMPLETE.** Разблокировано: M3, M4-01. |
 
 ---
 
@@ -118,12 +119,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M2-07 завершён успешно.
+**Event:** M2-08 завершён успешно. **Milestone M2 — Impact Analysis: COMPLETE.**
 
-- **Завершён:** M2-07 (Impact Subgraph Highlighting) — visual highlighting на Global Graph.
-- **Файлы:** `src/ui/screens/GlobalGraph/applyHighlighting.ts` (создан), `GlobalGraphView.tsx` (обновлён), `ImpactAnalyzerScreen.tsx` (clear on back), `applyHighlighting.test.ts` (8 тестов).
+- **Завершён:** M2-08 (Validation: Canonical Impact Scenario).
+- **Результат:** Все 11 шагов S-2 demo flow пройдены. AC-3.1–AC-3.9, AC-5.1 верифицированы. Payment Gateway: depth 1→14, depth 2→36, depth 3→64. Core Banking Platform depth 2→47 (no dupes). Layer sums match. 3 diagrams. 0.14ms perf.
 - **Проверки:** `npm run test` — 162/162 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M2-07_Implementation_Report.md`, `IssueReport/M2-07_Technical_Documentation.md`.
-- **Новый Current Issue:** M2-08 (Validation: Canonical Impact Scenario) — все M2-01 через M2-07 закрыты.
-- **Разблокировано:** M2-08.
-- Очередь: 16 нереализованных Issues из 38.
+- **Артефакты:** `IssueReport/M2-08_Implementation_Report.md`, `IssueReport/M2-08_Technical_Documentation.md`.
+- **Новый Current Issue:** M3-01 (Build Table View with TanStack Table).
+- **Разблокировано:** весь M3 (M3-01 — M3-06), M4-01 (GraphML Export).
+- Очередь: 15 нереализованных Issues из 38.
