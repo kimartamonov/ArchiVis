@@ -1,0 +1,1 @@
+export { CoverageView } from './CoverageView';
