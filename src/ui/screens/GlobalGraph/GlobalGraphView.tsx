@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import {
   ReactFlow,
   Controls,
@@ -19,6 +19,7 @@ import { useGraphLayout } from './useGraphLayout';
 import { colorForLayer } from './nodeStyles';
 import { ElementCard } from '../../components/ElementCard';
 import { SearchBar } from '../../components/Search';
+import { applyNodeHighlighting, applyEdgeHighlighting } from './applyHighlighting';
 
 export function GlobalGraphView() {
   const currentModel = useModelStore((s) => s.currentModel);
@@ -27,6 +28,8 @@ export function GlobalGraphView() {
   const setScreen = useUIStore((s) => s.setScreen);
   const selectedElementId = useAnalysisStore((s) => s.selectedElementId);
   const selectElement = useAnalysisStore((s) => s.selectElement);
+
+  const impactResult = useAnalysisStore((s) => s.impactResult);
 
   const selectedNode = graph && selectedElementId ? graph.nodes.get(selectedElementId) ?? null : null;
 
@@ -38,7 +41,23 @@ export function GlobalGraphView() {
     setGraph(g);
   }, [currentModel, setGraph]);
 
-  const { nodes, edges, loading } = useGraphLayout(graph);
+  const { nodes: rawNodes, edges: rawEdges, loading } = useGraphLayout(graph);
+
+  // Apply impact highlighting
+  const highlightIds = useMemo(() => {
+    if (!impactResult || impactResult.affectedElements.length === 0) return null;
+    return new Set(impactResult.affectedElements.map((e) => e.id));
+  }, [impactResult]);
+
+  const nodes = useMemo(
+    () => applyNodeHighlighting(rawNodes, highlightIds, impactResult?.sourceElementId ?? null),
+    [rawNodes, highlightIds, impactResult?.sourceElementId],
+  );
+
+  const edges = useMemo(
+    () => applyEdgeHighlighting(rawEdges, highlightIds, impactResult?.sourceElementId ?? null),
+    [rawEdges, highlightIds, impactResult?.sourceElementId],
+  );
 
   const handleNodeClick: NodeMouseHandler = useCallback(
     (_event, node) => {

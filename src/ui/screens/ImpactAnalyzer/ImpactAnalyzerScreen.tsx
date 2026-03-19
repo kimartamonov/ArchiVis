@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useAnalysisStore } from '../../../stores/analysisStore';
 import { useGraphStore } from '../../../stores/graphStore';
 import { useModelStore } from '../../../stores/modelStore';
@@ -35,12 +35,17 @@ export function ImpactAnalyzerScreen() {
     setImpactResult(result);
   }, [graph, currentModel, selectedElementId, depth, setImpactResult]);
 
+  const handleBackToGraph = useCallback(() => {
+    setImpactResult(null);
+    setScreen('graph');
+  }, [setImpactResult, setScreen]);
+
   // No element selected
   if (!selectedNode || !graph) {
     return (
       <div style={styles.container}>
         <div style={styles.toolbar}>
-          <button onClick={() => setScreen('graph')} style={styles.toolbarBtn}>
+          <button onClick={handleBackToGraph} style={styles.toolbarBtn}>
             &larr; Graph
           </button>
           <SearchBar />
@@ -55,7 +60,7 @@ export function ImpactAnalyzerScreen() {
   return (
     <div style={styles.container}>
       <div style={styles.toolbar}>
-        <button onClick={() => setScreen('graph')} style={styles.toolbarBtn}>
+        <button onClick={handleBackToGraph} style={styles.toolbarBtn}>
           &larr; Graph
         </button>
         <SearchBar />
