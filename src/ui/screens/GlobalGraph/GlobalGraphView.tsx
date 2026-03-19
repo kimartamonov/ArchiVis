@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import {
   ReactFlow,
   Controls,
@@ -6,21 +6,28 @@ import {
   Background,
   BackgroundVariant,
 } from '@xyflow/react';
+import type { NodeMouseHandler } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
 import { useModelStore } from '../../../stores/modelStore';
 import { useGraphStore } from '../../../stores/graphStore';
+import { useAnalysisStore } from '../../../stores/analysisStore';
 import { useUIStore } from '../../../stores/uiStore';
 import { buildGraph } from '../../../engine/graph/buildGraph';
 import { calculateMetrics } from '../../../engine/graph/calculateMetrics';
 import { useGraphLayout } from './useGraphLayout';
 import { colorForLayer } from './nodeStyles';
+import { ElementCard } from '../../components/ElementCard';
 
 export function GlobalGraphView() {
   const currentModel = useModelStore((s) => s.currentModel);
   const graph = useGraphStore((s) => s.graph);
   const setGraph = useGraphStore((s) => s.setGraph);
   const setScreen = useUIStore((s) => s.setScreen);
+  const selectedElementId = useAnalysisStore((s) => s.selectedElementId);
+  const selectElement = useAnalysisStore((s) => s.selectElement);
+
+  const selectedNode = graph && selectedElementId ? graph.nodes.get(selectedElementId) ?? null : null;
 
   // Build graph from model on mount / model change
   useEffect(() => {
@@ -31,6 +38,17 @@ export function GlobalGraphView() {
   }, [currentModel, setGraph]);
 
   const { nodes, edges, loading } = useGraphLayout(graph);
+
+  const handleNodeClick: NodeMouseHandler = useCallback(
+    (_event, node) => {
+      selectElement(node.id);
+    },
+    [selectElement],
+  );
+
+  const handlePaneClick = useCallback(() => {
+    selectElement(null);
+  }, [selectElement]);
 
   if (!currentModel) {
     return (
@@ -66,6 +84,8 @@ export function GlobalGraphView() {
         <ReactFlow
           nodes={nodes}
           edges={edges}
+          onNodeClick={handleNodeClick}
+          onPaneClick={handlePaneClick}
           fitView
           minZoom={0.05}
           maxZoom={4}
@@ -84,6 +104,13 @@ export function GlobalGraphView() {
           />
           <Background variant={BackgroundVariant.Dots} gap={20} size={1} />
         </ReactFlow>
+
+        {selectedNode && (
+          <ElementCard
+            node={selectedNode}
+            onClose={() => selectElement(null)}
+          />
+        )}
       </div>
     </div>
   );
@@ -122,6 +149,7 @@ const styles: Record<string, React.CSSProperties> = {
   flowContainer: {
     flex: 1,
     width: '100%',
+    position: 'relative',
   },
   loading: {
     display: 'flex',
