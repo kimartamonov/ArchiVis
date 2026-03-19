@@ -1,1 +1,1 @@
-export { analyzeImpact } from './impactAnalysis';
+export { analyzeImpact, buildImpactResult } from './impactAnalysis';
