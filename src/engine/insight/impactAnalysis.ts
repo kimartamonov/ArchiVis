@@ -1,4 +1,12 @@
-import type { AnalysisGraph, AffectedElement } from '../types';
+import type {
+  AnalysisGraph,
+  NormalizedModel,
+  AffectedElement,
+  ImpactResult,
+  LayerSummary,
+  DiagramRef,
+  Layer,
+} from '../types';
 import { elementTypeToLayer } from '../types';
 
 /**
@@ -70,4 +78,43 @@ export function analyzeImpact(
   }
 
   return result;
+}
+
+/**
+ * Builds a complete ImpactResult: runs BFS, groups by layer, resolves diagrams.
+ *
+ * `model` is needed to resolve diagram names from the source element's diagramIds.
+ */
+export function buildImpactResult(
+  graph: AnalysisGraph,
+  model: NormalizedModel,
+  elementId: string,
+  depth: 1 | 2 | 3,
+): ImpactResult {
+  const affectedElements = analyzeImpact(graph, elementId, depth);
+
+  // Layer summary: count affected elements per layer
+  const layerCounts = new Map<Layer, number>();
+  for (const elem of affectedElements) {
+    layerCounts.set(elem.layer, (layerCounts.get(elem.layer) ?? 0) + 1);
+  }
+  const affectedLayers: LayerSummary[] = Array.from(layerCounts.entries())
+    .map(([layer, count]) => ({ layer, count }))
+    .sort((a, b) => b.count - a.count);
+
+  // Affected diagrams: diagrams that contain the SOURCE element
+  const sourceNode = graph.nodes.get(elementId);
+  const diagramIds = sourceNode?.element.diagramIds ?? [];
+  const diagramMap = new Map(model.diagrams.map((d) => [d.id, d.name]));
+  const affectedDiagrams: DiagramRef[] = diagramIds
+    .map((id) => ({ id, name: diagramMap.get(id) ?? id }))
+    .filter((d) => d.name);
+
+  return {
+    sourceElementId: elementId,
+    depth,
+    affectedElements,
+    affectedLayers,
+    affectedDiagrams,
+  };
 }

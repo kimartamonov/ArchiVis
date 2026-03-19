@@ -29,14 +29,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Issue ID** | M2-02 |
-| **Title** | Implement Layer Summary and Affected Diagrams |
+| **Issue ID** | M2-03 |
+| **Title** | Add Impact Analysis Unit Tests |
 | **Milestone** | M2 — Impact Analysis |
-| **Type** | Engine |
+| **Type** | Test |
 | **Status** | Current |
-| **Depends On** | M2-01 (Done) |
-| **Unlocks** | M2-05 |
-| **File** | `Issue-Tree/M2_Impact_Analysis/M2-02_Implement_Layer_Summary_and_Affected_Diagrams.md` |
+| **Depends On** | M2-01 (Done), M2-02 (Done) |
+| **Unlocks** | M2-04 |
+| **File** | `Issue-Tree/M2_Impact_Analysis/M2-03_Add_Impact_Analysis_Unit_Tests.md` |
 
 ---
 
@@ -60,8 +60,8 @@
 | 14 | M1-09 | M1 — Model Visualization | Done | [Report](IssueReport/M1-09_Implementation_Report.md) | [Tech Doc](IssueReport/M1-09_Technical_Documentation.md) | ElementCard popup, 14 tests |
 | 15 | M1-10 | M1 — Model Visualization | Done | [Report](IssueReport/M1-10_Implementation_Report.md) | [Tech Doc](IssueReport/M1-10_Technical_Documentation.md) | Validation PASSED: all AC, 112/112 tests, 100% engine coverage |
 | 16 | M2-01 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-01_Implementation_Report.md) | [Tech Doc](IssueReport/M2-01_Technical_Documentation.md) | BFS undirected traversal, 11 tests |
-| 17 | M2-02 | M2 — Impact Analysis | Current | — | — | Layer summary и affected diagrams |
-| 18 | M2-03 | M2 — Impact Analysis | Pending | — | — | Unit tests for impact analysis |
+| 17 | M2-02 | M2 — Impact Analysis | Done | [Report](IssueReport/M2-02_Implementation_Report.md) | [Tech Doc](IssueReport/M2-02_Technical_Documentation.md) | buildImpactResult: layer summary + affected diagrams, 6 tests |
+| 18 | M2-03 | M2 — Impact Analysis | Current | — | — | Unit tests for impact analysis |
 | 19 | M2-04 | M2 — Impact Analysis | Pending | — | — | Global search bar с dropdown |
 | 20 | M2-05 | M2 — Impact Analysis | Pending | — | — | Impact Analyzer screen |
 | 21 | M2-06 | M2 — Impact Analysis | Pending | — | — | Depth switcher (1/2/3) |
@@ -105,6 +105,7 @@
 | 14 | M1-09 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-09_Implementation_Report.md) | [Tech Doc](IssueReport/M1-09_Technical_Documentation.md) | ElementCard: name, type, layer, degree, diagrams, orphan badge, Analyze Impact button. 14 UI tests. Разблокировано: M1-10, M2-05. |
 | 15 | M1-10 | M1 — Model Visualization | 2026-03-19 | [Report](IssueReport/M1-10_Implementation_Report.md) | [Tech Doc](IssueReport/M1-10_Technical_Documentation.md) | Validation PASSED. All AC verified. 112/112 tests. 100% engine coverage. 0 blocker bugs. **Milestone M1 COMPLETE.** Разблокировано: весь M2, весь M3. |
 | 16 | M2-01 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-01_Implementation_Report.md) | [Tech Doc](IssueReport/M2-01_Technical_Documentation.md) | analyzeImpact: BFS undirected, depth 1/2/3, visited set, cycle-safe. Demo: Core Banking Platform depth 2 → 47 elements. 11 tests. Разблокировано: M2-02, M2-03, M2-05. |
+| 17 | M2-02 | M2 — Impact Analysis | 2026-03-19 | [Report](IssueReport/M2-02_Implementation_Report.md) | [Tech Doc](IssueReport/M2-02_Technical_Documentation.md) | buildImpactResult: layer summary (sorted desc) + affected diagrams (source only). 6 tests. Разблокировано: M2-05. |
 
 ---
 
@@ -112,12 +113,12 @@
 
 **Date:** 2026-03-19
 
-**Event:** M2-01 завершён успешно.
+**Event:** M2-02 завершён успешно.
 
-- **Завершён:** M2-01 (Implement BFS Impact Analysis) — undirected BFS engine.
-- **Файлы:** `src/engine/insight/impactAnalysis.ts`, `src/engine/insight/index.ts`, `src/engine/insight/__tests__/impactAnalysis.test.ts`.
-- **Проверки:** `npm run test` — 123/123 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
-- **Артефакты:** `IssueReport/M2-01_Implementation_Report.md`, `IssueReport/M2-01_Technical_Documentation.md`.
-- **Новый Current Issue:** M2-02 (Layer Summary and Affected Diagrams) — зависимость M2-01 закрыта.
-- **Разблокировано:** M2-02, M2-03, M2-05.
-- Очередь: 22 нереализованных Issues из 38.
+- **Завершён:** M2-02 (Layer Summary and Affected Diagrams) — агрегация поверх BFS.
+- **Файлы:** `src/engine/insight/impactAnalysis.ts` (добавлен `buildImpactResult`), `src/engine/insight/index.ts`, `src/engine/insight/__tests__/buildImpactResult.test.ts`.
+- **Проверки:** `npm run test` — 129/129 passed, `npm run build` — успешно, `npm run lint` — 0 ошибок.
+- **Артефакты:** `IssueReport/M2-02_Implementation_Report.md`, `IssueReport/M2-02_Technical_Documentation.md`.
+- **Новый Current Issue:** M2-03 (Add Impact Analysis Unit Tests) — зависимости M2-01, M2-02 закрыты.
+- **Разблокировано:** M2-05.
+- Очередь: 21 нереализованных Issues из 38.
