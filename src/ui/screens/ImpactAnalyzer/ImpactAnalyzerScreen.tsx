@@ -9,6 +9,7 @@ import { AffectedList } from './AffectedList';
 import { LayerSummary } from './LayerSummary';
 import { AffectedDiagrams } from './AffectedDiagrams';
 import { SearchBar } from '../../components/Search';
+import { DepthSwitcher } from './DepthSwitcher';
 
 export function ImpactAnalyzerScreen() {
   const selectedElementId = useAnalysisStore((s) => s.selectedElementId);
@@ -58,7 +59,7 @@ export function ImpactAnalyzerScreen() {
           &larr; Graph
         </button>
         <SearchBar />
-        <span style={styles.depthLabel}>Depth: {depth}</span>
+        <DepthSwitcher />
       </div>
 
       <div style={styles.content}>
@@ -111,11 +112,6 @@ const styles: Record<string, React.CSSProperties> = {
     fontFamily: 'var(--sans)',
     fontSize: 14,
     color: 'var(--text-h)',
-  },
-  depthLabel: {
-    fontSize: 14,
-    color: 'var(--text)',
-    whiteSpace: 'nowrap',
   },
   content: {
     display: 'flex',
